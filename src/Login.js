@@ -28,7 +28,7 @@ function Login(props) {
             </section>
 
             <section className='sign-up-container forgot-pw-container'>
-            { forgotPassword ? <LoginText handleNewPassword={handleNewPassword}/> : <ForgotPw handleBackBtn={handleNewPassword} /> }
+            { forgotPassword ? <ForgotPw handleBackBtn={handleNewPassword} /> : <LoginText handleNewPassword={handleNewPassword}/> }
             </section>
         </div>
     </div>
