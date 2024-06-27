@@ -1,6 +1,15 @@
-import React from "react";
+import { React, useState } from "react";
+import { loginUser } from "../firebase/firebaseAuth";
 
 function LoginText({handleNewPassword}) {
+    const [loginEmail, setLoginEmail] = useState("");
+    const [loginPw, setLoginPw] = useState("");
+
+    const handleUserLogin = (e) => {
+        e.preventDefault();
+        // Validate user email and password
+        loginUser(loginEmail, loginPw);
+    }
 
     return (
         <div className='sign-up-col'>
@@ -19,7 +28,8 @@ function LoginText({handleNewPassword}) {
                 </div>
                 <span>or use your email and password below:</span>
                 </div>
-                <form className='sign-up-form'>
+                <form className='sign-up-form' onSubmit={handleUserLogin}>
+                    <span id="login-error"><i className="fa-solid fa-circle-exclamation"></i> Incorrect email/password, please try again.</span>
                 <div className='name-info style-input'>
                     <i className="fa-regular fa-envelope"></i>
                     <input 
@@ -27,6 +37,8 @@ function LoginText({handleNewPassword}) {
                     id='email'
                     name='email'
                     placeholder='Email'
+                    onChange={(e)=> setLoginEmail(e.target.value)}
+                    value={loginEmail}
                     required
                     />
                 </div>
@@ -37,6 +49,8 @@ function LoginText({handleNewPassword}) {
                     id='password'
                     name='password'
                     placeholder='Password'
+                    onChange={(e)=> setLoginPw(e.target.value)}
+                    value={loginPw}
                     required
                     />
                     <i className="fa-regular fa-eye"></i>

@@ -1,7 +1,21 @@
-import React from "react";
+import {React, useState} from "react";
+import {createNewUser} from "./firebase/firebaseAuth";
 
 function Signup({handleLoginToggle}) {
+    const [userName, setUserName] = useState("");
 
+
+    const [userEmail, setUserEmail] = useState("");
+    const [userPassword, setUserPassword] = useState("");
+
+
+
+    const handleNewUserForm = () => {
+        // DETERMINE IF EMAIL IS AVAILABLE
+        //  IF AVAILABLE...
+        createNewUser(userName, userEmail, userPassword);
+
+    }
 
     return (
         <div className="signup">
@@ -23,7 +37,7 @@ function Signup({handleLoginToggle}) {
                     </div>
                     <span>or use your email for registration:</span>
                     </div>
-                    <form className='sign-up-form'>
+                    <form className='sign-up-form' onSubmit={handleNewUserForm}>
                     <div className='name-info style-input'>
                         <i className="fa-regular fa-user"></i>
                         <input 
@@ -31,6 +45,8 @@ function Signup({handleLoginToggle}) {
                         id='name'
                         name='name'
                         placeholder='Name'
+                        onChange={(e)=> {setUserName(e.target.value)}}
+                        value={userName}
                         required
                         />
                     </div>
@@ -41,6 +57,8 @@ function Signup({handleLoginToggle}) {
                         id='email'
                         name='email'
                         placeholder='Email'
+                        onChange={(e)=> {setUserEmail(e.target.value)}}
+                        value={userEmail}
                         required
                         />
                     </div>
@@ -51,6 +69,8 @@ function Signup({handleLoginToggle}) {
                         id='password'
                         name='password'
                         placeholder='Password'
+                        onChange={(e)=> {setUserPassword(e.target.value)}}
+                        value={userPassword}
                         required
                         />
                         <i className="fa-regular fa-eye"></i>
