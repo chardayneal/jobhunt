@@ -1,7 +1,8 @@
 import {React, useState} from "react";
 import {createNewUser} from "./firebase/firebaseAuth";
+import { Link } from "react-router-dom";
 
-function Signup({handleLoginToggle}) {
+function Signup() {
     const [userName, setUserName] = useState("");
 
 
@@ -83,18 +84,15 @@ function Signup({handleLoginToggle}) {
                     />
 
                     </form>
-                    <span>If you already have an account <a className='sign-in-btn'>sign in here</a>.</span>
+                    <span>If you already have an account <Link to='/login' className='sign-in-btn'>sign in here</Link>.</span>
                 </div>
                 </section>
                 <section className='sign-in-col' id="style-sign-in">
-                <div className='logo'><h1><span>j</span><i className="fa-solid fa-magnifying-glass"></i>bHunt</h1></div>
+                <Link to='/' className='logo'><h1><span>j</span><i className="fa-solid fa-magnifying-glass"></i>bHunt</h1></Link>
                 <div className='sign-in-txt' >
                     <h2>Welcome Back!</h2>
                     <span>If you already have an account, please login with your personal info</span>
-                    <button 
-                        className='style-btn'
-                        onClick={handleLoginToggle}
-                        >SIGN IN</button>
+                    <Link to='/login' className='style-btn'>SIGN IN</Link>
                 </div>
                 </section>
             </div>

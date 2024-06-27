@@ -3,8 +3,9 @@ import { React, useState } from "react";
 // components
 import LoginText from "./Components/LoginText";
 import ForgotPw from "./Components/ForgotPw";
+import { Link } from "react-router-dom";
 
-function Login(props) {
+function Login() {
     const [forgotPassword, setForgotPassword] = useState(false);
 
     const handleNewPassword = () => {
@@ -16,14 +17,11 @@ function Login(props) {
         <div className="signup">
         <div className='login-container'>
             <section className='sign-in-col'>
-            <div className='logo'><h1><span>j</span><i className="fa-solid fa-magnifying-glass"></i>bHunt</h1></div>
+            <Link to='/' className='logo'><h1><span>j</span><i className="fa-solid fa-magnifying-glass"></i>bHunt</h1></Link>
             <div className='sign-in-txt'>
                 <h2>Sign Up</h2>
                 <span>Create an account to manage the progress of your job hunt</span>
-                <button 
-                    className='style-btn'
-                    onClick={props.handleLoginToggle} 
-                    >SIGN UP</button>
+                <Link to='/signup' className='style-btn'>SIGN UP</Link>
             </div>
             </section>
 
