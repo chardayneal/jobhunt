@@ -1,0 +1,20 @@
+.dash-grid {
+    background-color: #fff;
+
+    width: 100%;
+    max-height: calc(100vh - 90px);
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 1fr;
+}
+
+
+.events {
+    height: 100%;
+
+    grid-column: 3 / 4;
+    grid-row: 1 / 2;
+
+    background-color: #05c;
+}
