@@ -1,0 +1,12 @@
+.events {
+    height: calc(100vh - 70px);
+
+    grid-column: 3 / 4;
+    grid-row: 1 / 2;
+
+    background-color: #05c;
+
+    overflow: scroll;
+    overflow-y: auto;
+    overflow-x: hidden;
+}

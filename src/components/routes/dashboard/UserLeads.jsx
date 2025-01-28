@@ -3,6 +3,7 @@ import { LEADS } from '../../../staticData/staticLeads';
 import LeadHeader from './LeadHeader';
 import LeadList from './LeadList';
 
+
 import './UserLeads.css';
 
 const UserLeads = () => {

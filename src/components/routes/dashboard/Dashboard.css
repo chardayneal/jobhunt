@@ -9,12 +9,3 @@
     grid-template-rows: 1fr;
 }
 
-
-.events {
-    height: 100%;
-
-    grid-column: 3 / 4;
-    grid-row: 1 / 2;
-
-    background-color: #05c;
-}
