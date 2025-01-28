@@ -7,18 +7,46 @@ import LeadList from './LeadList';
 import './UserLeads.css';
 
 const UserLeads = () => {
-  const [leads, setLeads] = useState([]);
+  const [leads, setLeads] = useState(LEADS);
+  const [searchQuery, setSearchQuery] = useState('');
 
   useEffect(() => {
-    setLeads(LEADS);
-  }, []);
+    if (searchQuery) {
+      const filteredLeads = filterLeads(searchQuery, LEADS);
+      setLeads(filteredLeads);
+    } else {
+      setLeads(LEADS);
+    }
+  }, [searchQuery]);
+
+  const handleQueryChange = (e) => {
+    setSearchQuery(e.target.value);
+    // filterLeads(e.target.value);
+  };
+
 
   return (
     <div className="dash-item lead-grid user-leads">
-      <LeadHeader/>
+      <LeadHeader searchQuery={searchQuery} handleQueryChange={handleQueryChange}/>
       <LeadList leads={leads}/>
     </div>
   )
 }
 
-export default UserLeads
+const filterLeads = (query, leads) => {
+  return leads.filter(lead => {
+    if (lead.title.toLowerCase().includes(query.toLowerCase())) {
+      return true;
+    } else if (lead.company.toLowerCase().includes(query.toLowerCase())) {
+      return true;
+    } else if (lead.location.toLowerCase().includes(query.toLowerCase())) {
+      return true;
+    } else if (lead.description.toLowerCase().includes(query.toLowerCase())) {
+      return true;
+    }
+  });
+}
+
+
+
+export default UserLeads;

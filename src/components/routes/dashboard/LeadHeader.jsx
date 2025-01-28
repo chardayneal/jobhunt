@@ -1,3 +1,4 @@
+import propTypes from 'prop-types';
 import InputAdornment from '@mui/material/InputAdornment';
 import TextField from '@mui/material/TextField';
 import SearchIcon from '@mui/icons-material/Search';
@@ -5,7 +6,9 @@ import InfoIcon from '@mui/icons-material/Info';
 
 import './LeadHeader.css';
 
-const LeadHeader = () => {
+
+const LeadHeader = ({ searchQuery, handleQueryChange }) => {
+
   return (
     <section className="lead-item lead-header">
         <h2>My Current Leads</h2>
@@ -20,9 +23,16 @@ const LeadHeader = () => {
                     <SearchIcon />
                   </InputAdornment>
                 ),
+                inputProps: {
+                  'aria-label': 'search leads',
+                  onInput: handleQueryChange,
+                  value: searchQuery
+                }
               },
+              
             }}
             variant="standard"
+
           />
           <span className="tooltip">
           <InfoIcon className="info-icon tooltip" />
@@ -47,5 +57,10 @@ const LeadHeader = () => {
       </section>
   )
 }
+
+LeadHeader.propTypes = {
+  searchQuery: propTypes.string.isRequired,
+  handleQueryChange: propTypes.func.isRequired
+};
 
 export default LeadHeader;
