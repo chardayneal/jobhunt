@@ -9,8 +9,8 @@ const MuseLeadView = ({selectedLead}) => {
         <p>{selectedLead.jobPostingDate}</p>
       </div>
       <p>{selectedLead.location}</p>
-      <div className="description">
-        <p>{selectedLead.description}</p>
+      <div className="description" dangerouslySetInnerHTML={{ __html: selectedLead.description }}>
+        
       </div></> : <p className='lead-not-selected'>Select a lead</p> }
     </div>
   )

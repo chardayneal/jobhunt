@@ -1,4 +1,5 @@
 import axios from "axios";
+import DOMPurify from 'dompurify';
 // const api_key = import.meta.env.MUSE_API_KEY;
 
 const kbaseURL = 'https://www.themuse.com/api/public/jobs';
@@ -37,6 +38,6 @@ export const formatLead = (lead) => {
     location: lead.locations[0].name,
     level: lead.levels[0].name,
     jobPostingDate: lead.publication_date,
-    description: lead.contents
+    description: DOMPurify.sanitize(lead.contents)
   }
 };

@@ -29,6 +29,7 @@ const LeadSearch = () => {
   const handleLeadView = (id) => {
     getMuseLeadById(id)
       .then((lead) => {
+        console.log(formatLead(lead).description);
         setSelectedLead(formatLead(lead));
       })
       .catch((error) => {
