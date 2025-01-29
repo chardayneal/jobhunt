@@ -3,7 +3,7 @@ import propTypes from 'prop-types';
 import { Button } from '@mui/material';
 import MuseList from './MuseList';
 
-const MuseScroll = ({ leadResults, loadMoreData }) => {
+const MuseScroll = ({ leadResults, loadMoreData, viewLead }) => {
   const [atBottom, setAtBottom] = useState(false);
   const scrollContainerRef = useRef(null);
 
@@ -11,15 +11,11 @@ const MuseScroll = ({ leadResults, loadMoreData }) => {
   useEffect(() => {
     const handleScroll = () => {
       const element = scrollContainerRef.current;
-      console.log(element.scrollHeight - element.scrollTop);
-      console.log(`Client Height: ${element.clientHeight}`);
       if (element.scrollHeight - element.scrollTop <= element.clientHeight + 5) {
         setAtBottom(true);
-        console.log("At the bottom");
         // Load more content or perform other actions
       } else {
         setAtBottom(false);
-        console.log("Not at bottom");
       }
     };
 
@@ -35,7 +31,7 @@ const MuseScroll = ({ leadResults, loadMoreData }) => {
   return (
     <div className='muse-lead-list' ref={scrollContainerRef}>
       <div className='list-container'>
-        <MuseList leadResults={leadResults}/>
+        <MuseList handleMuseLeadClick={viewLead} leadResults={leadResults}/>
         {atBottom && <Button onClick={loadMoreData} className='load-more-btn' variant="contained" size="large">
           LOAD MORE RESULTS
         </Button>}
@@ -46,7 +42,8 @@ const MuseScroll = ({ leadResults, loadMoreData }) => {
 
 MuseScroll.propTypes = {
   leadResults: propTypes.array,
-  loadMoreData: propTypes.func
+  loadMoreData: propTypes.func, 
+  viewLead: propTypes.func
 };
 
 export default MuseScroll;

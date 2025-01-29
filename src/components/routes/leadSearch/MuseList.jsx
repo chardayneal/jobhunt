@@ -4,7 +4,7 @@ import { Button } from "@mui/material";
 import StarIcon from '@mui/icons-material/Star';
 
 
-const MuseList = ({ leadResults }) => {
+const MuseList = ({ leadResults, handleMuseLeadClick }) => {
   const museLeads = leadResults.map((lead) => {
     return (
       <div className="muse-lead" key={uuidv4()}>
@@ -15,7 +15,7 @@ const MuseList = ({ leadResults }) => {
         </div>
         <div className="hover-overlay">
           <Button variant="contained" startIcon={<StarIcon/>}>Add to Leads</Button>
-          <Button variant="outlined">View Lead</Button>
+          <Button onClick={() => handleMuseLeadClick(lead.id)}  variant="outlined">View Lead</Button>
         </div>
       </div>
     )
@@ -29,7 +29,8 @@ const MuseList = ({ leadResults }) => {
 }
 
 MuseList.propTypes = {
-  leadResults: propTypes.array
+  leadResults: propTypes.array,
+  handleMuseLeadClick: propTypes.func
 };
 
 export default MuseList
