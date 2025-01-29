@@ -29,10 +29,15 @@
 }
 
 .muse-header .MuiToolbar-root {
-    max-height: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
 }
 
-/* .muse-header  */
+.muse-header .muse-search-bar {
+    flex: 2;
+}
 
 .lead-search .search-container {
     grid-column: 2 / 3;
