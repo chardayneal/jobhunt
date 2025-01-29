@@ -36,6 +36,7 @@
   }
   
   .flex-area {
+    max-width: calc(100vw - 65px);
     max-height: calc(100vh - 70px);
   
     grid-column: 2 / 5;

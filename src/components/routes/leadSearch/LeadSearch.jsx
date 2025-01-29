@@ -1,12 +1,14 @@
 import { useState, useEffect } from "react";
 import MuseHeader from "./MuseHeader";
 import MuseResults from "./MuseResults";
+import MuseLeadView from "./MuseLeadView";
 import { getMuseLeads, formatLead, getMuseLeadById } from "../../../apiUtilities/museAPI";
 import './LeadSearch.css';
 
 const LeadSearch = () => {
   const [leadResults, setLeadResults] = useState([]);
   const [pageCount, setPageCount] = useState(0);
+  const [selectedLead, setSelectedLead] = useState({});
 
   useEffect(() => {
     getMuseLeads(pageCount).then((leads) => {
@@ -27,7 +29,7 @@ const LeadSearch = () => {
   const handleLeadView = (id) => {
     getMuseLeadById(id)
       .then((lead) => {
-        console.log(lead);
+        setSelectedLead(formatLead(lead));
       })
       .catch((error) => {
         console.error(error);
@@ -40,7 +42,7 @@ const LeadSearch = () => {
       <MuseHeader/>
       <div className="search-container">
         <MuseResults onViewLeadClick={handleLeadView} onLoadMoreData={increasePageCount} leadResults={leadResults} />
-        <div className="search-col muse-lead-view"></div>
+        <MuseLeadView selectedLead={selectedLead}/>
       </div>
     </div>
   )

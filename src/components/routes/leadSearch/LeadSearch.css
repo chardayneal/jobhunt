@@ -43,6 +43,7 @@
     grid-column: 2 / 3;
     grid-row: 2 / 3;
     
+    max-width: calc(100vw - 225px - 65px);
     max-height: calc(100vh - 144px);
     background-color: #f5f5f5;
 
@@ -60,10 +61,11 @@
     /* make scrollable */
 }
 
-.search-col .muse-lead-list {
+.search-col .muse-lead-list,
+.search-col.muse-lead-view {
     background-color: cadetblue;
 
-    height: calc(100vh - 144px);
+    max-height: calc(100vh - 144px);
 
     overflow: scroll;
     overflow-y: auto;
@@ -106,4 +108,10 @@
 
 .hover-overlay {
     display: none;
+}
+
+.search-container .search-col .muse-lead-view {
+    overflow: scroll;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
