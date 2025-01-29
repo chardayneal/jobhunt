@@ -1,0 +1,31 @@
+import axios from "axios";
+// const api_key = import.meta.env.MUSE_API_KEY;
+
+const kbaseURL = 'https://www.themuse.com/api/public/jobs';
+
+export const getMuseLeads = (pageCount) => {
+  return axios.get(kbaseURL, {
+          params: {
+            page: pageCount,
+          }
+        })
+      .then((response) => {
+        return response.data.results;
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+
+};
+
+export const formatLead = (lead) => {
+  return {
+    id: lead.id,
+    name: lead.name,
+    company: lead.company.name,
+    location: lead.locations[0].name,
+    level: lead.levels[0].name,
+    jobPostingDate: lead.publication_date,
+    description: lead.contents
+  }
+};
