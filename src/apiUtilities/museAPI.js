@@ -18,6 +18,17 @@ export const getMuseLeads = (pageCount) => {
 
 };
 
+export const getMuseLeadById= (id) => {
+  return axios.get(`${kbaseURL}/${id}`)
+      .then((response) => {
+        return response.data;
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+};
+
+
 export const formatLead = (lead) => {
   return {
     id: lead.id,

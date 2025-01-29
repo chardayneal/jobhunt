@@ -2,11 +2,7 @@ import { useState, useEffect } from "react";
 import MuseHeader from "./MuseHeader";
 import MuseResults from "./MuseResults";
 import { getMuseLeads, formatLead } from "../../../apiUtilities/museAPI";
-
 import './LeadSearch.css';
-
-
-// This component will be used to search for leads
 
 const LeadSearch = () => {
   const [leadResults, setLeadResults] = useState([]);

@@ -1,5 +1,7 @@
 import propTypes from "prop-types";
 import { v4 as uuidv4 } from 'uuid';
+import { Button } from "@mui/material";
+import StarIcon from '@mui/icons-material/Star';
 
 
 const MuseList = ({ leadResults }) => {
@@ -10,6 +12,10 @@ const MuseList = ({ leadResults }) => {
         <div className="muse-subtext">
           <p className="lead-company">{lead.company}</p>
           <p className="lead-location">{lead.location}</p>
+        </div>
+        <div className="hover-overlay">
+          <Button variant="contained" startIcon={<StarIcon/>}>Add to Leads</Button>
+          <Button variant="outlined">View Lead</Button>
         </div>
       </div>
     )
