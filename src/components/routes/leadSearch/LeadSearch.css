@@ -45,4 +45,39 @@
     
     max-height: calc(100vh - 144px);
     background-color: #f5f5f5;
+
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.search-container .search-col {
+    width: 47%;
+    border: 1px solid black;
+
+    height: calc(100vh - 144px);
+
+    /* make scrollable */
+}
+
+.search-col .muse-lead-list {
+    background-color: cadetblue;
+
+    height: calc(100vh - 144px);
+
+    overflow: scroll;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.list-container {
+    position: relative;
+}
+
+.list-container .load-more-btn {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+
+    transform: translateX(-50%);
 }

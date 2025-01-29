@@ -1,4 +1,5 @@
 import MuseHeader from "./MuseHeader";
+import MuseResults from "./MuseResults";
 
 import './LeadSearch.css';
 
@@ -10,7 +11,8 @@ const LeadSearch = () => {
       <div className="filter-panel"></div>
       <MuseHeader/>
       <div className="search-container">
-        <h2>Search for leads</h2>
+        <MuseResults />
+        <div className="search-col muse-lead-view"></div>
       </div>
     </div>
   )
