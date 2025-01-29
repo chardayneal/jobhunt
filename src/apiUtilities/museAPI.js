@@ -31,13 +31,16 @@ export const getMuseLeadById= (id) => {
 
 
 export const formatLead = (lead) => {
+  const date = new Date(lead.publication_date.slice(0, 10));
+
   return {
     id: lead.id,
     name: lead.name,
     company: lead.company.name,
     location: lead.locations[0].name,
     level: lead.levels[0].name,
-    jobPostingDate: lead.publication_date,
-    description: DOMPurify.sanitize(lead.contents)
+    jobPostingDate: date.toDateString(),
+    description: DOMPurify.sanitize(lead.contents),
+    jobURL: lead.refs.landing_page
   }
 };

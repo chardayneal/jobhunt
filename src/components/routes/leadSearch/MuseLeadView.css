@@ -1,0 +1,36 @@
+.muse-lead-view h2 {
+    text-align: left;
+    padding: .25rem;
+}
+
+.muse-lead-view .location-postingDate,
+.muse-lead-view .company-url{
+    padding: .25rem;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+
+}
+
+
+.muse-lead-view .description {
+    padding: 1rem 0;
+}
+
+.muse-lead-view .description * {
+    margin: 2rem 0;
+    padding: 0;
+    text-align: left;
+
+}
+
+.muse-lead-view .description ul {
+    margin-left: 2rem;
+
+}
+
+.muse-lead-view .bottom-apply-btn {
+    margin-bottom: 2rem;
+}
