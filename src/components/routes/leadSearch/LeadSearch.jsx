@@ -12,7 +12,7 @@ const LeadSearch = () => {
 
   useEffect(() => {
     getMuseLeads(pageCount).then((leads) => {
-      const formattedLeads = leads.map((lead) => {
+      let formattedLeads = leads.map((lead) => {
         if (lead.locations.length == 0) {
           lead.locations[0] = { name: 'In Description' };
         }
@@ -29,7 +29,6 @@ const LeadSearch = () => {
   const handleLeadView = (id) => {
     getMuseLeadById(id)
       .then((lead) => {
-        console.log(formatLead(lead).description);
         setSelectedLead(formatLead(lead));
       })
       .catch((error) => {

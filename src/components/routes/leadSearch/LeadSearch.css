@@ -45,7 +45,7 @@
     
     max-width: calc(100vw - 225px - 65px);
     max-height: calc(100vh - 144px);
-    background-color: #f5f5f5;
+    background-color: #fff;
 
     display: flex;
     justify-content: space-around;
@@ -54,16 +54,12 @@
 
 .search-container .search-col {
     width: 47%;
-    border: 1px solid black;
-
     height: calc(100vh - 144px);
-
-    /* make scrollable */
 }
 
 .search-col .muse-lead-list,
 .search-col.muse-lead-view {
-    background-color: cadetblue;
+    background-color: #fff;
 
     max-height: calc(100vh - 144px);
 
@@ -86,9 +82,19 @@
 
 .list-container .muse-lead {
     position: relative;
-    padding: 10px;
+    padding: 2px;
     box-sizing: border-box;
 
+}
+
+.selected {
+    background: linear-gradient(90deg, rgba(40, 0, 255, 1), rgba(255, 160, 71, 1)) ;
+    border-radius: 5px;
+    border: 1px solid transparent;
+}
+
+.lead-body {
+    background-color: #fff;
 }
 
 .muse-lead:hover .hover-overlay {

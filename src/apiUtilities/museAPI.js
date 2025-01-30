@@ -1,5 +1,6 @@
 import axios from "axios";
 import DOMPurify from 'dompurify';
+import {v4 as uuidv4} from 'uuid';
 // const api_key = import.meta.env.MUSE_API_KEY;
 
 const kbaseURL = 'https://www.themuse.com/api/public/jobs';
@@ -34,7 +35,8 @@ export const formatLead = (lead) => {
   const date = new Date(lead.publication_date.slice(0, 10));
 
   return {
-    id: lead.id,
+    id: uuidv4(),
+    museId: lead.id,
     name: lead.name,
     company: lead.company.name,
     location: lead.locations[0].name,
