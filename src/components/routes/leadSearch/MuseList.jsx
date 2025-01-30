@@ -7,11 +7,9 @@ import StarIcon from '@mui/icons-material/Star';
 
 const MuseList = ({ leadResults, handleMuseLeadClick }) => {
   const [selectedLeadId, setSelectedLeadId] = useState(null);
-
   const selectedClassName = 'muse-lead selected';
 
   const handleLeadSelection = (lead) => {
-    
     if (selectedLeadId != null) {
       const element = document.getElementById(`museLead${selectedLeadId}`);
       element.classList.remove('selected'); 
@@ -19,6 +17,11 @@ const MuseList = ({ leadResults, handleMuseLeadClick }) => {
 
     handleMuseLeadClick(lead.museId);
     setSelectedLeadId(lead.id);
+  }
+
+  const handleAddToLeads = (lead) => {
+    console.log(`Adding ${lead.name} to leads`);
+    // make call to POST backend to add lead if lead does not exist already
   }
 
   const museLeads = leadResults.map((lead) => {
@@ -31,7 +34,7 @@ const MuseList = ({ leadResults, handleMuseLeadClick }) => {
             <p className="lead-location">{lead.location}</p>
           </div>
           <div className="hover-overlay">
-            <Button variant="contained" startIcon={<StarIcon/>}>Add to Leads</Button>
+            <Button onClick={() => handleAddToLeads(lead)} variant="contained" startIcon={<StarIcon/>}>Add to Leads</Button>
             <Button onClick={() => handleLeadSelection(lead)}  variant="outlined">View Lead</Button>
           </div>
         </div>

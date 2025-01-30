@@ -5,13 +5,10 @@ import {v4 as uuidv4} from 'uuid';
 
 const kbaseURL = 'https://www.themuse.com/api/public/jobs';
 
-export const getMuseLeads = (pageCount) => {
-  return axios.get(kbaseURL, {
-          params: {
-            page: pageCount,
-          }
-        })
+export const getMuseLeads = (queryParams) => {
+  return axios.get(kbaseURL, {params: queryParams})
       .then((response) => {
+        console.log(response);
         return response.data.results;
       })
       .catch((error) => {
