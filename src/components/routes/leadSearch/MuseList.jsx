@@ -3,6 +3,8 @@ import propTypes from "prop-types";
 import { v4 as uuidv4 } from 'uuid';
 import { Button } from "@mui/material";
 import StarIcon from '@mui/icons-material/Star';
+import Divider from '@mui/material/Divider';
+
 
 
 const MuseList = ({ leadResults, handleMuseLeadClick }) => {
@@ -26,18 +28,21 @@ const MuseList = ({ leadResults, handleMuseLeadClick }) => {
 
   const museLeads = leadResults.map((lead) => {
     return (
-      <div id={`museLead${lead.id}`} className={selectedLeadId === lead.id ? selectedClassName : 'muse-lead'} key={uuidv4()}>
-        <div className="lead-body">
-          <h3>{lead.name}</h3>
-          <div className="muse-subtext">
-            <p className="lead-company">{lead.company}</p>
-            <p className="lead-location">{lead.location}</p>
-          </div>
-          <div className="hover-overlay">
-            <Button onClick={() => handleAddToLeads(lead)} variant="contained" startIcon={<StarIcon/>}>Add to Leads</Button>
-            <Button onClick={() => handleLeadSelection(lead)}  variant="outlined">View Lead</Button>
+      <div key={uuidv4()} className="muse-lead-container">
+        <div id={`museLead${lead.id}`} className={selectedLeadId === lead.id ? selectedClassName : 'muse-lead'}>
+          <div className="lead-body">
+            <h3>{lead.name}</h3>
+            <div className="muse-subtext">
+              <p className="lead-company">{lead.company}</p>
+              <p className="lead-location">{lead.location}</p>
+            </div>
+            <div className="hover-overlay">
+              <Button onClick={() => handleAddToLeads(lead)} variant="contained" startIcon={<StarIcon/>}>Add to Leads</Button>
+              <Button onClick={() => handleLeadSelection(lead)}  variant="outlined">View Lead</Button>
+            </div>
           </div>
         </div>
+        <Divider variant="middle" />
       </div>
     )
   });

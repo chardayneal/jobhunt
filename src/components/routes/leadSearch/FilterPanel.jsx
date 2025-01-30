@@ -39,10 +39,9 @@ const FilterPanel = ({ onApplyFilters}) => {
             aria-controls="panel1-content"
             id="levels-header"
           >
-            <Typography component="span">Levels</Typography>
+            <Typography className="levels-title" component="span">Levels</Typography>
           </AccordionSummary>
           <AccordionDetails>
-            <Button onClick={handleFilterClear} size="small" variant="text">CLEAR</Button>
             <div className="levels-container">
               <div className="level-status">
                 <input onChange={handleLevelChange} type="radio" name="levels" value="Internship" id="internship" />
@@ -60,10 +59,11 @@ const FilterPanel = ({ onApplyFilters}) => {
                 <input onChange={handleLevelChange} type="radio" name="levels" value="Senior Level" id="senior-level" />
                 <label htmlFor="senior-level">Senior Level</label>
               </div>
+            <Button className="clear-levels-btn" onClick={handleFilterClear} size="small" variant="text">CLEAR</Button>
             </div>
           </AccordionDetails>
           </Accordion>
-          <Accordion defaultExpanded>
+          <Accordion>
             <AccordionSummary
               expandIcon={<ExpandMoreIcon />}
               aria-controls="panel2-content"
@@ -78,7 +78,7 @@ const FilterPanel = ({ onApplyFilters}) => {
               </Typography>
             </AccordionDetails>
           </Accordion>
-          <Button onClick={handleFilterChange} variant="outlined">APPLY FILTERS</Button>
+          <Button className="apply-filters" onClick={handleFilterChange} variant="outlined">APPLY FILTERS</Button>
         </div>
       </div>
     </div>
