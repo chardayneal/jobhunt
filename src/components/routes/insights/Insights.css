@@ -1,0 +1,37 @@
+.insight-grid {
+    margin: 1rem 1rem 0;
+    padding: 1rem 1rem 0;
+    background-color: blalck;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-row: 100px 1fr;
+    gap: 1rem;
+}
+
+.insight-grid-item {
+    padding: 1rem;
+    background-color: #fff;
+}
+
+.stats-box {
+    min-height: 100px;
+
+    grid-column: 1 / 4;
+    grid-row: 1 / 2;
+}
+
+.timeline-view,
+.insight-view {
+    height: calc(100vh - 90px - 4rem - 132px)
+}
+
+.timeline-view {
+    grid-column: 1 / 3;
+    grid-row: 2 / 3;
+}
+
+.insight-view {
+    grid-column: 3 / 4;
+    grid-row: 2 / 3;
+}
+
