@@ -4,6 +4,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { Button } from "@mui/material";
 import StarIcon from '@mui/icons-material/Star';
 import Divider from '@mui/material/Divider';
+import Lead from "../dashboard/Lead";
 
 
 
@@ -22,7 +23,7 @@ const MuseList = ({ leadResults, handleMuseLeadClick }) => {
   }
 
   const handleAddToLeads = (lead) => {
-    console.log(`Adding ${lead.name} to leads`);
+    console.log(`Adding ${lead.title} to leads`);
     // make call to POST backend to add lead if lead does not exist already
   }
 
@@ -31,11 +32,7 @@ const MuseList = ({ leadResults, handleMuseLeadClick }) => {
       <div key={uuidv4()} className="muse-lead-container">
         <div id={`museLead${lead.id}`} className={selectedLeadId === lead.id ? selectedClassName : 'muse-lead'}>
           <div className="lead-body">
-            <h3>{lead.name}</h3>
-            <div className="muse-subtext">
-              <p className="lead-company">{lead.company}</p>
-              <p className="lead-location">{lead.location}</p>
-            </div>
+            <Lead leadInfo={{ title: lead.title, company: lead.company, location: lead.location}} />
             <div className="hover-overlay">
               <Button onClick={() => handleAddToLeads(lead)} variant="contained" startIcon={<StarIcon/>}>Add to Leads</Button>
               <Button onClick={() => handleLeadSelection(lead)}  variant="outlined">View Lead</Button>

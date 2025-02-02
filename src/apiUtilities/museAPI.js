@@ -34,7 +34,7 @@ export const formatLead = (lead) => {
   return {
     id: uuidv4(),
     museId: lead.id,
-    name: lead.name,
+    title: lead.name,
     company: lead.company.name,
     location: lead.locations[0].name,
     level: lead.levels[0].name,

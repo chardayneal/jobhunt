@@ -6,10 +6,10 @@
     grid-template-columns: 65px auto auto auto;
     grid-template-rows: 70px auto;
   }
-  
+/*   
   .grid-item {
     text-align: center;
-  }
+  } */
   
   .header {
     grid-column: 2 / 5;

@@ -6,8 +6,8 @@ const Lead = ({ leadInfo }) => {
     <div className='lead'>
         <h3>{leadInfo.title}</h3>
         <div className='lead-subText'>
-            <p>{leadInfo.company}</p>
-            <p>{leadInfo.location}</p>
+            <p className='company'>{leadInfo.company}</p>
+            <p className='location'>{leadInfo.location}</p>
         </div>
     </div>
   )
