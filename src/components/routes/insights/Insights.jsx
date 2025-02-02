@@ -1,4 +1,4 @@
-import TimelineView from './TimelineView';
+import TimelineView from './TimelinePanel';
 import './Insights.css';
 
 const Insights = () => {

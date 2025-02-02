@@ -73,3 +73,7 @@
 .timeline-view {
     width: 40%;
 }
+
+.timeline-view .MuiTimelineConnector-root {
+    height: 100px;
+}
