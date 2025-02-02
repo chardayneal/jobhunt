@@ -18,7 +18,31 @@
 
     grid-column: 1 / 4;
     grid-row: 1 / 2;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5rem;
 }
+
+.stats-box .stat-col {
+    width: 125px;
+    position: relative;
+}
+
+.MuiGauge-root .MuiGauge-referenceArc {
+    fill: #5ce1e6;
+}
+
+
+.stats-box .gauge-title{
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    /* left: 0; */
+    /* transform: translateX(50%); */
+}
+
 
 .timeline-panel,
 .insight-view {
@@ -77,3 +101,4 @@
 .timeline-view .MuiTimelineConnector-root {
     height: 100px;
 }
+
