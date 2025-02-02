@@ -3,7 +3,7 @@
     padding: 1rem 1rem 0;
     background-color: blalck;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr) 400px;
     grid-row: 100px 1fr;
     gap: 1rem;
 }
@@ -45,7 +45,7 @@
 
 
 .timeline-panel,
-.insight-view {
+.insight-panel {
     height: calc(100vh - 90px - 4rem - 132px)
 }
 
@@ -57,7 +57,7 @@
     justify-content: space-between;
 }
 
-.insight-view {
+.insight-panel {
     grid-column: 3 / 4;
     grid-row: 2 / 3;
 }

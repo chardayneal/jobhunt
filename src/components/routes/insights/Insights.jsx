@@ -1,15 +1,16 @@
 import TimelineView from './TimelinePanel';
 import Statbox from './StatBox';
 import './Insights.css';
+import InsightPanel from './InsightPanel';
 
 const Insights = () => {
     return (
       <div className="grid-item flex-area insight-grid">
         <Statbox/>
         <TimelineView/>
-        <div className="insight-grid-item insight-view"></div>
+        <InsightPanel/>
       </div>
     )
   }
   
-export default Insights
+export default Insights;
