@@ -10,3 +10,15 @@
     overflow-y: auto;
     overflow-x: hidden;
 }
+
+.task-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 .5rem;
+}
+
+.taskItem {
+    display: flex;
+    align-items: center;
+}

@@ -1,15 +1,24 @@
+import propTypes from 'prop-types';
 import {LocalizationProvider} from '@mui/x-date-pickers/LocalizationProvider';
 import {AdapterDayjs} from '@mui/x-date-pickers/AdapterDayjs';
-import dayjs from 'dayjs';
+// import dayjs from 'dayjs';
 import {DateCalendar} from '@mui/x-date-pickers/DateCalendar';
 
 
-const Calendar = () => {
+const Calendar = ({ changeDate }) => {
+
+  const handleDate = (date) => {
+    changeDate(date.$d.toDateString());
+  }
   return (
-    <LocalizationProvider dateAdapter={AdapterDayjs}>
-        <DateCalendar defaultValue={dayjs(Date.now())} />
+    <LocalizationProvider  dateAdapter={AdapterDayjs}>
+        <DateCalendar onChange={handleDate} />
     </LocalizationProvider>
   )
 }
+
+Calendar.propTypes = {
+  changeDate: propTypes.func.isRequired,
+};
 
 export default Calendar
