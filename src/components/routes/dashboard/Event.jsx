@@ -1,12 +1,11 @@
 import { useState, useEffect } from 'react';
+import DialogForm from './DialogForm';
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import { ArrowDropDown } from '@mui/icons-material';
 import Checkbox from '@mui/material/Checkbox';
 import Calendar from './Calendar';
-import { IconButton } from '@mui/material';
-import AddIcon from '@mui/icons-material/Add';
 
 import "./Event.css";
 
@@ -42,40 +41,63 @@ console.log(TASKS);
 
 
 const Event = () => {
+  const [tasks, setTasks] = useState(TASKS);
   const [tasksByDate, setTasksByDate] = useState([]);
   const [calendarDate, setCalendarDate] = useState(new Date().toDateString());
 
+  
+  // added tasks to dependency array to get checkbox to persist
+  useEffect(() => {
+    const displayTasks = tasks.filter(task => task.date === calendarDate);
+    setTasksByDate(displayTasks);
+  }, [calendarDate, tasks]);
+  
   const handleDateChange = (date) => {
     console.log(date)
     setCalendarDate(date);
     // make call to BE to get the tasks for selected date, 
   };
 
-  useEffect(() => {
-    const tasks = TASKS.filter(task => task.date === calendarDate);
-    setTasksByDate(tasks);
-  }, [calendarDate]);
+  const handleAddTask = (task) => {
+    const newTask = { date: calendarDate, text: task, id: tasks.length + 1, isComplete: false };
 
+    setTasks([...tasks, newTask]);
+    setTasksByDate([...tasksByDate, newTask]);
+  };
+
+
+// checkbox selection not persisting??
+  const handleCheckboxSelection = (id) => {
+    const updatedTasks = tasks.map(task => {
+      if (task.id === id) {
+        return { ...task, isComplete: !task.isComplete };
+      }
+      return task;
+    });
+
+    setTasks(updatedTasks);
+    setTasksByDate(updatedTasks.filter(task => task.date === calendarDate));
+  }
   return (
     <div className="dash-item events">
       <Calendar changeDate={handleDateChange} />
-      <div className="task-header">
         <h2>Tasks</h2>
-        <IconButton aria-label="add" size="large" className="add-task-btn" >
-          <AddIcon className='task-btn'/>
-        </IconButton>
-      </div>
       <Accordion defaultExpanded>
         <AccordionSummary
           expandIcon={ <ArrowDropDown/>} >
-          <h3>{calendarDate}</h3>
+          <div className="task-header">
+            <h3>{calendarDate}</h3>
+            <DialogForm addTask={handleAddTask}/>
+          </div>
         </AccordionSummary>
         <AccordionDetails>
           <div className="event">
             {tasksByDate ? tasksByDate.map(task => {
               return (
                 <div className="taskItem" key={task.id}>
-                  {task.isComplete ? <Checkbox defaultChecked /> : <Checkbox />}
+                  {task.isComplete ? 
+                    <Checkbox value={task.id} onClick={(e) => handleCheckboxSelection(e.target.value)} defaultChecked /> : 
+                    <Checkbox value={task.id} onClick={(e) => handleCheckboxSelection(e.target.value)}/>}
                   <p>{task.text}</p>
                 </div>
               )
