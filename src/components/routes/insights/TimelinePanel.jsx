@@ -4,7 +4,7 @@ import TimelineView from './TimelineView';
 
 const TimelinePanel = () => {
   return (
-    <section className="insight-grid-item timeline-panel">
+    <section className="dash-card insight-grid-item timeline-panel">
        <div className="lead-scroll-list timeline-col">
         {LEADS.map((lead) => (
           <Lead key={lead.id} leadInfo={lead} />

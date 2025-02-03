@@ -1,8 +1,6 @@
 .dash-grid {
-    background-color: #fff;
-
     width: 100%;
-    max-height: calc(100vh - 90px);
+    max-height: calc(100vh - 70px);
 
     display: grid;
     grid-template-columns: repeat(3, 1fr);

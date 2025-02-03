@@ -46,9 +46,9 @@ const DialogForm = ({addTask}) => {
             Enter a task description below and select Add to create a new task.
           </DialogContentText>
           <TextField
+            required
             value={taskText}
             onChange={(e) => setTaskText(e.target.value)}
-            required
             margin="dense"
             id="name"
             name="task"

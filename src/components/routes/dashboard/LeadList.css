@@ -4,7 +4,7 @@
     background-color: #fff;
 
     padding: 1rem 1rem 0;
-    max-height: calc(100vh - 90px - 80px);
+    max-height: calc(100vh - 90px - 80px - 4rem);
     height: max-content;
 
     

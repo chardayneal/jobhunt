@@ -4,11 +4,23 @@
     grid-column: 3 / 4;
     grid-row: 1 / 2;
 
-    background-color: #05c;
-
     overflow: scroll;
     overflow-y: auto;
     overflow-x: hidden;
+
+    display: flex; 
+    flex-direction: column;
+}
+
+.events .tasks-col {
+    height: calc(100vh - 90px - 295px - 3rem);
+    overflow: scroll;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.events .tasks-col h2 {
+    margin-bottom: .5rem;
 }
 
 .events .task-header {
@@ -21,4 +33,12 @@
 .taskItem {
     display: flex;
     align-items: center;
+}
+
+.flex-area .events .calendar {
+    width: calc(100% - 2rem);
+    box-sizing: border-box;
+    margin: 0 1rem ;
+    margin-top: 1rem;
+    padding: .25rem;
 }

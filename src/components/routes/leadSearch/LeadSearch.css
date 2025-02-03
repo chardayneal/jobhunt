@@ -82,8 +82,14 @@
 }
 
 .search-container .search-col {
-    width: 47%;
     height: calc(100vh - 144px);
+}
+
+.search-col.muse-results {
+    width: 42%;
+}
+.search-col.muse-lead-view {
+    width: 50%;
 }
 
 .search-col .muse-lead-list,
@@ -124,10 +130,6 @@
     background: linear-gradient(90deg, rgba(40, 0, 255, 1), rgba(255, 160, 71, 1)) ;
     border-radius: 5px;
     border: 1px solid transparent;
-}
-
-.lead-body {
-    background-color: #fff;
 }
 
 .muse-lead:hover .hover-overlay {

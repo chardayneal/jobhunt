@@ -29,7 +29,7 @@ const FilterPanel = ({ onApplyFilters}) => {
 
 
   return (
-    <div className="filter-panel">
+    <div className="dash-card filter-panel">
       <div className="filter-container">
         <h3>FILTER RESULTS</h3>
         <div className="levels">

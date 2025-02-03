@@ -26,7 +26,7 @@ const UserLeads = () => {
 
 
   return (
-    <div className="dash-item lead-grid user-leads">
+    <div className="dash-item dash-card lead-grid user-leads">
       <LeadHeader searchQuery={searchQuery} handleQueryChange={handleQueryChange}/>
       <LeadList leads={leads}/>
     </div>

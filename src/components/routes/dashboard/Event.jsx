@@ -80,43 +80,45 @@ const Event = () => {
   }
   return (
     <div className="dash-item events">
-      <Calendar changeDate={handleDateChange} />
-        <h2>Tasks</h2>
-      <Accordion defaultExpanded>
-        <AccordionSummary
-          expandIcon={ <ArrowDropDown/>} >
-          <div className="task-header">
-            <h3>{calendarDate}</h3>
-            <DialogForm addTask={handleAddTask}/>
-          </div>
-        </AccordionSummary>
-        <AccordionDetails>
-          <div className="event">
-            {tasksByDate ? tasksByDate.map(task => {
-              return (
-                <div className="taskItem" key={task.id}>
-                  {task.isComplete ? 
-                    <Checkbox value={task.id} onClick={(e) => handleCheckboxSelection(e.target.value)} defaultChecked /> : 
-                    <Checkbox value={task.id} onClick={(e) => handleCheckboxSelection(e.target.value)}/>}
-                  <p>{task.text}</p>
-                </div>
-              )
-            }) : <p>No tasks for today</p>}
-          </div>
-        </AccordionDetails>
-      </Accordion>
-      <Accordion>
-        <AccordionSummary
-          expandIcon={<ArrowDropDown />} >
-          <h3>Upcoming Events</h3>
-        </AccordionSummary>
-        <AccordionDetails>
-            <div className="event">
-              <p>Event 1</p>
-              <p>Event 1</p>
+        <Calendar changeDate={handleDateChange} />
+      <div className='dash-card tasks-col'>
+          <h2>Tasks</h2>
+        <Accordion defaultExpanded>
+          <AccordionSummary
+            expandIcon={ <ArrowDropDown/>} >
+            <div className="task-header">
+              <h3>{calendarDate}</h3>
+              <DialogForm addTask={handleAddTask}/>
             </div>
-        </AccordionDetails>
-      </Accordion>
+          </AccordionSummary>
+          <AccordionDetails>
+            <div className="event">
+              {tasksByDate ? tasksByDate.map(task => {
+                return (
+                  <div className="taskItem" key={task.id}>
+                    {task.isComplete ? 
+                      <Checkbox value={task.id} onClick={(e) => handleCheckboxSelection(e.target.value)} defaultChecked /> : 
+                      <Checkbox value={task.id} onClick={(e) => handleCheckboxSelection(e.target.value)}/>}
+                    <p>{task.text}</p>
+                  </div>
+                )
+              }) : <p>No tasks for today</p>}
+            </div>
+          </AccordionDetails>
+        </Accordion>
+        <Accordion>
+          <AccordionSummary
+            expandIcon={<ArrowDropDown />} >
+            <h3>Upcoming Events</h3>
+          </AccordionSummary>
+          <AccordionDetails>
+              <div className="event">
+                <p>Event 1</p>
+                <p>Event 1</p>
+              </div>
+          </AccordionDetails>
+        </Accordion>
+      </div>
     </div>
   )
 }

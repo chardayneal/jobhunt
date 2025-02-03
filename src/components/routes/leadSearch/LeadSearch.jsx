@@ -3,6 +3,7 @@ import MuseHeader from "./MuseHeader";
 import MuseResults from "./MuseResults";
 import MuseLeadView from "./MuseLeadView";
 import FilterPanel from "./FilterPanel";
+import Divider from '@mui/material/Divider';
 import { getMuseLeads, formatLead, getMuseLeadById } from "../../../apiUtilities/museAPI";
 import './LeadSearch.css';
 
@@ -57,8 +58,9 @@ const LeadSearch = () => {
     <div className="grid-item flex-area lead-search">
       <FilterPanel onApplyFilters={updateQueryParams}/>
       <MuseHeader/>
-      <div className="search-container">
+      <div className="dash-card search-container">
         <MuseResults onViewLeadClick={handleLeadView} onLoadMoreData={increasePageCount} leadResults={leadResults} />
+        <Divider fullwidth="true" orientation="vertical" />
         <MuseLeadView selectedLead={selectedLead}/>
       </div>
     </div>

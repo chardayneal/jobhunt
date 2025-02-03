@@ -1,6 +1,6 @@
 .sidebar {
     grid-column: 1 / 2;
-    grid-row: 1 / 3;
+    grid-row: 2 / 3;
     background-color: #05c;
     padding: 10px;
 }

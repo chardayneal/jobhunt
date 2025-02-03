@@ -12,7 +12,7 @@ const Calendar = ({ changeDate }) => {
   }
   return (
     <LocalizationProvider  dateAdapter={AdapterDayjs}>
-        <DateCalendar onChange={handleDate} />
+        <DateCalendar className="dash-card calendar" onChange={handleDate} />
     </LocalizationProvider>
   )
 }

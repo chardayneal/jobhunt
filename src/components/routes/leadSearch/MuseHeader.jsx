@@ -7,14 +7,7 @@ const MuseHeader = () => {
     <Box component={'section'} className="muse-header">
       <AppBar position="static" className="muse-app-bar">
         <Toolbar>
-          <Typography
-            variant="h6"
-            noWrap
-            component="div"
-            sx={{ display: { xs: 'none', sm: 'block' } }}
-          >
-            BROWSE MUSE FOR LEADS
-          </Typography>
+          <div></div>
           <TextField
             id="input-with-icon-textfield"
             className='muse-search-bar'
