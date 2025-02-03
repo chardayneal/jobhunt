@@ -8,9 +8,9 @@ const Sidebar = () => {
   return (
     <div className="grid-item sidebar">
       <nav>
-        <Link to="/">{<HomeIcon/>}</Link>
-        <Link to="/search">{<ManageSearchIcon/>}</Link>
-        <Link to="/insights">{<InsightsIcon/>}</Link>
+        <Link to="/dashboard">{<HomeIcon/>}</Link>
+        <Link to="/dashboard/search">{<ManageSearchIcon/>}</Link>
+        <Link to="/dashboard/insights">{<InsightsIcon/>}</Link>
       </nav>
     </div>
   )
