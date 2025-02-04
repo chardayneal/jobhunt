@@ -1,10 +1,11 @@
 import { useState } from "react";
-import { Link } from "react-router";
-
-import './LogIn.css';
+import propTypes from "prop-types";
+import { Link, useNavigate } from "react-router";
 import { createUser } from "../../../apiUtilities/backendAPI";
+import './LogIn.css';
 
-const SignUp = () => {
+const SignUp = ({ setAuth }) => {
+  const navigate = useNavigate();
   const [newUser, setNewUser] = useState({userName: '', email: '', password: ''});
 
   const handleInputChange = (e) => {
@@ -18,7 +19,9 @@ const SignUp = () => {
 
     createUser(obj)
       .then((user) => {
-        console.log(user);
+        localStorage.setItem('userToken', user.token);
+        setAuth(true);
+        return navigate('/dashboard');
       })
       .catch((err) => {
         console.log(err);
@@ -75,5 +78,9 @@ const SignUp = () => {
     </div>
   )
 }
+
+SignUp.propTypes = {
+  setAuth: propTypes.func.isRequired,
+};
 
 export default SignUp

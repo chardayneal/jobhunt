@@ -11,6 +11,7 @@ const Home = ({ setAuth }) => {
 
   const handleLogout = () => {
     setAuth(false);
+    localStorage.removeItem('userToken');
     return navigate('/');
   }
 

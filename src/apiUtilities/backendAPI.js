@@ -4,7 +4,6 @@ const kbaseURL = import.meta.env.VITE_BACKEND_URL;
 
 // create a new user
 export const createUser = (user) => {
-  console.log(kbaseURL);
   return axios.post(`${kbaseURL}/auth/signup`, user)
     .then((response) => {
       return response.data;

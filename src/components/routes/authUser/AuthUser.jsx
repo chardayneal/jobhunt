@@ -2,20 +2,12 @@ import propTypes from 'prop-types';
 import { Navigate } from 'react-router';
 
 
-const AuthUser = ({isAuth}) => {
-  if (!isAuth) {
+const AuthUser = () => {
+
+  if (!localStorage.getItem('userToken')) {
     return <Navigate to="/login" />
-
   }
-
-  // check if user is logged in via localStorage
-  // if not logged in, redirect to login page
-  // if logged in, return Dashboard
-  return (
-    <div>
-      
-    </div>
-  )
+  return <Navigate to="/dashboard" />
 }
 
 AuthUser.propTypes = {
