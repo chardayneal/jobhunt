@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router";
 
 import './LogIn.css';
+import { createUser } from "../../../apiUtilities/backendAPI";
 
 const SignUp = () => {
   const [newUser, setNewUser] = useState({userName: '', email: '', password: ''});
@@ -10,10 +11,18 @@ const SignUp = () => {
     setNewUser({...newUser, [e.target.id]: e.target.value});
   };
 
-  const handleSignUp = () => {
-    const obj = { userName: newUser.userName, email: newUser.email};
+  const handleSignUp = (e) => {
+    e.preventDefault();
+    const obj = { name: newUser.userName, email: newUser.email};
     console.log(obj);
-    // make a call to BE to create new user
+
+    createUser(obj)
+      .then((user) => {
+        console.log(user);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   return (
@@ -55,7 +64,7 @@ const SignUp = () => {
                 required
               />
             </div>
-            <button type="submit">Sign Up</button>
+            <button onClick={handleSignUp} type="submit">Sign Up</button>
           </form>
           <span>Already have an account? <Link to='/login'>Sign in here</Link></span>
         </div>
