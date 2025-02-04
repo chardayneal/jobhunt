@@ -1,4 +1,4 @@
-.login {
+.auth {
     width: 100%;
     height: 100%;
     position: relative;
@@ -6,7 +6,7 @@
     display: flex;
 }
 
-.login .logo {
+.auth .logo {
     position: absolute;
     top: 20px;
     left: 20px;
@@ -14,12 +14,12 @@
     height: auto;
 }
 
-.login-col.login-container {
+.auth-col.auth-container {
     width: 50%;
     height: 100%;
 }
 
-.login-col.login-container {
+.auth-col.auth-container {
     box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
     background-color: #fff;
 
@@ -28,7 +28,7 @@
     align-items: center;
 }
 
-.login-col .login-text {
+.auth-col .auth-text {
     width: 50%;
     height: auto;
     margin: auto;
@@ -36,16 +36,16 @@
 }
 
 
-.login-text span {
+.auth-text span {
     color: #888;
 }
 
-.login form {
+.auth form {
     margin-top: 2rem;
     /* width: 80%; */
 }
 
-.login form .form-control {
+.auth form .form-control {
     margin-bottom: 1rem;
     display: flex;
     flex-direction: column;
@@ -64,7 +64,7 @@
     font-size: 1rem;
 }
 
-.login form button {
+.auth form button {
     width: 100%;
     height: 35px;
     padding: .5rem;
@@ -78,7 +78,7 @@
     border-radius: 4px;
 }
 
-.login-col.login-img {
+.auth-col.auth-img {
     background: url(../../../assets/loginBkg.png);
 
     width: 50%;
@@ -89,7 +89,7 @@
     align-items: end;
 }
 
-.login-img img {
+.auth-img img {
     width: 100%;
     height: auto;
     margin-bottom: 3rem;

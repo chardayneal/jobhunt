@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router';
 import { useState } from 'react';
 import AuthUser from './components/routes/authUser/AuthUser';
 import LogIn from './components/routes/authUser/LogIn';
+import SignUp from './components/routes/authUser/SignUp';
 import Home from './components/routes/home/Home';
 import Dashboard from './components/routes/dashboard/Dashboard';
 import LeadSearch from './components/routes/leadSearch/LeadSearch';
@@ -20,6 +21,7 @@ function App() {
       <Routes>
         <Route path='/' element={<AuthUser isAuth={isAuthenticated}/>} />
         <Route path='/login' element={<LogIn setAuth={handleAuthentication}/>} />
+        <Route path='/signup' element={<SignUp setAuth={handleAuthentication}/>} />
         <Route  path="/dashboard" element={<Home setAuth={handleAuthentication}/>}>
         <Route index element={<Dashboard/>} />
         <Route path="search" element={<LeadSearch />} />

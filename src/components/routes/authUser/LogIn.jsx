@@ -1,6 +1,6 @@
 import propTypes from 'prop-types';
 import { useState } from 'react';
-import { useNavigate } from 'react-router';
+import { useNavigate, Link } from 'react-router';
 import './Login.css';
 
 const LogIn = ({ setAuth }) => {
@@ -20,10 +20,10 @@ const LogIn = ({ setAuth }) => {
   }
 
   return (
-    <div className="login">
+    <div className="auth">
       <img className="logo" src='src/assets/logoDark.svg' alt='jobHuntlogo'/>
-      <div className="login-col login-container">
-        <div className="login-text">
+      <div className="auth-col auth-container">
+        <div className="auth-text">
           <h1>Welcome back</h1>
           <span>Please enter your details to sign in</span>
           <form onSubmit={handleLogin}>
@@ -40,6 +40,7 @@ const LogIn = ({ setAuth }) => {
             <div className="form-control">
               <label htmlFor="password">Password</label>
               <input
+                autoComplete='off'
                 type="password"
                 id="password"
                 value={password}
@@ -49,10 +50,10 @@ const LogIn = ({ setAuth }) => {
             </div>
             <button type="submit">Sign In</button>
           </form>
-          <span>Don&apos;t have an account? <span>Sign up here</span></span>
+          <span>Don&apos;t have an account? <Link to='/signup'>Sign up here</Link></span>
         </div>
       </div>
-      <div className="login-col login-img">
+      <div className="auth-col auth-img">
         <img src="src/assets/loginImg.png" alt="graphic of woman at desk with laptop" />
       </div>
     </div>
