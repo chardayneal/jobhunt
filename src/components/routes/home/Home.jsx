@@ -19,7 +19,7 @@ const Home = ({ setAuth }) => {
     <div className="home grid-container">
         <Sidebar/>
         <div className="grid-item header">
-          <h1>jobHunt</h1>
+          <div className="spacer"></div>
           <p>Hello, User!</p>
           <IconButton onClick={handleLogout} aria-label="log out" size="large" className="logout" >
             <LogoutIcon /> <p>Logout</p>

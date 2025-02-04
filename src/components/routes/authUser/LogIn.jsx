@@ -21,7 +21,7 @@ const LogIn = ({ setAuth }) => {
 
   return (
     <div className="login">
-      <div className="logo">jobHunt</div>
+      <img className="logo" src='src/assets/logoDark.svg' alt='jobHuntlogo'/>
       <div className="login-col login-container">
         <div className="login-text">
           <h1>Welcome back</h1>
@@ -49,9 +49,12 @@ const LogIn = ({ setAuth }) => {
             </div>
             <button type="submit">Sign In</button>
           </form>
+          <span>Don&apos;t have an account? <span>Sign up here</span></span>
         </div>
       </div>
-      <div className="login-col login-img"></div>
+      <div className="login-col login-img">
+        <img src="src/assets/loginImg.png" alt="graphic of woman at desk with laptop" />
+      </div>
     </div>
   )
 }

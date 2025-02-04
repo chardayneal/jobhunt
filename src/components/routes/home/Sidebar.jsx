@@ -7,6 +7,7 @@ import './Sidebar.css';
 const Sidebar = () => {
   return (
     <div className="grid-item sidebar">
+      <img src="/src/assets/logoDark.svg" alt="jobHunt logo" className="logo" />
       <nav>
         <Link to="/dashboard">{<HomeIcon/>}</Link>
         <Link to="/dashboard/search">{<ManageSearchIcon/>}</Link>
