@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router";
 import { createUser } from "../../../apiUtilities/backendAPI";
-import './LogIn.css';
+import './Login.css';
 
 const SignUp = () => {
   const navigate = useNavigate();

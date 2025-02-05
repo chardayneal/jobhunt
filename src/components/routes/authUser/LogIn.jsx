@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate, Link } from 'react-router';
 import './Login.css';
 import { loginUser } from '../../../apiUtilities/backendAPI';
@@ -7,6 +7,14 @@ const LogIn = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const token = localStorage.getItem('userToken');
+
+    if (token) {
+      navigate("/dashboard");
+    }
+  });
 
 
   const handleLogin = (e) => {
