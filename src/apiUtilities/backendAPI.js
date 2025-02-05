@@ -17,7 +17,6 @@ export const createUser = (user) => {
 export const loginUser = (user) => {
   return axios.post(`${kbaseURL}/auth/signin`, user)
     .then((response) => {
-      console.log(response.data);
       return response.data;
     })
     .catch((error) => {
@@ -29,8 +28,9 @@ export const loginUser = (user) => {
 export const getUserByToken = (token) => {
   return axios.get(`${kbaseURL}/auth/token?id=${token}`)
     .then((response) => {
-      console.log(response.data);
-      return response.data;
+      const user = formatUserData(response.data);
+      console.log(user);
+      return user;
     })
     .catch((error) => {
       console.error(error);
@@ -43,24 +43,33 @@ const formatUserData = (user) => {
     id: user.id,
     name: user.name,
     email: user.email,
-    leads: user.leads.map(()),
-    tasks: user.tasks.map(())
+    leads: user.leads.map(formatLeadData),
+    tasks: user.tasks.map(formatTaskData)
   };
 
   return formattedUser;
 }
 
 const formatLeadData = (lead) => {
-  const formattedLead = {
+  return {
     id: lead.id,
-    name: lead.name,
-    email: lead.email,
-    phone: lead.phone,
+    title: lead.title,
     company: lead.company,
+    level: lead.level,
+    category: lead.category,
+    description: lead.description,
+    location: lead.location,
+    jobURL: lead.jobURL,
+    jobPostingDate: lead.jobPostingDate,
     status: lead.status,
-    source: lead.source,
-    notes: lead.notes
+    userId: lead.userId
   };
+};
 
-  return formattedLead;
-}
+const formatTaskData = (task) => {
+  return {
+    id: task.id,
+    text: task.text,
+    date: task.date,
+  }
+};

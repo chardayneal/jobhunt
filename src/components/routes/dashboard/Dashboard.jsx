@@ -11,7 +11,7 @@ const Dashboard = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const token = localStorage.getItem('usesrToken');
+    const token = localStorage.getItem('userToken');
     if (token) {
       getUserByToken(token)
         .then((user) => {
@@ -24,7 +24,7 @@ const Dashboard = () => {
           navigate('/login');
         });
     }
-  }, [navigate])
+  }, [navigate]);
 
   return (
     <div className="grid-item flex-area">
