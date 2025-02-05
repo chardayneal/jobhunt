@@ -29,7 +29,6 @@ export const getUserByToken = (token) => {
   return axios.get(`${kbaseURL}/auth/token?id=${token}`)
     .then((response) => {
       const user = formatUserData(response.data);
-      console.log(user);
       return user;
     })
     .catch((error) => {
@@ -56,13 +55,10 @@ const formatLeadData = (lead) => {
     title: lead.title,
     company: lead.company,
     level: lead.level,
-    category: lead.category,
     description: lead.description,
     location: lead.location,
     jobURL: lead.jobURL,
-    jobPostingDate: lead.jobPostingDate,
-    status: lead.status,
-    userId: lead.userId
+    status: lead.status
   };
 };
 

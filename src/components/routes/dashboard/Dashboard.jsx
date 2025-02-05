@@ -7,7 +7,13 @@ import UserLeads from './UserLeads';
 import './Dashboard.css';
 
 const Dashboard = () => {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState({
+    id: null,
+    name: "",
+    email: "",
+    leads: [],
+    tasks: []
+  });
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -15,7 +21,6 @@ const Dashboard = () => {
     if (token) {
       getUserByToken(token)
         .then((user) => {
-          console.log(user);
           setUser(user);
         })
         .catch((error) => {
@@ -29,7 +34,7 @@ const Dashboard = () => {
   return (
     <div className="grid-item flex-area">
       <div className="dash-grid">
-        <UserLeads />
+        <UserLeads userLeads={user.leads} />
         <Event />
       </div>
     </div>
