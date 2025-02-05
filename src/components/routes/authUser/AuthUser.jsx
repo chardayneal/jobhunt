@@ -1,6 +1,6 @@
-import { Dashboard } from '@mui/icons-material';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router';
+// import Home from '../home/Home';
 
 
 const AuthUser = () => {
@@ -12,9 +12,9 @@ const AuthUser = () => {
       console.log("No token found, navigating to login");
       return navigate("/login");
     }
+    console.log("Token found, navigating to dashboard");
+    return navigate("/dashboard");
   }, [navigate]);
-  console.log("Token found, navigating to dashboard");
-  return <Dashboard />;
 }
 
 export default AuthUser

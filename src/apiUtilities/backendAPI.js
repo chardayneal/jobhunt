@@ -29,9 +29,38 @@ export const loginUser = (user) => {
 export const getUserByToken = (token) => {
   return axios.get(`${kbaseURL}/auth/token?id=${token}`)
     .then((response) => {
+      console.log(response.data);
       return response.data;
     })
     .catch((error) => {
       console.error(error);
     });
+}
+
+// format the user data
+const formatUserData = (user) => {
+  const formattedUser = {
+    id: user.id,
+    name: user.name,
+    email: user.email,
+    leads: user.leads.map(()),
+    tasks: user.tasks.map(())
+  };
+
+  return formattedUser;
+}
+
+const formatLeadData = (lead) => {
+  const formattedLead = {
+    id: lead.id,
+    name: lead.name,
+    email: lead.email,
+    phone: lead.phone,
+    company: lead.company,
+    status: lead.status,
+    source: lead.source,
+    notes: lead.notes
+  };
+
+  return formattedLead;
 }
