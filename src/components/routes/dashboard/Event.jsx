@@ -1,3 +1,4 @@
+import propTypes from 'prop-types';
 import { useState, useEffect } from 'react';
 import DialogForm from './DialogForm';
 import Accordion from '@mui/material/Accordion';
@@ -37,45 +38,36 @@ const TASKS = [
   { date: new Date('2025-02-23T13:00:00').toDateString(), text: 'Train new hires on company tools', id: 25, isComplete: false }
 ];
 
-console.log(TASKS);
 
 
-const Event = () => {
-  const [tasks, setTasks] = useState(TASKS);
+const Event = ({userTasks}) => {
   const [tasksByDate, setTasksByDate] = useState([]);
   const [calendarDate, setCalendarDate] = useState(new Date().toDateString());
 
-  
-  // added tasks to dependency array to get checkbox to persist
   useEffect(() => {
-    const displayTasks = tasks.filter(task => task.date === calendarDate);
-    setTasksByDate(displayTasks);
-  }, [calendarDate, tasks]);
+    setTasksByDate(userTasks.filter(task => task.date === calendarDate));
+  }, [userTasks, calendarDate]);
+
   
   const handleDateChange = (date) => {
-    console.log(date)
     setCalendarDate(date);
-    // make call to BE to get the tasks for selected date, 
+    setTasksByDate(userTasks.filter(task => task.date === date));
   };
 
   const handleAddTask = (task) => {
-    const newTask = { date: calendarDate, text: task, id: tasks.length + 1, isComplete: false };
-
-    setTasks([...tasks, newTask]);
+    const newTask = { date: calendarDate, text: task, id: userTasks.length + 1, isComplete: false };
     setTasksByDate([...tasksByDate, newTask]);
   };
 
-
 // checkbox selection not persisting??
   const handleCheckboxSelection = (id) => {
-    const updatedTasks = tasks.map(task => {
+    const updatedTasks = userTasks.map(task => {
       if (task.id === id) {
         return { ...task, isComplete: !task.isComplete };
       }
       return task;
     });
 
-    setTasks(updatedTasks);
     setTasksByDate(updatedTasks.filter(task => task.date === calendarDate));
   }
   return (
@@ -121,6 +113,10 @@ const Event = () => {
       </div>
     </div>
   )
+}
+
+Event.propTypes = {
+  userTasks: propTypes.array
 }
 
 export default Event

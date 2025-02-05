@@ -66,6 +66,6 @@ const formatTaskData = (task) => {
   return {
     id: task.id,
     text: task.text,
-    date: task.date,
+    date: new Date(task.date).toDateString(),
   }
 };

@@ -35,7 +35,7 @@ const Dashboard = () => {
     <div className="grid-item flex-area">
       <div className="dash-grid">
         <UserLeads userLeads={user.leads} />
-        <Event />
+        <Event userTasks={user.tasks} />
       </div>
     </div>
   )

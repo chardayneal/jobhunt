@@ -21,7 +21,6 @@ const UserLeads = ({ userLeads }) => {
 
   const handleQueryChange = (e) => {
     setSearchQuery(e.target.value);
-    // filterLeads(e.target.value);
   };
 
 
