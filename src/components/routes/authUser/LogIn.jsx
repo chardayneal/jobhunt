@@ -2,6 +2,7 @@ import propTypes from 'prop-types';
 import { useState } from 'react';
 import { useNavigate, Link } from 'react-router';
 import './Login.css';
+import { loginUser } from '../../../apiUtilities/backendAPI';
 
 const LogIn = ({ setAuth }) => {
   const [email, setEmail] = useState('');
@@ -9,14 +10,17 @@ const LogIn = ({ setAuth }) => {
   const navigate = useNavigate();
 
 
-  const handleLogin = () => {
-    const obj = { email, password};
+  const handleLogin = (e) => {
+    e.preventDefault();
+    const obj = { email };
 
-    // make call to back in to verify user credentials
-    setAuth(true);
-    console.log(obj);
-    // set current user to user in local storage
-    return navigate('/dashboard');
+    loginUser(obj)
+    .then(user => {
+      localStorage.setItem('userToken', user.token);
+      setAuth(true);
+      return navigate('/dashboard');
+    })
+    .catch(err =>  console.log(err));
   }
 
   return (

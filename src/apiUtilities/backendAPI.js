@@ -17,6 +17,7 @@ export const createUser = (user) => {
 export const loginUser = (user) => {
   return axios.post(`${kbaseURL}/auth/signin`, user)
     .then((response) => {
+      console.log(response.data);
       return response.data;
     })
     .catch((error) => {
