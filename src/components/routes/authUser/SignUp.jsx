@@ -1,10 +1,9 @@
 import { useState } from "react";
-import propTypes from "prop-types";
 import { Link, useNavigate } from "react-router";
 import { createUser } from "../../../apiUtilities/backendAPI";
 import './LogIn.css';
 
-const SignUp = ({ setAuth }) => {
+const SignUp = () => {
   const navigate = useNavigate();
   const [newUser, setNewUser] = useState({userName: '', email: '', password: ''});
 
@@ -20,7 +19,6 @@ const SignUp = ({ setAuth }) => {
     createUser(obj)
       .then((user) => {
         localStorage.setItem('userToken', user.token);
-        setAuth(true);
         return navigate('/dashboard');
       })
       .catch((err) => {
@@ -78,9 +76,5 @@ const SignUp = ({ setAuth }) => {
     </div>
   )
 }
-
-SignUp.propTypes = {
-  setAuth: propTypes.func.isRequired,
-};
 
 export default SignUp

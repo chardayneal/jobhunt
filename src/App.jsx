@@ -1,5 +1,4 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router';
-import { useState } from 'react';
 import AuthUser from './components/routes/authUser/AuthUser';
 import LogIn from './components/routes/authUser/LogIn';
 import SignUp from './components/routes/authUser/SignUp';
@@ -10,19 +9,14 @@ import Insights from './components/routes/insights/Insights';
 import './App.css';
 
 function App() {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-
-  const handleAuthentication = (auth) => {
-    setIsAuthenticated(auth);
-  };
 
   return (
     <Router>
       <Routes>
-        <Route path='/' element={<AuthUser isAuth={isAuthenticated}/>} />
-        <Route path='/login' element={<LogIn setAuth={handleAuthentication}/>} />
-        <Route path='/signup' element={<SignUp setAuth={handleAuthentication}/>} />
-        <Route  path="/dashboard" element={<Home setAuth={handleAuthentication}/>}>
+        <Route path='/' element={<AuthUser />} />
+        <Route path='/login' element={<LogIn />} />
+        <Route path='/signup' element={<SignUp />} />
+        <Route  path="/dashboard" element={<Home />}>
         <Route index element={<Dashboard/>} />
         <Route path="search" element={<LeadSearch />} />
         <Route path="insights" element={<Insights />} />

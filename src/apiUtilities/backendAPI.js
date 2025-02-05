@@ -24,3 +24,14 @@ export const loginUser = (user) => {
       console.error(error);
     });
 }
+
+// get user if token valid
+export const getUserByToken = (token) => {
+  return axios.get(`${kbaseURL}/auth/token?id=${token}`)
+    .then((response) => {
+      return response.data;
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+}

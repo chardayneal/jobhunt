@@ -1,17 +1,13 @@
-import propTypes from 'prop-types';
-import { Navigate } from 'react-router';
+import { useNavigate } from 'react-router';
 
 
 const AuthUser = () => {
+  const navigate = useNavigate();
 
   if (!localStorage.getItem('userToken')) {
-    return <Navigate to="/login" />
+    return navigate("/login");
   }
-  return <Navigate to="/dashboard" />
+  return navigate("/dashboard")
 }
-
-AuthUser.propTypes = {
-    isAuth: propTypes.bool.isRequired,
-};
 
 export default AuthUser

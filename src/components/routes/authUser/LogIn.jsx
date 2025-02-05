@@ -1,10 +1,9 @@
-import propTypes from 'prop-types';
 import { useState } from 'react';
 import { useNavigate, Link } from 'react-router';
 import './Login.css';
 import { loginUser } from '../../../apiUtilities/backendAPI';
 
-const LogIn = ({ setAuth }) => {
+const LogIn = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
@@ -12,12 +11,10 @@ const LogIn = ({ setAuth }) => {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    const obj = { email };
 
-    loginUser(obj)
+    loginUser({ email })
     .then(user => {
       localStorage.setItem('userToken', user.token);
-      setAuth(true);
       return navigate('/dashboard');
     })
     .catch(err =>  console.log(err));
@@ -64,8 +61,5 @@ const LogIn = ({ setAuth }) => {
   )
 }
 
-LogIn.propTypes = {
-  setAuth: propTypes.func.isRequired,
-};
 
 export default LogIn
