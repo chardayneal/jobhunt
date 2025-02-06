@@ -19,6 +19,28 @@
     overflow-x: hidden;
 }
 
+.user-lead-item {
+    position: relative;
+
+}
+
+.user-lead-item:hover .hover-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+
+    border-radius: 5px;
+}
+
 .lead-speed-dial {
     position: absolute;
     bottom: 0;

@@ -28,7 +28,7 @@ const Home = () => {
         <Sidebar/>
         <div className="grid-item header">
           <div className="spacer"></div>
-          <p>Hello !</p>
+          <h2>Hello!</h2>
           <IconButton onClick={handleLogout} aria-label="log out" size="large" className="logout" >
             <LogoutIcon /> <p>Logout</p>
           </IconButton>
