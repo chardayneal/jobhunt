@@ -8,7 +8,7 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 
 
-const DialogForm = ({addTask}) => {
+const DialogForm = ({userId, addTask}) => {
   const [open, setOpen] = useState(false);
   const [taskText, setTaskText] = useState('');
 
@@ -21,7 +21,7 @@ const DialogForm = ({addTask}) => {
   };
 
   const handleNewTask = () => {
-    addTask(taskText);
+    addTask(userId, taskText);
     setTaskText('');
     handleClose();
   }
@@ -72,6 +72,7 @@ const DialogForm = ({addTask}) => {
 }
 
 DialogForm.propTypes = {
+  userId: propTypes.string,
   addTask: propTypes.func.isRequired,
 };
 

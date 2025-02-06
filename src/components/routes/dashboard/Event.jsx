@@ -9,42 +9,15 @@ import Checkbox from '@mui/material/Checkbox';
 import Calendar from './Calendar';
 
 import "./Event.css";
-
-const TASKS = [
-  { date: new Date('2025-02-01T09:00:00').toDateString(), text: 'Finish writing the report', id: 1, isComplete: false },
-  { date: new Date('2025-02-01T10:15:00').toDateString(), text: 'Call the client about project update', id: 2, isComplete: true },
-  { date: new Date('2025-02-02T08:30:00').toDateString(), text: 'Review pull requests', id: 3, isComplete: false },
-  { date: new Date('2025-02-02T13:00:00').toDateString(), text: 'Prepare presentation slides', id: 4, isComplete: true },
-  { date: new Date('2025-02-03T15:00:00').toDateString(), text: 'Reply to email from HR', id: 5, isComplete: false },
-  { date: new Date('2025-02-04T09:45:00').toDateString(), text: 'Check the server logs', id: 6, isComplete: false },
-  { date: new Date('2025-02-05T11:30:00').toDateString(), text: 'Fix bug in the checkout page', id: 7, isComplete: true },
-  { date: new Date('2025-02-06T14:00:00').toDateString(), text: 'Set up new development environment', id: 8, isComplete: false },
-  { date: new Date('2025-02-07T09:00:00').toDateString(), text: 'Prepare financial report for Q1', id: 9, isComplete: true },
-  { date: new Date('2025-02-08T16:30:00').toDateString(), text: 'Clean up the database records', id: 10, isComplete: false },
-  { date: new Date('2025-02-09T13:45:00').toDateString(), text: 'Conduct team meeting for project planning', id: 11, isComplete: true },
-  { date: new Date('2025-02-10T10:00:00').toDateString(), text: 'Write unit tests for new feature', id: 12, isComplete: false },
-  { date: new Date('2025-02-11T14:30:00').toDateString(), text: 'Update software dependencies', id: 13, isComplete: false },
-  { date: new Date('2025-02-12T08:00:00').toDateString(), text: 'Meet with the marketing team', id: 14, isComplete: true },
-  { date: new Date('2025-02-13T17:00:00').toDateString(), text: 'Design the user interface for the app', id: 15, isComplete: false },
-  { date: new Date('2025-02-14T12:00:00').toDateString(), text: 'Document the API changes', id: 16, isComplete: false },
-  { date: new Date('2025-02-15T11:15:00').toDateString(), text: 'Test the new version of the app', id: 17, isComplete: true },
-  { date: new Date('2025-02-16T13:30:00').toDateString(), text: 'Review code quality and improve readability', id: 18, isComplete: false },
-  { date: new Date('2025-02-17T09:00:00').toDateString(), text: 'Discuss new feature requests with stakeholders', id: 19, isComplete: true },
-  { date: new Date('2025-02-18T14:00:00').toDateString(), text: 'Prepare the deployment for production', id: 20, isComplete: false },
-  { date: new Date('2025-02-19T16:30:00').toDateString(), text: 'Update the user manual for the product', id: 21, isComplete: false },
-  { date: new Date('2025-02-20T10:45:00').toDateString(), text: 'Organize a team-building activity', id: 22, isComplete: true },
-  { date: new Date('2025-02-21T11:00:00').toDateString(), text: 'Check for security vulnerabilities in the app', id: 23, isComplete: false },
-  { date: new Date('2025-02-22T09:30:00').toDateString(), text: 'Improve website SEO', id: 24, isComplete: true },
-  { date: new Date('2025-02-23T13:00:00').toDateString(), text: 'Train new hires on company tools', id: 25, isComplete: false }
-];
+import { addNewTask, updateTaskStatus } from '../../../apiUtilities/backendAPI';
 
 
-
-const Event = ({userTasks}) => {
+const Event = ({userId, userTasks, addNewUserTask, updateUserTasks}) => {
   const [tasksByDate, setTasksByDate] = useState([]);
   const [calendarDate, setCalendarDate] = useState(new Date().toDateString());
 
   useEffect(() => {
+
     setTasksByDate(userTasks.filter(task => task.date === calendarDate));
   }, [userTasks, calendarDate]);
 
@@ -54,22 +27,30 @@ const Event = ({userTasks}) => {
     setTasksByDate(userTasks.filter(task => task.date === date));
   };
 
-  const handleAddTask = (task) => {
-    const newTask = { date: calendarDate, text: task, id: userTasks.length + 1, isComplete: false };
-    setTasksByDate([...tasksByDate, newTask]);
+  const handleAddTask = (id, task) => {
+    const newTask = { text: task };
+    addNewTask(id, newTask)
+    .then((response) => {
+      console.log(response);
+      addNewUserTask(response);
+    })
+    .catch((error) => {
+      console.error(error);
+    });
   };
 
-// checkbox selection not persisting??
-  const handleCheckboxSelection = (id) => {
-    const updatedTasks = userTasks.map(task => {
-      if (task.id === id) {
-        return { ...task, isComplete: !task.isComplete };
-      }
-      return task;
+  const handleCheckboxSelection = (id, isComplete) => {
+    updateTaskStatus(id, !isComplete)
+    .then((response) => {
+      console.log(response);
+      updateUserTasks(response);
+    })
+    .catch((error) => {
+      console.error(error);
     });
 
-    setTasksByDate(updatedTasks.filter(task => task.date === calendarDate));
   }
+
   return (
     <div className="dash-item events">
         <Calendar changeDate={handleDateChange} />
@@ -80,7 +61,7 @@ const Event = ({userTasks}) => {
             expandIcon={ <ArrowDropDown/>} >
             <div className="task-header">
               <h3>{calendarDate}</h3>
-              <DialogForm addTask={handleAddTask}/>
+              <DialogForm userId={userId} addTask={handleAddTask}/>
             </div>
           </AccordionSummary>
           <AccordionDetails>
@@ -88,13 +69,11 @@ const Event = ({userTasks}) => {
               {tasksByDate ? tasksByDate.map(task => {
                 return (
                   <div className="taskItem" key={task.id}>
-                    {task.isComplete ? 
-                      <Checkbox value={task.id} onClick={(e) => handleCheckboxSelection(e.target.value)} defaultChecked /> : 
-                      <Checkbox value={task.id} onClick={(e) => handleCheckboxSelection(e.target.value)}/>}
+                    <Checkbox checked={task.isComplete} onChange={() => handleCheckboxSelection(task.id, task.isComplete)}/>
                     <p>{task.text}</p>
                   </div>
                 )
-              }) : <p>No tasks for today</p>}
+              }) : <p key={210}>No tasks for today</p>}
             </div>
           </AccordionDetails>
         </Accordion>
@@ -116,7 +95,10 @@ const Event = ({userTasks}) => {
 }
 
 Event.propTypes = {
-  userTasks: propTypes.array
+  userId: propTypes.string,
+  userTasks: propTypes.array,
+  addNewUserTask: propTypes.func.isRequired,
+  updateUserTasks: propTypes.func.isRequired
 }
 
 export default Event

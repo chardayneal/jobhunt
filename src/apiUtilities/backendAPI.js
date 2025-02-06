@@ -36,6 +36,54 @@ export const getUserByToken = (token) => {
     });
 }
 
+// get leads by user id
+export const getLeadsByUserId = (userId) => {
+  return axios.get(`${kbaseURL}/users/${userId}/leads`)
+    .then((response) => {
+      return response.data;
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+}
+
+// get tasks by user id
+export const getTasksByUserId = (userId) => {
+  return axios.get(`${kbaseURL}/users/${userId}/tasks`)
+    .then((response) => {
+      return response.data.map(formatTaskData);
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+}
+
+// update task status for user
+export const updateTaskStatus = (taskId, newValue) => {
+  const endpoint = newValue ? 'complete' : 'incomplete';
+  return axios.patch(`${kbaseURL}/tasks/${taskId}/mark_${endpoint}`)
+    .then((response) => {
+    return formatTaskData(response.data);
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+}
+
+// add a new task for user
+export const addNewTask = (id, task) => {
+  return axios.post(`${kbaseURL}/users/${id}/tasks`, task)
+    .then((response) => {
+      const newTask = formatTaskData(response.data.tasks.at(-1));
+      return newTask;
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+}
+
+
+
 // format the user data
 const formatUserData = (user) => {
   const formattedUser = {
@@ -67,5 +115,6 @@ const formatTaskData = (task) => {
     id: task.id,
     text: task.text,
     date: new Date(task.date).toDateString(),
+    isComplete: task.complete
   }
 };
