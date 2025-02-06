@@ -22,7 +22,7 @@ const MuseLeadView = ({selectedLead}) => {
 
   return (
     <div className="search-col muse-lead-view">
-      {selectedLead ? <><h2>{selectedLead.name}</h2>
+      {selectedLead ? <><h2>{selectedLead.title}</h2>
       <div className="company-url">
         <p className='company-name'>{selectedLead.company}</p>
         {showButton && <Button onClick={handleURLClick} variant="contained" endIcon={<LaunchIcon/>}>APPLY FOR LEAD</Button>}

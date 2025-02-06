@@ -17,5 +17,10 @@
     overflow: scroll;
     overflow-y: auto;
     overflow-x: hidden;
+}
 
+.lead-speed-dial {
+    position: absolute;
+    bottom: 0;
+    right: 0;
 }

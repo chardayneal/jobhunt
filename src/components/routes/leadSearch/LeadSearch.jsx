@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router";
 import MuseHeader from "./MuseHeader";
 import MuseResults from "./MuseResults";
 import MuseLeadView from "./MuseLeadView";
@@ -8,21 +9,28 @@ import { getMuseLeads, formatLead, getMuseLeadById } from "../../../apiUtilities
 import './LeadSearch.css';
 
 const LeadSearch = () => {
+  const navigate = useNavigate();
   const [leadResults, setLeadResults] = useState([]);
   const [selectedLead, setSelectedLead] = useState({});
   const [queryParams, setQueryParams] = useState({ page: 0});
 
   useEffect(() => {
-    getMuseLeads(queryParams).then((leads) => {
-      let formattedLeads = leads.map((lead) => {
-        if (lead.locations.length == 0) {
-          lead.locations[0] = { name: 'In Description' };
-        }
-        return formatLead(lead);
+    const token = localStorage.getItem('userToken');
+    if (token) {
+      getMuseLeads(queryParams).then((leads) => {
+        let formattedLeads = leads.map((lead) => {
+          if (lead.locations.length == 0) {
+            lead.locations[0] = { name: 'In Description' };
+          }
+          return formatLead(lead);
+        });
+        setLeadResults((prevLeads) => prevLeads.concat(formattedLeads));
       });
-      setLeadResults((prevLeads) => prevLeads.concat(formattedLeads));
-    });
-  }, [queryParams]);
+    }
+    else {
+      navigate('/login');
+    }
+  }, [queryParams, navigate]);
 
   const increasePageCount = () => {
     setQueryParams({ ...queryParams, page: queryParams.page + 1 });
