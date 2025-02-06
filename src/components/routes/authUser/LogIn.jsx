@@ -23,6 +23,7 @@ const LogIn = () => {
     loginUser({ email })
     .then(user => {
       localStorage.setItem('userToken', user.token);
+      localStorage.setItem('userId', user.id);
       return navigate('/dashboard');
     })
     .catch(err =>  console.log(err));

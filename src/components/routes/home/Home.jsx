@@ -20,6 +20,7 @@ const Home = () => {
 
   const handleLogout = () => {
     localStorage.removeItem('userToken');
+    localStorage.removeItem('userId');
     navigate("/login");
   };
 

@@ -1,36 +1,67 @@
+import { useState } from 'react';
 import propTypes from 'prop-types';
 import NewLeadForm from '../../NewLeadForm';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
-import DialogTitle from '@mui/material/DialogTitle';
+import Button from '@mui/material/Button';
+import { addNewLead } from '../../../apiUtilities/backendAPI';
 
+const INITIAL_STATE = {
+  title: '',
+  company: '',
+  level: '',
+  description: '',
+  location: '',
+  status: 'Interested',
+  jobURL: ''
+};
 
 const LeadView = ({ isOpen, handleClose }) => {
-  
+  const [leadData, setLeadData] = useState(INITIAL_STATE);
+
+  const handleLeadDataChange = (event) => {
+    const { name, value } = event.target;
+    setLeadData((prevState) => ({
+      ...prevState,
+      [name]: value
+    }));
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    console.log("New lead created", leadData);
+    const userId = localStorage.getItem('userId');
+    addNewLead(userId, leadData)
+      .then((newLead) => {
+        console.log("New lead added:",newLead);
+        setLeadData(INITIAL_STATE);
+        handleClose();
+      })
+      .catch((err) => console.log(err));
+  }
 
   return (
     <div>
       <Dialog
         open={isOpen}
         onClose={handleClose}
-        slot={{
+        slotProps={{
           paper: {
-          component: 'form'
-          },
-        }}
+            component: 'form',
+            onSubmit: handleSubmit
+            }
+          }}
       >
-        <DialogTitle>Create New Task</DialogTitle>
         <DialogContent>
-          <NewLeadForm />
+          <h2>New Lead Details</h2>
+          <p>Enter the lead details below</p>
+          <NewLeadForm leadData={leadData} handleLeadDataChange={handleLeadDataChange}/>
         </DialogContent>
         <DialogActions>
-          <span onClick={handleClose}>Cancel</span>
-          <span onClick={(event) => {
-            event.preventDefault();
-            console.log("New lead created");
-            handleClose();
-          }}>Add</span>
+          <Button onClick={handleClose}>Cancel</Button>
+          <Button type="submit">Create New Lead</Button>
+          {/* <input type='submit' form='new-lead' value="Create New Lead" onClick= {handleSubmit} /> */}
         </DialogActions>
       </Dialog>
     </div>

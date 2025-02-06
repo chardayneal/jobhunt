@@ -1,96 +1,111 @@
-import './NewLeadForm.css';
+import propTypes from "prop-types";
+import TextField from '@mui/material/TextField';
 
-export const NewLeadForm = () => {
+export const NewLeadForm = ({ leadData, handleLeadDataChange}) => {
 
   return (
-    <div className="new-lead-form">
-      <button className='close-btn'>
-        <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="25" height="25" viewBox="0 0 50 50">
-        <path d="M 7.71875 6.28125 L 6.28125 7.71875 L 23.5625 25 L 6.28125 42.28125 L 7.71875 43.71875 L 25 26.4375 L 42.28125 43.71875 L 43.71875 42.28125 L 26.4375 25 L 43.71875 7.71875 L 42.28125 6.28125 L 25 23.5625 Z"></path>
-        </svg>
-      </button>
-      <h2>New Lead Details</h2>
-      <p>Enter the lead details below</p>
+      <>
+        <TextField
+          required
+          value={leadData.title}
+          onChange={handleLeadDataChange}
+          margin="dense"
+          id="title"
+          name="title"
+          label="Title"
+          type="text"
+          fullWidth
+          variant="standard"
+        />
+        <TextField
+          required
+          value={leadData.company}
+          onChange={handleLeadDataChange}
+          margin="dense"
+          id="company"
+          name="company"
+          label="Company"
+          type="text"
+          fullWidth
+          variant="standard"
+        />
 
-      <form className="new-lead">
-        <div className='form-input'>
-        <div className='lead-col left-col'>
-          <div className="lead-input">
-            <label htmlFor="title">Job Title</label>
-            <input 
-              type="text"
-              id="title"
-              name="title"
-              placeholder='i.e Software Engineer' />
+        <fieldset className="lead-input">
+          <legend>Status</legend>
+          <div className="status-radio">
+            <input onSelect={handleLeadDataChange} type="radio" id="interested" name="status" value="interested" defaultChecked required/>
+            <label htmlFor="interested">Interested</label>
+          </div>
+          <div className="status-radio">
+            <input onSelect={handleLeadDataChange} type="radio" id="applied" name="status" value="applied" />
+            <label htmlFor="applied">Applied</label>
+          </div>
+          <div className="status-radio">
+            <input onSelect={handleLeadDataChange} type="radio" id="interviewing" name="status" value="interviewing"/>
+            <label htmlFor="interviewing">Interviewing</label>
+          </div>
+          <div className="status-radio">
+            <input onSelect={handleLeadDataChange} type="radio" id="offered" name="status" value="offered" />
+            <label htmlFor="offered">Offered</label>
+          </div>
+          <div className="status-radio">
+            <input onSelect={handleLeadDataChange} type="radio" id="notSelected" name="status" value="notSelected"/>
+            <label htmlFor="notSelected">Not Selected</label>
           </div>
 
-          <div className="lead-input">
-            <label htmlFor="company">Company Name</label>
-            <input 
-              type="text"
-              id="company"
-              name="company" />
-          </div>
+        </fieldset>
+      <TextField
+          value={leadData.level}
+          onChange={handleLeadDataChange}
+          margin="dense"
+          id="level"
+          name="level"
+          label="Level"
+          type="text"
+          fullWidth
+          variant="standard"
+        />
+        <TextField
+          value={leadData.location}
+          onChange={handleLeadDataChange}
+          margin="dense"
+          id="location"
+          name="location"
+          label="Location"
+          type="text"
+          fullWidth
+          variant="standard"
+        />
 
-          <fieldset className="lead-input">
-            <legend>Status</legend>
-            <div className="status">
-            <div className='status-col'>
-              <div className='status-input'>
-                <input type="checkbox" id="applied" name="applied" defaultChecked />
-                <label htmlFor="applied">Applied</label>
-              </div>
-              <div className='status-input'>
-                <input type="checkbox" id="offered" name="offered" />
-                <label htmlFor="offered">Offered</label>
-              </div>
-            </div>
-            <div className='status-col'>
-              <div className='status-input'>
-                <input type="checkbox" id="interviewing" name="interviewing" />
-                <label htmlFor="interviewing">Interviewing</label>
-              </div>
-              <div className='status-input'>
-                <input type="checkbox" id="notSelected" name="notSelected" />
-                <label htmlFor="notSelected">Not Selected</label>
-              </div>
-            </div>
-            </div>
-          </fieldset>
+        <TextField
+        
+          value={leadData.jobURL}
+          onChange={handleLeadDataChange}
+          margin="dense"
+          id="jobURL"
+          name="jobURL"
+          label="Lead URL"
+          type="text"
+          fullWidth
+          variant="standard"
+        />
+
+        <div className="lead-input">
+          <label htmlFor="description">Job Description</label>
+          <textarea
+            onChange={handleLeadDataChange}
+            value={leadData.description} 
+            id="description"
+            name="description" 
+            rows="10" cols="40"></textarea>
         </div>
-
-
-        <div className='lead-col right-col'>
-          <div className="lead-input">
-            <label htmlFor="jobPostingDate">Job Posting Date</label>
-            <input 
-              type="date"
-              id="jobPostingDate"
-              name="jobPostingDate" 
-              />
-          </div>
-
-          <div className="lead-input">
-            <label htmlFor="jobURL">Job Post URL</label>
-            <input 
-              type="url"
-              id="jobURL"
-              name="jobURL" />
-          </div>
-
-          <div className="lead-input">
-            <label htmlFor="description">Job Description</label>
-            <textarea 
-              id="description"
-              name="description" 
-              rows="10" cols="40"></textarea>
-          </div>
-        </div>
-        </div>
-        <input className="create-btn" type="submit" value="CREATE NEW LEAD" />
-      </form>
-  </div>
+    </>
   );
+};
+
+NewLeadForm.propTypes = {
+  leadData: propTypes.object.isRequired,
+  handleLeadDataChange: propTypes.func.isRequired,
 };
 
 export default NewLeadForm;

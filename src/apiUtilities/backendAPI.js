@@ -53,7 +53,7 @@ export const addNewLead = (id, lead) => {
   return axios.post(`${kbaseURL}/users/${id}/leads`, lead)
     .then((response) => {
       console.log(response.data);
-      return formatLeadData(response.data);
+      return formatLeadData(response.data.leads.at(-1));
     })
     .catch((error) => {
       console.error(error);
