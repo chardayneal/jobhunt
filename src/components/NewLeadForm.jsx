@@ -92,3 +92,5 @@ export const NewLeadForm = () => {
   </div>
   );
 };
+
+export default NewLeadForm;

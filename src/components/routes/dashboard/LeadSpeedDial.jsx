@@ -1,4 +1,6 @@
+import { useState } from 'react';
 import { useNavigate } from 'react-router';
+import LeadView from './LeadView';
 import Box from '@mui/material/Box';
 import SpeedDial from '@mui/material/SpeedDial';
 import SpeedDialIcon from '@mui/material/SpeedDialIcon';
@@ -13,6 +15,15 @@ const actions = [
 
 export default function LeadSpeedDial() {
   const navigate = useNavigate();
+  const [open, setOpen] = useState(false);
+  
+    const handleClickOpen = () => {
+      setOpen(true);
+    }
+  
+    const handleClickClose = () => {
+      setOpen(false);
+    }
 
   return (
     <Box className="lead-speed-dial" sx={{ height: 320, transform: 'translateZ(0px)', flexGrow: 1 }}>
@@ -26,10 +37,11 @@ export default function LeadSpeedDial() {
             key={action.name}
             icon={action.icon}
             tooltipTitle={action.name}
-            onClick={action.name === "Add New Lead" ? () => console.log("Add new lead") : () => navigate('/dashboard/search') }
+            onClick={action.name === "Add New Lead" ? handleClickOpen : () => navigate('/dashboard/search') }
           />
         ))}
       </SpeedDial>
+      <LeadView isOpen={open} handleClose={handleClickClose}/>
     </Box>
   );
 }
