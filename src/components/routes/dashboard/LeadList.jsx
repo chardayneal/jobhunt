@@ -1,22 +1,11 @@
 import propTypes from "prop-types";
-import Lead from "./Lead";
 import LeadSpeedDial from "./LeadSpeedDial";
-import { Button } from "@mui/material";
 import "./LeadList.css";
+import LeadSelect from "./LeadSelect";
 
 
 const LeadList = ({ leads }) => {
-    const leadList = leads.map(lead => {
-      return (
-        <div key={lead.id} className="user-lead-item">
-          <Lead key={lead.id} leadInfo={lead} />
-          <div className="hover-overlay">
-              <Button  variant="contained">Quick Update</Button>
-              <Button  variant="outlined">View Lead</Button>
-            </div>
-        </div>
-      )
-    });
+    const leadList = leads.map(lead => <LeadSelect key={lead.id} lead={lead} />);
 
   return (
     <section className="lead-item leads-list-container">

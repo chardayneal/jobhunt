@@ -1,32 +1,61 @@
+import { useState } from 'react';
 import propTypes from 'prop-types';
 import { Button } from '@mui/material';
-import LaunchIcon from '@mui/icons-material/Launch';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import NewLeadForm from '../../NewLeadForm';
 
-const DisplayLead = ({ lead }) => {
 
-  const handleURLClick = () => {
-    window.open(lead.jobURL, '_blank');
-  };
+const DisplayLead = ({ lead, isOpen, handleClose }) => {
+  const [leadData, setLeadData] = useState({...lead});
+
+  const handleLeadUpdate = (event) => {
+      const { name, value } = event.target;
+      setLeadData((prevState) => ({
+        ...prevState,
+        [name]: value
+      }));
+    };
+  
+    const handleSubmit = (event) => {
+      event.preventDefault();
+      console.log("New lead created", leadData);
+      const userId = localStorage.getItem('userId');
+      // create an object with non null values
+      const nonNullValues = Object.fromEntries(Object.entries(leadData).filter(([key, value]) => value !== null));
+      console.log(userId, nonNullValues);
+    }
 
   return (
-    <div className="search-col muse-lead-view">
-      {lead && <><h2>{lead.title}</h2>
-        <div className="company-url">
-            <p className='company-name'>{lead.company}</p>
-            <Button onClick={handleURLClick} variant="contained" endIcon={<LaunchIcon/>}>Visit Posting</Button>
-        </div>
-        <div className="location-postingDate">
-            <p className='location'>{lead.location}</p>
-            <p>{lead.jobPostingDate}</p>
-        </div>
-        <div className="description" dangerouslySetInnerHTML={{ __html: lead.description }}></div>
-      </>}
+    <div>
+      <Dialog
+        open={isOpen}
+        onClose={handleClose}
+        slotProps={{
+          paper: {
+            component: 'form',
+            onSubmit: handleSubmit
+            }
+          }}
+      >
+        <DialogContent>
+          <h2>Lead Details</h2>
+          <NewLeadForm leadData={leadData} handleLeadDataChange={handleLeadUpdate}/>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose}>Cancel</Button>
+          <Button type="submit">Save Changes</Button>
+        </DialogActions>
+      </Dialog>
     </div>
   )
 }
 
 DisplayLead.propTypes = {
-  lead: propTypes.object
+  lead: propTypes.object,
+  isOpen: propTypes.bool.isRequired,
+  handleClose: propTypes.func.isRequired
 };
 
-export default DisplayLead
+export default DisplayLead;
