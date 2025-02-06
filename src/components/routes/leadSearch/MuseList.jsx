@@ -5,10 +5,11 @@ import { Button } from "@mui/material";
 import StarIcon from '@mui/icons-material/Star';
 import Divider from '@mui/material/Divider';
 import Lead from "../dashboard/Lead";
+import { addNewLead } from "../../../apiUtilities/backendAPI";
 
 
 
-const MuseList = ({ leadResults, handleMuseLeadClick }) => {
+const MuseList = ({userId, leadResults, handleMuseLeadClick }) => {
   const [selectedLeadId, setSelectedLeadId] = useState(null);
   const selectedClassName = 'muse-lead selected';
 
@@ -24,7 +25,16 @@ const MuseList = ({ leadResults, handleMuseLeadClick }) => {
 
   const handleAddToLeads = (lead) => {
     console.log(`Adding ${lead.title} to leads`);
-    // make call to POST backend to add lead if lead does not exist already
+    delete lead.id;
+    delete lead.museId;
+    lead.status = 'Interested';
+    addNewLead(userId, lead)
+      .then(() => {
+        console.log("Added new lead to list");
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   }
 
   const museLeads = leadResults.map((lead) => {
@@ -52,6 +62,7 @@ const MuseList = ({ leadResults, handleMuseLeadClick }) => {
 }
 
 MuseList.propTypes = {
+  userId: propTypes.string,
   leadResults: propTypes.array,
   handleMuseLeadClick: propTypes.func
 };

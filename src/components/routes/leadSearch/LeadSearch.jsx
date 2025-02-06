@@ -7,12 +7,30 @@ import FilterPanel from "./FilterPanel";
 import Divider from '@mui/material/Divider';
 import { getMuseLeads, formatLead, getMuseLeadById } from "../../../apiUtilities/museAPI";
 import './LeadSearch.css';
+import { getUserByToken } from "../../../apiUtilities/backendAPI";
 
 const LeadSearch = () => {
   const navigate = useNavigate();
+  const [user, setUser] = useState({});
   const [leadResults, setLeadResults] = useState([]);
   const [selectedLead, setSelectedLead] = useState({});
   const [queryParams, setQueryParams] = useState({ page: 0});
+
+  useEffect(() => {
+    const token = localStorage.getItem('userToken');
+    if (token) {
+      getUserByToken(token)
+        .then((user) => {
+          setUser(user);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    }
+    else {
+      navigate('/login');
+    }
+  }, [navigate]);
 
   useEffect(() => {
     const token = localStorage.getItem('userToken');
@@ -67,7 +85,7 @@ const LeadSearch = () => {
       <FilterPanel onApplyFilters={updateQueryParams}/>
       <MuseHeader/>
       <div className="dash-card search-container">
-        <MuseResults onViewLeadClick={handleLeadView} onLoadMoreData={increasePageCount} leadResults={leadResults} />
+        <MuseResults userId={user.id}  onViewLeadClick={handleLeadView} onLoadMoreData={increasePageCount} leadResults={leadResults} />
         <Divider fullwidth="true" orientation="vertical" />
         <MuseLeadView selectedLead={selectedLead}/>
       </div>

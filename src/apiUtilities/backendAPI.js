@@ -47,6 +47,19 @@ export const getLeadsByUserId = (userId) => {
     });
 }
 
+// add a new lead for user
+export const addNewLead = (id, lead) => {
+  console.log(id, lead);
+  return axios.post(`${kbaseURL}/users/${id}/leads`, lead)
+    .then((response) => {
+      console.log(response.data);
+      return formatLeadData(response.data);
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+}
+
 // get tasks by user id
 export const getTasksByUserId = (userId) => {
   return axios.get(`${kbaseURL}/users/${userId}/tasks`)
