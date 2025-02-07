@@ -77,18 +77,7 @@ const Event = ({userId, userTasks, addNewUserTask, updateUserTasks}) => {
             </div>
           </AccordionDetails>
         </Accordion>
-        <Accordion>
-          <AccordionSummary
-            expandIcon={<ArrowDropDown />} >
-            <h3>Upcoming Events</h3>
-          </AccordionSummary>
-          <AccordionDetails>
-              <div className="event">
-                <p>Event 1</p>
-                <p>Event 1</p>
-              </div>
-          </AccordionDetails>
-        </Accordion>
+
       </div>
     </div>
   )
