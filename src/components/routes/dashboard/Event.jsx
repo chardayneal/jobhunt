@@ -37,7 +37,7 @@ const Event = ({userId, userTasks, addNewUserTask, updateUserTasks}) => {
   };
 
   const handleAddTask = (id, task) => {
-    const newTask = { text: task };
+    const newTask = { text: task, date: calendarDate};
     addNewTask(id, newTask)
     .then((response) => {
       console.log(response);
@@ -80,7 +80,7 @@ const Event = ({userId, userTasks, addNewUserTask, updateUserTasks}) => {
             expandIcon={ <ArrowDropDown/>} >
             <div className="task-header">
               <h3>{calendarDate}</h3>
-              <DialogForm userId={userId} addTask={handleAddTask}/>
+              <DialogForm userId={userId} addTask={handleAddTask} calendarDate={calendarDate}/>
             </div>
           </AccordionSummary>
           <AccordionDetails>
