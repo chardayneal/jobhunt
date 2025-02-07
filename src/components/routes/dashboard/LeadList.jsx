@@ -10,6 +10,7 @@ const LeadList = ({ leads }) => {
   return (
     <section className="lead-item leads-list-container">
       <div className="leads-list">
+        {leads.length === 0 ? <p className="no-leads">No Leads to Display</p> : null}
         {leadList}
       </div>
       <LeadSpeedDial />
