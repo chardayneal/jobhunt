@@ -85,7 +85,8 @@ export const NewLeadForm = ({ leadData, handleLeadDataChange}) => {
           id="jobURL"
           name="jobURL"
           label="Lead URL"
-          type="text"
+          type="url"
+          pattern="https://.*"
           fullWidth
           variant="standard"
         />

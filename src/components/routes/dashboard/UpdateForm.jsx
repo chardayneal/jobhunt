@@ -4,6 +4,7 @@ import { Button } from '@mui/material';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
+import { updateLeadStatus } from '../../../apiUtilities/backendAPI';
 
 const UpdateForm = ({lead, isOpen, handleClose}) => {
   const [leadStatus, setLeadStatus] = useState(lead.status);
@@ -18,6 +19,13 @@ const UpdateForm = ({lead, isOpen, handleClose}) => {
     event.preventDefault();
     // make api call to update lead status
     console.log(leadStatus);
+    updateLeadStatus(lead.id, leadStatus)
+    .then(() => {
+      console.log("Lead status updated");
+    })
+    .catch((error) => {
+      console.error(error);
+    });
     handleClose();
   }
 

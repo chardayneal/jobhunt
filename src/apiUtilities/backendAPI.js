@@ -60,6 +60,33 @@ export const addNewLead = (id, lead) => {
     });
 }
 
+// update lead status for user
+export const updateLeadStatus = (leadId, newStatus) => {
+  return axios.post(`${kbaseURL}/leads/${leadId}/history`, { status: newStatus })
+    .then((response) => {
+      console.log(response.data);
+      return formatLeadData(response.data);
+    })
+    .catch((error) => {
+      console.error(error);
+    }
+  );
+};
+
+// delete lead for user
+export const deleteLead = (leadId) => {
+  return axios.delete(`${kbaseURL}/leads/${leadId}`)
+    .then((response) => {
+      console.log(response.data);
+      return response.data;
+    })
+    .catch((error) => {
+      console.error(error);
+    }
+  );
+};
+
+
 // get tasks by user id
 export const getTasksByUserId = (userId) => {
   return axios.get(`${kbaseURL}/users/${userId}/tasks`)

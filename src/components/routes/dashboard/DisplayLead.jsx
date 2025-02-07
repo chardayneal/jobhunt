@@ -51,7 +51,7 @@ const DisplayLead = ({ lead, isOpen, handleClose }) => {
           <h2>Lead Details</h2>
           {isEditing ? 
           <NewLeadForm leadData={leadData} handleLeadDataChange={handleLeadUpdate}/> :
-          <ShowSelectedLead lead={leadData} />}
+          <ShowSelectedLead lead={leadData} handleLeadClose={handleLeadClose} />}
         </DialogContent>
         <DialogActions>
           {isEditing ? 
