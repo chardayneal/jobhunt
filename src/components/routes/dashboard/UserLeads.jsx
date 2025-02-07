@@ -1,26 +1,30 @@
-import propTypes from 'prop-types';
 import { useEffect, useState } from 'react';
 import LeadHeader from './LeadHeader';
 import LeadList from './LeadList';
 
 
 import './UserLeads.css';
+import { getLeadsByUserId } from '../../../apiUtilities/backendAPI';
 
-const UserLeads = ({ userLeads }) => {
+const UserLeads = () => {
   const [leads, setLeads] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
 
   useEffect(() => {
-    if (searchQuery) {
-      const filteredLeads = filterLeads(searchQuery, userLeads);
-      setLeads(filteredLeads);
-    } else {
-      setLeads(userLeads);
-    }
-  }, [userLeads, searchQuery]);
+    const userId = localStorage.getItem('userId');
+    getLeadsByUserId(userId)
+      .then((leads) => {
+        setLeads(leads);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, [leads]);
 
   const handleQueryChange = (e) => {
     setSearchQuery(e.target.value);
+    const filteredLeads = filterLeads(e.target.value, leads);
+      setLeads(filteredLeads);
   };
 
 
@@ -45,10 +49,6 @@ const filterLeads = (query, leads) => {
     }
   });
 }
-
-UserLeads.propTypes = {
-  userLeads: propTypes.array,
-};
 
 
 

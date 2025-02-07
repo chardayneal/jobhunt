@@ -5,14 +5,21 @@ import Sidebar from "./Sidebar";
 import IconButton from '@mui/material/IconButton';
 import LogoutIcon from '@mui/icons-material/Logout';
 import './Home.css';
+import { getUserByToken } from '../../../apiUtilities/backendAPI';
 
 const Home = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
     const token = localStorage.getItem('userToken');
-    console.log(token);
-
+    getUserByToken(token)
+      .then((user) => {
+        console.log("User found", user);
+      })
+      .catch((error) => {
+        console.error(error);
+        navigate("/login");
+      });
     if (!token) {
       navigate("/login");
     }
