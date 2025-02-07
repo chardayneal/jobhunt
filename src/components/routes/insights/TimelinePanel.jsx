@@ -8,6 +8,7 @@ import Divider from '@mui/material/Divider';
 const TimelinePanel = () => {
   const [leads, setLeads] = useState([]);
   const [history, setHistory] = useState([]);
+  const [isLeadSelected, setIsLeadSelected] = useState(false);
 
   useEffect(() => {
     const userId = localStorage.getItem('userId');
@@ -25,6 +26,7 @@ const TimelinePanel = () => {
     const leadHistory = leads.filter((lead) => lead.id === leadId)[0].historyList;
     console.log(leadHistory);
     setHistory(leadHistory.map((plot) => formatHistoryData(plot)));
+    setIsLeadSelected(true);
   };
 
 
@@ -45,7 +47,7 @@ const TimelinePanel = () => {
           </div>
         ))}
        </div>
-       <TimelineView history={history}/>
+       {isLeadSelected ? <TimelineView history={history}/> : <div><p>Select Lead to View Progress</p></div>}
     </section>
   )
 }
