@@ -47,6 +47,17 @@ export const getLeadsByUserId = (userId) => {
     });
 }
 
+// // get lead history by lead id
+// export const getLeadHistoryByLeadId = (leadId) => {
+//   return axios.get(`${kbaseURL}/leads/${leadId}/history`)
+//     .then((response) => {
+//       return formatHistoryData(response.data);
+//     })
+//     .catch((error) => {
+//       console.error(error);
+//     });
+// }
+
 // add a new lead for user
 export const addNewLead = (id, lead) => {
   console.log(id, lead);
@@ -169,3 +180,10 @@ const formatTaskData = (task) => {
     isComplete: task.complete
   }
 };
+
+export const formatHistoryData = (history) => {
+  return {
+    date: new Date(history.date).toDateString(),
+    status: history.status
+  }
+}
