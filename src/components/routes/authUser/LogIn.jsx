@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate, Link } from 'react-router';
 import './Login.css';
 import { loginUser } from '../../../apiUtilities/backendAPI';
@@ -8,6 +8,14 @@ const LogIn = () => {
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
+  useEffect(() => {
+    const token = localStorage.getItem('userToken');
+
+    if (token) {
+      navigate("/dashboard");
+    }
+  });
+
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -15,6 +23,7 @@ const LogIn = () => {
     loginUser({ email })
     .then(user => {
       localStorage.setItem('userToken', user.token);
+      localStorage.setItem('userId', user.id);
       return navigate('/dashboard');
     })
     .catch(err =>  console.log(err));

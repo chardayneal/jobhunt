@@ -1,19 +1,18 @@
 import propTypes from "prop-types";
-import Lead from "./Lead";
-import { IconButton } from '@mui/material';
-import AddCircleIcon from '@mui/icons-material/AddCircle';
+import LeadSpeedDial from "./LeadSpeedDial";
 import "./LeadList.css";
+import LeadSelect from "./LeadSelect";
 
 
 const LeadList = ({ leads }) => {
-    const leadList = leads.map(lead => <Lead key={lead.id} leadInfo={lead} />);
+    const leadList = leads.map(lead => <LeadSelect key={lead.id} lead={lead} />);
 
   return (
-    <section className="lead-item leads-list">
-      {leadList}
-      <IconButton aria-label="add" size="large" className="add-lead-btn" >
-        <AddCircleIcon className='add-btn'/>
-      </IconButton>
+    <section className="lead-item leads-list-container">
+      <div className="leads-list">
+        {leadList}
+      </div>
+      <LeadSpeedDial />
     </section>
   )
 }

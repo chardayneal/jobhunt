@@ -2,6 +2,7 @@ import propTypes from 'prop-types';
 import './Lead.css';
 
 const Lead = ({ leadInfo }) => {
+
   return (
     <div className='lead'>
         <h3>{leadInfo.title}</h3>

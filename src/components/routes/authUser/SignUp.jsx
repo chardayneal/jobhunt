@@ -19,6 +19,7 @@ const SignUp = () => {
     createUser(obj)
       .then((user) => {
         localStorage.setItem('userToken', user.token);
+        localStorage.setItem('userId', user.id);
         return navigate('/dashboard');
       })
       .catch((err) => {

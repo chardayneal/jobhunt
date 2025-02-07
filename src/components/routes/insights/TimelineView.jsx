@@ -1,3 +1,4 @@
+import propTypes from 'prop-types';
 import Timeline from '@mui/lab/Timeline';
 import TimelineItem from '@mui/lab/TimelineItem';
 import TimelineSeparator from '@mui/lab/TimelineSeparator';
@@ -10,40 +11,8 @@ import TimelineOppositeContent, {
 import Plot from './Plot';
 
 
-const PLOTS = [
-  {
-    status: 'Complete',
-    title: 'Plot 1',
-    date: '2023-10-01'
-  },
-  {
-    status: 'In Progress',
-    title: 'Plot 2',
-    date: '2023-10-02'
-  },
-  {
-    status: 'Not Started',
-    title: 'Plot 3',
-    date: '2023-10-03'
-  },
-];
-
-const TimelineView = () => {
-  const timelinePlots = PLOTS.map((plot, index) => {
-    if (index == PLOTS.length - 1) {
-      return (
-        <TimelineItem key={index}>
-        <TimelineOppositeContent color="textSecondary">
-          {plot.date}
-        </TimelineOppositeContent>
-        <TimelineSeparator>
-          <TimelineDot />
-        </TimelineSeparator>
-        <TimelineContent>
-          <Plot plot={plot} />
-        </TimelineContent>
-        </TimelineItem>
-        )}
+const TimelineView = ({ history }) => {
+  const timelinePlots = history.map((plot, index) => {
     return (
       <TimelineItem key={index}>
       <TimelineOppositeContent color="textSecondary">
@@ -56,9 +25,10 @@ const TimelineView = () => {
       <TimelineContent>
         <Plot plot={plot} />
       </TimelineContent>
-  </TimelineItem>
-    )
-  })
+      </TimelineItem>
+      )
+    }
+  );
 
   return (
     <div className="timeline-view timeline-col">
@@ -69,9 +39,24 @@ const TimelineView = () => {
       }}
       >
         {timelinePlots}
+        <TimelineItem key="current">
+          <TimelineOppositeContent color="textSecondary">
+            {new Date().toDateString()}
+          </TimelineOppositeContent>
+          <TimelineSeparator>
+            <TimelineDot />
+          </TimelineSeparator>
+          <TimelineContent>
+            <h3>Present</h3>
+          </TimelineContent>
+      </TimelineItem>
       </Timeline>
     </div> 
   )
+}
+
+TimelineView.propTypes = {
+  history: propTypes.array,
 }
 
 export default TimelineView

@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router";
 import MuseHeader from "./MuseHeader";
 import MuseResults from "./MuseResults";
 import MuseLeadView from "./MuseLeadView";
@@ -6,23 +7,48 @@ import FilterPanel from "./FilterPanel";
 import Divider from '@mui/material/Divider';
 import { getMuseLeads, formatLead, getMuseLeadById } from "../../../apiUtilities/museAPI";
 import './LeadSearch.css';
+import { getUserByToken } from "../../../apiUtilities/backendAPI";
 
 const LeadSearch = () => {
+  const navigate = useNavigate();
+  const [user, setUser] = useState({});
   const [leadResults, setLeadResults] = useState([]);
   const [selectedLead, setSelectedLead] = useState({});
   const [queryParams, setQueryParams] = useState({ page: 0});
 
   useEffect(() => {
-    getMuseLeads(queryParams).then((leads) => {
-      let formattedLeads = leads.map((lead) => {
-        if (lead.locations.length == 0) {
-          lead.locations[0] = { name: 'In Description' };
-        }
-        return formatLead(lead);
+    const token = localStorage.getItem('userToken');
+    if (token) {
+      getUserByToken(token)
+        .then((user) => {
+          setUser(user);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    }
+    else {
+      navigate('/login');
+    }
+  }, [navigate]);
+
+  useEffect(() => {
+    const token = localStorage.getItem('userToken');
+    if (token) {
+      getMuseLeads(queryParams).then((leads) => {
+        let formattedLeads = leads.map((lead) => {
+          if (lead.locations.length == 0) {
+            lead.locations[0] = { name: 'In Description' };
+          }
+          return formatLead(lead);
+        });
+        setLeadResults((prevLeads) => prevLeads.concat(formattedLeads));
       });
-      setLeadResults((prevLeads) => prevLeads.concat(formattedLeads));
-    });
-  }, [queryParams]);
+    }
+    else {
+      navigate('/login');
+    }
+  }, [queryParams, navigate]);
 
   const increasePageCount = () => {
     setQueryParams({ ...queryParams, page: queryParams.page + 1 });
@@ -59,7 +85,7 @@ const LeadSearch = () => {
       <FilterPanel onApplyFilters={updateQueryParams}/>
       <MuseHeader/>
       <div className="dash-card search-container">
-        <MuseResults onViewLeadClick={handleLeadView} onLoadMoreData={increasePageCount} leadResults={leadResults} />
+        <MuseResults userId={user.id}  onViewLeadClick={handleLeadView} onLoadMoreData={increasePageCount} leadResults={leadResults} />
         <Divider fullwidth="true" orientation="vertical" />
         <MuseLeadView selectedLead={selectedLead}/>
       </div>

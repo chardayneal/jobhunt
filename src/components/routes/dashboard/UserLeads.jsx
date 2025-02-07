@@ -1,27 +1,26 @@
+import propTypes from 'prop-types';
 import { useEffect, useState } from 'react';
-import { LEADS } from '../../../staticData/staticLeads';
 import LeadHeader from './LeadHeader';
 import LeadList from './LeadList';
 
 
 import './UserLeads.css';
 
-const UserLeads = () => {
-  const [leads, setLeads] = useState(LEADS);
+const UserLeads = ({ userLeads }) => {
+  const [leads, setLeads] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
 
   useEffect(() => {
     if (searchQuery) {
-      const filteredLeads = filterLeads(searchQuery, LEADS);
+      const filteredLeads = filterLeads(searchQuery, userLeads);
       setLeads(filteredLeads);
     } else {
-      setLeads(LEADS);
+      setLeads(userLeads);
     }
-  }, [searchQuery]);
+  }, [userLeads, searchQuery]);
 
   const handleQueryChange = (e) => {
     setSearchQuery(e.target.value);
-    // filterLeads(e.target.value);
   };
 
 
@@ -46,6 +45,10 @@ const filterLeads = (query, leads) => {
     }
   });
 }
+
+UserLeads.propTypes = {
+  userLeads: propTypes.array,
+};
 
 
 

@@ -3,7 +3,7 @@ import propTypes from 'prop-types';
 import { Button } from '@mui/material';
 import MuseList from './MuseList';
 
-const MuseScroll = ({ leadResults, loadMoreData, viewLead }) => {
+const MuseScroll = ({ userId, leadResults, loadMoreData, viewLead }) => {
   const [atBottom, setAtBottom] = useState(false);
   const scrollContainerRef = useRef(null);
 
@@ -31,7 +31,7 @@ const MuseScroll = ({ leadResults, loadMoreData, viewLead }) => {
   return (
     <div className='muse-lead-list' ref={scrollContainerRef}>
       <div className='list-container'>
-        <MuseList handleMuseLeadClick={viewLead} leadResults={leadResults}/>
+        <MuseList userId={userId} handleMuseLeadClick={viewLead} leadResults={leadResults}/>
         {atBottom && <Button onClick={loadMoreData} className='load-more-btn' variant="contained" size="large">
           LOAD MORE RESULTS
         </Button>}
@@ -41,6 +41,7 @@ const MuseScroll = ({ leadResults, loadMoreData, viewLead }) => {
 };
 
 MuseScroll.propTypes = {
+  userId: propTypes.string,
   leadResults: propTypes.array,
   loadMoreData: propTypes.func, 
   viewLead: propTypes.func
