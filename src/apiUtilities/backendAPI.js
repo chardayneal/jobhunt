@@ -122,7 +122,18 @@ export const addNewTask = (id, task) => {
     });
 }
 
-
+// delete task for user
+export const deleteTask = (taskId) => {
+  return axios.delete(`${kbaseURL}/tasks/${taskId}`)
+    .then((response) => {
+      console.log(response.data);
+      return response.data;
+    })
+    .catch((error) => {
+      console.error(error);
+    }
+  );
+};
 
 // format the user data
 const formatUserData = (user) => {
