@@ -1,4 +1,3 @@
-import propTypes from 'prop-types';
 import { useState, useEffect } from 'react';
 import DialogForm from './DialogForm';
 import Accordion from '@mui/material/Accordion';
@@ -17,23 +16,33 @@ import DialogTitle from '@mui/material/DialogTitle';
 import { Button } from '@mui/material';
 
 import "./Event.css";
-import { addNewTask, deleteTask, updateTaskStatus } from '../../../apiUtilities/backendAPI';
+import { addNewTask, deleteTask, getTasksByUserId, updateTaskStatus } from '../../../apiUtilities/backendAPI';
 
 
-const Event = ({userId, userTasks, addNewUserTask, updateUserTasks}) => {
+const Event = () => {
+  const [tasks, setTasks] = useState([]);
   const [tasksByDate, setTasksByDate] = useState([]);
   const [calendarDate, setCalendarDate] = useState(new Date().toDateString());
   const [deleteConfirmOpen, setDeleteConfirmOpen] = useState(false);
 
-  useEffect(() => {
 
-    setTasksByDate(userTasks.filter(task => task.date === calendarDate));
-  }, [userTasks, calendarDate]);
+  useEffect(() => {
+    const userId = localStorage.getItem('userId');
+    getTasksByUserId(userId)
+      .then((tasks) => {
+        setTasks(tasks);
+        setTasksByDate(tasks.filter(task => task.date === calendarDate));
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+    }, [tasks, calendarDate]);
+
 
   
   const handleDateChange = (date) => {
     setCalendarDate(date);
-    setTasksByDate(userTasks.filter(task => task.date === date));
+    setTasksByDate(tasks.filter(task => task.date === date));
   };
 
   const handleAddTask = (id, task) => {
@@ -41,7 +50,7 @@ const Event = ({userId, userTasks, addNewUserTask, updateUserTasks}) => {
     addNewTask(id, newTask)
     .then((response) => {
       console.log(response);
-      addNewUserTask(response);
+      setTasks(prevTasks => [...prevTasks, response]);
     })
     .catch((error) => {
       console.error(error);
@@ -52,7 +61,7 @@ const Event = ({userId, userTasks, addNewUserTask, updateUserTasks}) => {
     updateTaskStatus(id, !isComplete)
     .then((response) => {
       console.log(response);
-      updateUserTasks(response);
+      setTasksByDate(prevTasks => prevTasks.map(task => task.id === id ? response : task));
     })
     .catch((error) => {
       console.error(error);
@@ -63,6 +72,7 @@ const Event = ({userId, userTasks, addNewUserTask, updateUserTasks}) => {
     deleteTask(id)
     .then((response) => {
       console.log(response);
+      setTasks(prevTasks => prevTasks.filter(task => task.id !== id));
       setDeleteConfirmOpen(false);
     })
     .catch((error) => {
@@ -80,7 +90,7 @@ const Event = ({userId, userTasks, addNewUserTask, updateUserTasks}) => {
             expandIcon={ <ArrowDropDown/>} >
             <div className="task-header">
               <h3>{calendarDate}</h3>
-              <DialogForm userId={userId} addTask={handleAddTask} calendarDate={calendarDate}/>
+              <DialogForm userId={localStorage.getItem('userId')} addTask={handleAddTask} calendarDate={calendarDate}/>
             </div>
           </AccordionSummary>
           <AccordionDetails>
@@ -124,13 +134,6 @@ const Event = ({userId, userTasks, addNewUserTask, updateUserTasks}) => {
       </div>
     </div>
   )
-}
-
-Event.propTypes = {
-  userId: propTypes.string,
-  userTasks: propTypes.array,
-  addNewUserTask: propTypes.func.isRequired,
-  updateUserTasks: propTypes.func.isRequired
 }
 
 export default Event
