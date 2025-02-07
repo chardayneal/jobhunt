@@ -21,7 +21,7 @@ const MuseLeadView = ({selectedLead}) => {
 
 
   return (
-    <div className="search-col muse-lead-view">
+    <div>
       {selectedLead ? <><h2>{selectedLead.title}</h2>
       <div className="company-url">
         <p className='company-name'>{selectedLead.company}</p>
