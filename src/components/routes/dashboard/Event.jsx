@@ -92,7 +92,7 @@ const Event = () => {
             expandIcon={ <ArrowDropDown/>} >
             <div className="task-header">
               <h3>{calendarDate}</h3>
-              <DialogForm userId={localStorage.getItem('userId')} addTask={handleAddTask} calendarDate={calendarDate}/>
+              <DialogForm userId={localStorage.getItem('userId')} addTask={handleAddTask}/>
             </div>
           </AccordionSummary>
           <AccordionDetails>

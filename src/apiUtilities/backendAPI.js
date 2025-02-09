@@ -71,6 +71,18 @@ export const addNewLead = (id, lead) => {
     });
 }
 
+// update lead info by lead id
+export const updateLeadInfo = (leadId, lead) => {
+  return axios.patch(`${kbaseURL}/leads/${leadId}`, lead)
+    .then((response) => {
+      console.log(response.data);
+      return formatLeadData(response.data);
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+};
+
 // update lead status for user
 export const updateLeadStatus = (leadId, newStatus) => {
   return axios.post(`${kbaseURL}/leads/${leadId}/history`, { status: newStatus })
