@@ -9,6 +9,7 @@ import { getLeadsByUserId } from '../../../apiUtilities/backendAPI';
 const UserLeads = () => {
   const [leads, setLeads] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
+  const [filteredLeads, setFilteredLeads] = useState([]);
 
   useEffect(() => {
     const userId = localStorage.getItem('userId');
@@ -24,14 +25,14 @@ const UserLeads = () => {
   const handleQueryChange = (e) => {
     setSearchQuery(e.target.value);
     const filteredLeads = filterLeads(e.target.value, leads);
-      setLeads(filteredLeads);
+      setFilteredLeads(filteredLeads);
   };
 
 
   return (
     <div className="dash-item dash-card lead-grid user-leads">
       <LeadHeader searchQuery={searchQuery} handleQueryChange={handleQueryChange}/>
-      <LeadList leads={leads}/>
+      <LeadList leads={searchQuery ? filteredLeads : leads}/>
     </div>
   )
 }
