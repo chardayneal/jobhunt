@@ -79,7 +79,6 @@ const LeadSearch = () => {
     if (newParams.category) {
       params.category = newParams.category;
     }
-    console.log('New Params:', params);
     setQueryParams(params);
     setLeadResults([]);
     setSelectedLead({});

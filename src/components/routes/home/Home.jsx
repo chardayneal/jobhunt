@@ -14,7 +14,7 @@ const Home = () => {
     const token = localStorage.getItem('userToken');
     getUserByToken(token)
       .then(() => {
-        console.log("User found");
+        return
       })
       .catch((error) => {
         console.error(error);

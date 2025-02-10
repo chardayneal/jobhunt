@@ -14,20 +14,18 @@ const MuseList = ({userId, leadResults, handleMuseLeadClick }) => {
   const selectedClassName = 'muse-lead selected';
 
   const handleLeadSelection = (lead) => {
-    console.log(selectedLeadId);
 
     handleMuseLeadClick(lead.museId);
     setSelectedLeadId(lead.id);
   }
 
   const handleAddToLeads = (lead) => {
-    console.log(`Adding ${lead.title} to leads`);
     delete lead.id;
     delete lead.museId;
     lead.status = 'Interested';
     addNewLead(userId, lead)
       .then(() => {
-        console.log("Added new lead to list");
+        return
       })
       .catch((error) => {
         console.error(error);
@@ -42,10 +40,7 @@ const MuseList = ({userId, leadResults, handleMuseLeadClick }) => {
             <Lead leadInfo={{ title: lead.title, company: lead.company, location: lead.location}} />
             <div className="hover-overlay">
               <Button onClick={() => handleAddToLeads(lead)} variant="contained" startIcon={<StarIcon/>}>Add to Leads</Button>
-              <Button onClick={() => {
-                console.log(lead.id);
-                handleLeadSelection(lead);
-              }}  variant="outlined">View Lead</Button>
+              <Button onClick={() => handleLeadSelection(lead)}  variant="outlined">View Lead</Button>
             </div>
           </div>
         </div>
