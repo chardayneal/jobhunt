@@ -29,7 +29,6 @@ const LeadHeader = ({ searchQuery, handleQueryChange }) => {
                   value: searchQuery
                 }
               },
-              
             }}
             variant="standard"
 

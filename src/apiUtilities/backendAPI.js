@@ -47,6 +47,39 @@ export const getLeadsByUserId = (userId) => {
     });
 }
 
+// get insights by userId
+export const getInsightsByUserId = (userId) => {
+  return axios.get(`${kbaseURL}/users/${userId}/insights`)
+    .then((response) => {
+      return response.data.map(formatInsightData);
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+}
+
+// add insight to userId
+export const addInsight = (userId, insight) => {
+  return axios.post(`${kbaseURL}/users/${userId}/insights`, insight)
+    .then((response) => {
+      return formatInsightData(response.data.insights.at(-1));
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+}
+
+// delete insight by id
+export const deleteInsight = (insightId) => {
+  return axios.delete(`${kbaseURL}/insights/${insightId}`)
+    .then((response) => {
+      return response.data;
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+}
+
 // // get lead history by lead id
 // export const getLeadHistoryByLeadId = (leadId) => {
 //   return axios.get(`${kbaseURL}/leads/${leadId}/history`)
@@ -70,6 +103,18 @@ export const addNewLead = (id, lead) => {
       console.error(error);
     });
 }
+
+// update lead info by lead id
+export const updateLeadInfo = (leadId, lead) => {
+  return axios.patch(`${kbaseURL}/leads/${leadId}`, lead)
+    .then((response) => {
+      console.log(response.data);
+      return formatLeadData(response.data);
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+};
 
 // update lead status for user
 export const updateLeadStatus = (leadId, newStatus) => {
@@ -187,3 +232,11 @@ export const formatHistoryData = (history) => {
     status: history.status
   }
 }
+
+export const formatInsightData = (insight) => {
+  return {
+    id: insight.id,
+    date: new Date(insight.date).toDateString(),
+    text: insight.text
+  }
+};

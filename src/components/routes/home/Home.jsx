@@ -13,8 +13,8 @@ const Home = () => {
   useEffect(() => {
     const token = localStorage.getItem('userToken');
     getUserByToken(token)
-      .then((user) => {
-        console.log("User found", user);
+      .then(() => {
+        return
       })
       .catch((error) => {
         console.error(error);

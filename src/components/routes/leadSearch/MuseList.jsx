@@ -14,23 +14,18 @@ const MuseList = ({userId, leadResults, handleMuseLeadClick }) => {
   const selectedClassName = 'muse-lead selected';
 
   const handleLeadSelection = (lead) => {
-    if (selectedLeadId != null) {
-      const element = document.getElementById(`museLead${selectedLeadId}`);
-      element.classList.remove('selected'); 
-    }
 
     handleMuseLeadClick(lead.museId);
     setSelectedLeadId(lead.id);
   }
 
   const handleAddToLeads = (lead) => {
-    console.log(`Adding ${lead.title} to leads`);
     delete lead.id;
     delete lead.museId;
     lead.status = 'Interested';
     addNewLead(userId, lead)
       .then(() => {
-        console.log("Added new lead to list");
+        return
       })
       .catch((error) => {
         console.error(error);

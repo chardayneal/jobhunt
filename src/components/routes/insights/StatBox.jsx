@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Gauge } from '@mui/x-charts/Gauge';
 import { getLeadsByUserId, getTasksByUserId } from '../../../apiUtilities/backendAPI';
-import { calculateApplied, calculateInterviews, calculateOffered, calculateTasks } from '../../../apiUtilities/calculateStats';
+import { calculateStat } from '../../../apiUtilities/calculateStats';
 
 const StatBox = () => {
   const [leads, setLeads] = useState([]);
@@ -40,22 +40,22 @@ const StatBox = () => {
             innerRadius="90%" 
             outerRadius="120%" 
             height={100} 
-            value={`${calculateInterviews(leads)}%`} 
+            value={`${calculateStat(leads, 'interviews')}%`} 
             startAngle={-120} 
             endAngle={120} 
             />
             <p className="gauge-title">INTERVIEWED</p>
         </div>
         <div className="dash-card stat-col">
-          <Gauge innerRadius="90%" outerRadius="120%" height={100} value={`${calculateOffered(leads)}%`} startAngle={-120} endAngle={120} />
+          <Gauge innerRadius="90%" outerRadius="120%" height={100} value={`${calculateStat(leads, 'offered')}%`} startAngle={-120} endAngle={120} />
           <p className="gauge-title">OFFERED</p>
         </div>
         <div className="dash-card stat-col">
-          <Gauge innerRadius="90%" outerRadius="120%" height={100} value={`${calculateApplied(leads)}%`} startAngle={-120} endAngle={120} />
+          <Gauge innerRadius="90%" outerRadius="120%" height={100} value={`${calculateStat(leads, 'applied')}%`} startAngle={-120} endAngle={120} />
           <p className="gauge-title">UNDER REVIEW</p>
         </div>
         <div className="dash-card stat-col">
-          <Gauge innerRadius="90%" outerRadius="120%" height={100} value={`${calculateTasks(tasks)}%`} startAngle={-120} endAngle={120} />
+          <Gauge innerRadius="90%" outerRadius="120%" height={100} value={`${calculateStat(tasks, 'tasks')}%`} startAngle={-120} endAngle={120} />
           <p className="gauge-title">TASKS COMPLETION</p>
         </div>
         

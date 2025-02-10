@@ -23,7 +23,8 @@ const Event = () => {
   const [tasks, setTasks] = useState([]);
   const [tasksByDate, setTasksByDate] = useState([]);
   const [calendarDate, setCalendarDate] = useState(new Date().toDateString());
-  const [deleteConfirmOpen, setDeleteConfirmOpen] = useState(false);
+  // const [deleteConfirmOpen, setDeleteConfirmOpen] = useState(false);
+  const [taskToDelete, setTaskToDelete] = useState({ id: '', dialog: false });
 
 
   useEffect(() => {
@@ -37,8 +38,7 @@ const Event = () => {
         console.error(error);
       });
     }, [tasks, calendarDate]);
-
-
+    
   
   const handleDateChange = (date) => {
     setCalendarDate(date);
@@ -51,6 +51,7 @@ const Event = () => {
     .then((response) => {
       console.log(response);
       setTasks(prevTasks => [...prevTasks, response]);
+      setTasksByDate(prevTasks => [...prevTasks, response]);
     })
     .catch((error) => {
       console.error(error);
@@ -73,7 +74,8 @@ const Event = () => {
     .then((response) => {
       console.log(response);
       setTasks(prevTasks => prevTasks.filter(task => task.id !== id));
-      setDeleteConfirmOpen(false);
+      // setDeleteConfirmOpen(false);
+      setTaskToDelete({ id: '', dialog: false });
     })
     .catch((error) => {
       console.error(error);
@@ -90,7 +92,7 @@ const Event = () => {
             expandIcon={ <ArrowDropDown/>} >
             <div className="task-header">
               <h3>{calendarDate}</h3>
-              <DialogForm userId={localStorage.getItem('userId')} addTask={handleAddTask} calendarDate={calendarDate}/>
+              <DialogForm userId={localStorage.getItem('userId')} addTask={handleAddTask}/>
             </div>
           </AccordionSummary>
           <AccordionDetails>
@@ -100,12 +102,19 @@ const Event = () => {
                   <div className="taskItem" key={task.id}>
                     <Checkbox checked={task.isComplete} onChange={() => handleCheckboxSelection(task.id, task.isComplete)}/>
                     <p>{task.text}</p>
-                    <IconButton onClick={() => setDeleteConfirmOpen(true)} aria-label="delete">
+                    <IconButton onClick={() => {
+                      console.log(task);
+                      // setDeleteConfirmOpen(true)
+                      setTaskToDelete({ id: task.id, dialog: true })
+                      }} aria-label="delete">
                       <DeleteIcon  />
                     </IconButton>
                     <Dialog
-                      open={deleteConfirmOpen}
-                      onClose={() => setDeleteConfirmOpen(false)}
+                      open={taskToDelete.dialog}
+                      onClose={() => {
+                        // setDeleteConfirmOpen(false);
+                        setTaskToDelete({ id: '', dialog: false })
+                      }}
                       aria-labelledby="alert-dialog-title"
                       aria-describedby="alert-dialog-description"
                     >
@@ -118,8 +127,11 @@ const Event = () => {
                         </DialogContentText>
                       </DialogContent>
                       <DialogActions>
-                        <Button onClick={() => setDeleteConfirmOpen(false)}>Cancel</Button>
-                        <Button onClick={() => handleDeleteTask(task.id)} >
+                        <Button onClick={() => {
+                          // setDeleteConfirmOpen(false);
+                          setTaskToDelete({ id: '', dialog: false })
+                          }}>Cancel</Button>
+                        <Button onClick={() => handleDeleteTask(taskToDelete.id)} >
                           Delete
                         </Button>
                       </DialogActions>

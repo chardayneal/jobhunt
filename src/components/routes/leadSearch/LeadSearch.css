@@ -64,8 +64,9 @@
     gap: 2rem;
 }
 
-.muse-header .muse-search-bar {
+.muse-header .muse-search {
     flex: 2;
+    display: flex;
 }
 
 .lead-search .search-container {

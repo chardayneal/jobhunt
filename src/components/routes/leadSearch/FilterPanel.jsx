@@ -69,13 +69,20 @@ const FilterPanel = ({ onApplyFilters}) => {
               aria-controls="panel2-content"
               id="panel2-header"
             >
-              <Typography component="span">Location</Typography>
+              <Typography component="span">Boards</Typography>
             </AccordionSummary>
             <AccordionDetails>
-              <Typography>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-                malesuada lacus ex, sit amet blandit leo lobortis eget.
-              </Typography>
+            <div className="boards-container">
+              <div className="board">
+                <input type="checkbox" name="muse" value="muse" id="muse" defaultChecked/>
+                <label htmlFor="muse">The Muse </label>
+              </div>
+              <div className="board">
+                <input type="checkbox" name="linkedin" value="linkedin" id="linkedin" />
+                <label htmlFor="linkedin">LinkedIn</label>
+              </div>
+              <Button className="clear-levels-btn" onClick={handleFilterClear} size="small" variant="text">CLEAR</Button>
+            </div>
             </AccordionDetails>
           </Accordion>
           <Button className="apply-filters" onClick={handleFilterChange} variant="outlined">APPLY FILTERS</Button>
