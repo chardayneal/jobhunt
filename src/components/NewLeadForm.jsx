@@ -30,7 +30,7 @@ export const NewLeadForm = ({ leadData, handleLeadDataChange}) => {
           variant="standard"
         />
 
-        <fieldset className="lead-input">
+        {leadData === null && <fieldset className="lead-input">
           <legend>Status</legend>
           <div className="status-radio">
             <input onSelect={handleLeadDataChange} type="radio" id="interested" name="status" value="interested" defaultChecked required/>
@@ -52,8 +52,7 @@ export const NewLeadForm = ({ leadData, handleLeadDataChange}) => {
             <input onSelect={handleLeadDataChange} type="radio" id="notSelected" name="status" value="notSelected"/>
             <label htmlFor="notSelected">Not Selected</label>
           </div>
-
-        </fieldset>
+        </fieldset>}
       <TextField
           value={leadData.level}
           onChange={handleLeadDataChange}
