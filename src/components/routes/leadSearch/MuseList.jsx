@@ -14,10 +14,7 @@ const MuseList = ({userId, leadResults, handleMuseLeadClick }) => {
   const selectedClassName = 'muse-lead selected';
 
   const handleLeadSelection = (lead) => {
-    if (selectedLeadId != null) {
-      const element = document.getElementById(`museLead${selectedLeadId}`);
-      element.classList.remove('selected'); 
-    }
+    console.log(selectedLeadId);
 
     handleMuseLeadClick(lead.museId);
     setSelectedLeadId(lead.id);
@@ -45,7 +42,10 @@ const MuseList = ({userId, leadResults, handleMuseLeadClick }) => {
             <Lead leadInfo={{ title: lead.title, company: lead.company, location: lead.location}} />
             <div className="hover-overlay">
               <Button onClick={() => handleAddToLeads(lead)} variant="contained" startIcon={<StarIcon/>}>Add to Leads</Button>
-              <Button onClick={() => handleLeadSelection(lead)}  variant="outlined">View Lead</Button>
+              <Button onClick={() => {
+                console.log(lead.id);
+                handleLeadSelection(lead);
+              }}  variant="outlined">View Lead</Button>
             </div>
           </div>
         </div>

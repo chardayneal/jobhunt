@@ -15,6 +15,7 @@ const LeadSearch = () => {
   const [leadResults, setLeadResults] = useState([]);
   const [selectedLead, setSelectedLead] = useState({});
   const [queryParams, setQueryParams] = useState({ page: 0});
+  const [category, setCategory] = useState('');
 
   useEffect(() => {
     const token = localStorage.getItem('userToken');
@@ -66,6 +67,9 @@ const LeadSearch = () => {
 
   const updateQueryParams = (newParams) => {
     const params = { page: 0 }
+    if (category) {
+      params.category = category;
+    }
     if (newParams.location) {
       params.location = newParams.location;
     }
@@ -78,12 +82,18 @@ const LeadSearch = () => {
     console.log('New Params:', params);
     setQueryParams(params);
     setLeadResults([]);
+    setSelectedLead({});
+  }
+
+  const handleCategoryChange = (category) => {
+    setCategory(category);
+    updateQueryParams({ category });
   }
 
   return (
     <div className="grid-item flex-area lead-search">
       <FilterPanel onApplyFilters={updateQueryParams}/>
-      <MuseHeader/>
+      <MuseHeader category={category} changeCategory={handleCategoryChange}/>
       <div className="dash-card search-container">
         <MuseResults userId={user.id}  onViewLeadClick={handleLeadView} onLoadMoreData={increasePageCount} leadResults={leadResults} />
         <Divider fullwidth="true" orientation="vertical" />
