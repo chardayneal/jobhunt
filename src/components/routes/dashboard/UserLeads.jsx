@@ -45,8 +45,6 @@ const filterLeads = (query, leads) => {
       return true;
     } else if (lead.location.toLowerCase().includes(query.toLowerCase())) {
       return true;
-    } else if (lead.description.toLowerCase().includes(query.toLowerCase())) {
-      return true;
     }
   });
 }
