@@ -10,6 +10,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 import TextField from '@mui/material/TextField';
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
+import Button from '@mui/material/Button';
 import { addInsight, deleteInsight, getInsightsByUserId } from '../../../apiUtilities/backendAPI';
 import './InsightPanel.css';
 
@@ -18,6 +19,7 @@ const InsightPanel = () => {
   const [insights, setInsights] = useState([]);
   const [insightText, setInsightText] = useState('');
   const [open, setOpen] = useState(false);
+  const [insightToDelete, setInsightToDelete] = useState({ id: '', dialog: false });
 
   useEffect(() => {
     const userId = localStorage.getItem('userId');
@@ -34,9 +36,36 @@ const InsightPanel = () => {
     <div className="insight-item" key={index}>
         <span className="item-date">{item.date}</span>
         <span className="item-text">{item.text}</span>
-        <IconButton aria-label="delete">
-          <DeleteIcon onClick={() => handleInsightDelete(item.id)}/>
+        <IconButton 
+          onClick={() => setInsightToDelete({ id: item.id, dialog: true })} 
+          aria-label="delete">
+          <DeleteIcon />
         </IconButton>
+        <Dialog
+          open={insightToDelete.dialog}
+          onClose={() => {
+            setInsightToDelete({ id: '', dialog: false })
+          }}
+          aria-labelledby="alert-dialog-title"
+          aria-describedby="alert-dialog-description"
+        >
+          <DialogTitle id="alert-dialog-title">
+            {"Delete Insight?"}
+          </DialogTitle>
+          <DialogContent>
+            <DialogContentText id="alert-dialog-description">
+              Are you sure you want to delete this insight?
+            </DialogContentText>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={() => {
+              setInsightToDelete({ id: '', dialog: false })
+              }}>Cancel</Button>
+            <Button onClick={() => handleInsightDelete(insightToDelete.id)} >
+              Delete
+            </Button>
+          </DialogActions>
+        </Dialog>
     </div>
   ));
 
@@ -44,16 +73,20 @@ const InsightPanel = () => {
     setOpen(false);
   };
 
+  const handleDeleteDialogOpen = () => {
+    setInsightToDelete({ id: '', dialog: false})
+  };
+
   const handleInsightDelete = (id) => {
     deleteInsight(id)
       .then(() => {
         setInsights(insights.filter((item) => item.id !== id));
-        handleClose();
+        handleDeleteDialogOpen();
       })
       .catch((error) => {
         console.error('Error deleting insight:', error);
       });
-  }
+  };
 
   const handleNewInsight = () => {
     const newInsight = { date: new Date().toDateString(), text: insightText };
@@ -67,7 +100,7 @@ const InsightPanel = () => {
       });
     setInsightText('');
     handleClose();
-  }
+  };
 
 
   return (
