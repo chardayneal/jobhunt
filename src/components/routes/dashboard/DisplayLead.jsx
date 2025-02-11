@@ -6,15 +6,16 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import NewLeadForm from '../../NewLeadForm';
 import ShowSelectedLead from './ShowSelectedLead';
+import { updateLeadInfo} from '../../../apiUtilities/backendAPI';
 
 
 const DisplayLead = ({ lead, isOpen, handleClose }) => {
-  const [leadData, setLeadData] = useState({...lead});
+  const [updatedLead, setUpdatedLead] = useState(lead);
   const [isEditing, setIsEditing] = useState(false);
 
   const handleLeadUpdate = (event) => {
       const { name, value } = event.target;
-      setLeadData((prevState) => ({
+      setUpdatedLead((prevState) => ({
         ...prevState,
         [name]: value
       }));
@@ -28,11 +29,22 @@ const DisplayLead = ({ lead, isOpen, handleClose }) => {
   const handleSubmit = (event) => {
     event.preventDefault();
     setIsEditing(false);
-    console.log("New lead created", leadData);
-    const userId = localStorage.getItem('userId');
-    // create an object with non null values
-    const nonNullValues = Object.fromEntries(Object.entries(leadData).filter(([key, value]) => value !== null));
-    console.log(userId, nonNullValues);
+
+    const requestBody = {};
+    for (const [key, value] of Object.entries(updatedLead)) {
+      if (value !== lead[key]) {
+        requestBody[key] = value;
+      }
+    }
+    
+    updateLeadInfo(lead.id, requestBody)
+      .then(() => {
+        handleLeadClose();
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+
   }
 
   return (
@@ -50,8 +62,8 @@ const DisplayLead = ({ lead, isOpen, handleClose }) => {
         <DialogContent>
           <h2>Lead Details</h2>
           {isEditing ? 
-          <NewLeadForm leadData={leadData} handleLeadDataChange={handleLeadUpdate}/> :
-          <ShowSelectedLead lead={leadData} handleLeadClose={handleLeadClose} />}
+          <NewLeadForm leadData={updatedLead} handleLeadDataChange={handleLeadUpdate}/> :
+          <ShowSelectedLead lead={updatedLead} handleLeadClose={handleLeadClose} />}
         </DialogContent>
         <DialogActions>
           {isEditing ? 
