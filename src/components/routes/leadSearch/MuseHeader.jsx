@@ -5,6 +5,11 @@ import { MUSE_CATEGORIES } from '../../../apiUtilities/museCategories';
 
 
 const MuseHeader = ({ category, changeCategory }) => {
+
+  const handleCategoryChange = (event) => {
+    const newCategory = event.target.textContent ? event.target.textContent : '';
+    changeCategory(newCategory);
+  }
   return (
     <Box component={'section'} className="muse-header">
       <AppBar position="static" className="muse-app-bar">
@@ -15,7 +20,7 @@ const MuseHeader = ({ category, changeCategory }) => {
               options={MUSE_CATEGORIES}
               sx={{ width: '60%'}}
               renderInput={(params) => <TextField {...params} label="Search by Category..." variant="standard" />}
-              onChange={(event)=> changeCategory(event.target.textContent)}
+              onChange={handleCategoryChange}
               value={category}
             />
           </div>

@@ -67,26 +67,22 @@ const LeadSearch = () => {
 
   const updateQueryParams = (newParams) => {
     const params = { page: 0 }
-    if (category) {
-      params.category = category;
-    }
-    if (newParams.location) {
-      params.location = newParams.location;
-    }
     if (newParams.level) {
       params.level = newParams.level;
     }
     if (newParams.category) {
       params.category = newParams.category;
     }
+    console.log(params);
     setQueryParams(params);
     setLeadResults([]);
     setSelectedLead({});
   }
 
-  const handleCategoryChange = (category) => {
-    setCategory(category);
-    updateQueryParams({ category });
+  const handleCategoryChange = (newCategory) => {
+    
+    setCategory(newCategory);
+    updateQueryParams({ category: `${newCategory}` });
   }
 
   return (

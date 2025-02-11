@@ -61,7 +61,6 @@ const LeadView = ({ isOpen, handleClose }) => {
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
           <Button type="submit">Create New Lead</Button>
-          {/* <input type='submit' form='new-lead' value="Create New Lead" onClick= {handleSubmit} /> */}
         </DialogActions>
       </Dialog>
     </div>
