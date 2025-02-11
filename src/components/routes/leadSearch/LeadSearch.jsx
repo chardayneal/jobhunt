@@ -68,6 +68,9 @@ const LeadSearch = () => {
   const updateQueryParams = (newParams) => {
     const params = { page: 0 }
     if (newParams.level) {
+      if (queryParams.category) {
+        params.category = queryParams.category;
+      }
       params.level = newParams.level;
     }
     if (newParams.category) {

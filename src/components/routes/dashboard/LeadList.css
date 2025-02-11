@@ -24,6 +24,10 @@
 
 }
 
+.user-lead-item .hover-overlay {
+    display: none;
+}
+
 .user-lead-item:hover .hover-overlay {
     position: absolute;
     top: 0;
