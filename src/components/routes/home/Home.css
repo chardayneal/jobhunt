@@ -16,10 +16,16 @@
     grid-row: 1 / 2;
 
     padding: 10px;
+    margin: 0 1rem;
 
     display: flex;
     justify-content: space-between;
     align-items: center;
+  }
+
+  .header h2 {
+    font-weight: 800;
+    font-size: 1.75rem;
   }
 
 

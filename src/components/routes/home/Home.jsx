@@ -77,8 +77,8 @@ const Home = () => {
     <div className="home grid-container">
         <Sidebar/>
         <div className="grid-item header">
-          <div className="spacer"></div>
-          <h2>Hello!</h2>
+          {/* <div className="spacer"></div> */}
+          <h2>Dashboard</h2>
           <Tooltip title="Account settings">
             <IconButton
               onClick={handleClick}
