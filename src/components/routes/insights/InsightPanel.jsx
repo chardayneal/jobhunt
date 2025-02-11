@@ -134,8 +134,8 @@ const InsightPanel = () => {
             onChange={(e) => setInsightText(e.target.value)}
             margin="dense"
             id="name"
-            name="task"
-            label="Task Description"
+            name="insight"
+            label=""
             type="text"
             fullWidth
             variant="standard"

@@ -36,6 +36,17 @@ export const getUserByToken = (token) => {
     });
 }
 
+// update user info
+export const updateUser = (id, user) => {
+  return axios.patch(`${kbaseURL}/users/${id}`, user)
+    .then((response) => {
+      return formatUserData(response.data);
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+}
+
 // get leads by user id
 export const getLeadsByUserId = (userId) => {
   return axios.get(`${kbaseURL}/users/${userId}/leads`)
