@@ -2,11 +2,16 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router';
 import AuthUser from './components/routes/authUser/AuthUser';
 import LogIn from './components/routes/authUser/LogIn';
 import SignUp from './components/routes/authUser/SignUp';
-import Home from './components/routes/home/Home';
-import Dashboard from './components/routes/dashboard/Dashboard';
-import LeadSearch from './components/routes/leadSearch/LeadSearch';
-import Insights from './components/routes/insights/Insights';
+
 import './App.css';
+import { lazy } from 'react';
+
+const Home = lazy(() => import('./components/routes/home/Home'));
+const Dashboard = lazy(() => import('./components/routes/dashboard/Dashboard'));
+const LeadSearch = lazy(() => import('./components/routes/leadSearch/LeadSearch'));
+const Insights = lazy(() => import('./components/routes/insights/Insights'));
+
+
 
 function App() {
 
