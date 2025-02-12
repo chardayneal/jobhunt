@@ -26,7 +26,7 @@ const LeadSelect = ({lead}) => {
               <Button 
                 onClick={() => setIsUpdateOpen(true)} 
                 variant="contained"
-                sx={{ backgroundColor: 'var(--primary-light-color)' }}
+                sx={{ backgroundColor: 'var(--primary-light-color)', textTransform: 'capitalize' }}
               >
                 Update
               </Button>
@@ -34,7 +34,7 @@ const LeadSelect = ({lead}) => {
               <Button 
                 onClick={() => setIsOpen(true)} 
                 variant="outlined"
-                sx={{ color: 'var(--primary-light-color)', borderColor: 'var(--primary-light-color)' }}
+                sx={{ color: 'var(--primary-light-color)', borderColor: 'var(--primary-light-color)', textTransform: 'capitalize' }}
               >
                  View
               </Button>

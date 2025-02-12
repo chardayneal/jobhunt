@@ -13,9 +13,8 @@ const Lead = ({ leadInfo }) => {
   )
 }
 
-export default Lead
-
-
 Lead.propTypes = {
     leadInfo: propTypes.object.isRequired
 }
+
+export default Lead;
