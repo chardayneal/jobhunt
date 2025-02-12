@@ -1,10 +1,8 @@
 import { useEffect, useState } from 'react';
 import LeadHeader from './LeadHeader';
 import LeadList from './LeadList';
-
-
-import './UserLeads.css';
 import { getLeadsByUserId } from '../../../apiUtilities/backendAPI';
+import './UserLeads.css';
 
 const UserLeads = () => {
   const [leads, setLeads] = useState([]);

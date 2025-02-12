@@ -10,6 +10,7 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import Logout from '@mui/icons-material/Logout';
 import IconButton from '@mui/material/IconButton';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import Tooltip from '@mui/material/Tooltip';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
@@ -77,8 +78,8 @@ const Home = () => {
     <div className="home grid-container">
         <Sidebar/>
         <div className="grid-item header">
-          <div className="spacer"></div>
-          <h2>Hello!</h2>
+          {/* <div className="spacer"></div> */}
+          <h1>Dashboard</h1>
           <Tooltip title="Account settings">
             <IconButton
               onClick={handleClick}
@@ -88,7 +89,8 @@ const Home = () => {
               aria-haspopup="true"
               aria-expanded={open ? 'true' : undefined}
             >
-              <Avatar sx={{ width: 32, height: 32 }}>{user.name[0]}</Avatar>
+              <Avatar sx={{ width: 32, height: 32, bgcolor: 'var(--primary-light-color)' }}>{user.name[0]}</Avatar>
+              <KeyboardArrowDownIcon />
             </IconButton>
           </Tooltip>
           <Menu

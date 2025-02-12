@@ -19,13 +19,25 @@ const LeadSelect = ({lead}) => {
   };
 
   return (
-    <div>
+    <div className="lead-select">
       <div key={lead.id} className="user-lead-item">
           <Lead key={lead.id} leadInfo={lead} />
           <div className="hover-overlay">
-              <Button onClick={() => setIsUpdateOpen(true)} variant="contained">Quick Update</Button>
+              <Button 
+                onClick={() => setIsUpdateOpen(true)} 
+                variant="contained"
+                sx={{ backgroundColor: 'var(--primary-light-color)', textTransform: 'capitalize' }}
+              >
+                Update
+              </Button>
               <UpdateForm lead={lead} isOpen={isUpdateOpen} handleClose={handleUpdateClose} />
-              <Button onClick={() => setIsOpen(true)} variant="outlined">View Lead</Button>
+              <Button 
+                onClick={() => setIsOpen(true)} 
+                variant="outlined"
+                sx={{ color: 'var(--primary-light-color)', borderColor: 'var(--primary-light-color)', textTransform: 'capitalize' }}
+              >
+                 View
+              </Button>
               <DisplayLead lead={lead} isOpen={isOpen} handleClose={handleClose} />
             </div>
         </div>

@@ -31,9 +31,11 @@ export default function LeadSpeedDial() {
         ariaLabel="SpeedDial To New Leads"
         sx={{ position: 'absolute', bottom: 16, right: 16 }}
         icon={<SpeedDialIcon />}
+        // FabProps={{sx: {bgcolor: 'var(--primary-light-color)'}}}
       >
         {actions.map((action) => (
           <SpeedDialAction
+            sx={{bgcolor: 'var(--secondary-light-color)', color: 'var(--secondary-color)'}}
             key={action.name}
             icon={action.icon}
             tooltipTitle={action.name}

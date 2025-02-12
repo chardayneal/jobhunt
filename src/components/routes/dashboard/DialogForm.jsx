@@ -6,6 +6,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import Button from '@mui/material/Button';
 
 
 const DialogForm = ({userId, addTask}) => {
@@ -28,9 +29,13 @@ const DialogForm = ({userId, addTask}) => {
 
   return (
     <>
-      <span onClick={handleClickOpen}>
+      <Button 
+        onClick={handleClickOpen} 
+        variant='contained'
+        sx={{ backgroundColor: 'var(--primary-dark-color)', color: 'var(--secondary-color)', textTransform: 'capitalize'}}
+      >
         Add Task
-      </span>
+      </Button>
       <Dialog
         open={open}
         onClose={handleClose}

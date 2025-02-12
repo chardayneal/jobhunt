@@ -1,19 +1,16 @@
 import { useState, useEffect } from 'react';
-import DialogForm from './DialogForm';
-import Accordion from '@mui/material/Accordion';
-import AccordionSummary from '@mui/material/AccordionSummary';
-import AccordionDetails from '@mui/material/AccordionDetails';
-import { ArrowDropDown } from '@mui/icons-material';
 import Checkbox from '@mui/material/Checkbox';
 import Calendar from './Calendar';
 import IconButton from '@mui/material/IconButton';
+import Divider from '@mui/material/Divider';
+import DialogForm from './DialogForm';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import { Button } from '@mui/material';
+import Button from '@mui/material/Button';
 
 import "./Event.css";
 import { addNewTask, deleteTask, getTasksByUserId, updateTaskStatus } from '../../../apiUtilities/backendAPI';
@@ -86,63 +83,54 @@ const Event = () => {
     <div className="dash-item events">
         <Calendar changeDate={handleDateChange} />
       <div className='dash-card tasks-col'>
-          <h2>Tasks</h2>
-        <Accordion defaultExpanded>
-          <AccordionSummary
-            expandIcon={ <ArrowDropDown/>} >
-            <div className="task-header">
-              <h3>{calendarDate}</h3>
-              <DialogForm userId={localStorage.getItem('userId')} addTask={handleAddTask}/>
-            </div>
-          </AccordionSummary>
-          <AccordionDetails>
-            <div className="event">
-              {tasksByDate ? tasksByDate.map(task => {
-                return (
-                  <div className="taskItem" key={task.id}>
-                    <Checkbox checked={task.isComplete} onChange={() => handleCheckboxSelection(task.id, task.isComplete)}/>
-                    <p>{task.text}</p>
-                    <IconButton onClick={() => {
-                      console.log(task);
-                      // setDeleteConfirmOpen(true)
-                      setTaskToDelete({ id: task.id, dialog: true })
-                      }} aria-label="delete">
-                      <DeleteIcon  />
-                    </IconButton>
-                    <Dialog
-                      open={taskToDelete.dialog}
-                      onClose={() => {
-                        // setDeleteConfirmOpen(false);
-                        setTaskToDelete({ id: '', dialog: false })
-                      }}
-                      aria-labelledby="alert-dialog-title"
-                      aria-describedby="alert-dialog-description"
-                    >
-                      <DialogTitle id="alert-dialog-title">
-                        {"Delete Task?"}
-                      </DialogTitle>
-                      <DialogContent>
-                        <DialogContentText id="alert-dialog-description">
-                          Are you sure you want to delete this task?
-                        </DialogContentText>
-                      </DialogContent>
-                      <DialogActions>
-                        <Button onClick={() => {
-                          // setDeleteConfirmOpen(false);
-                          setTaskToDelete({ id: '', dialog: false })
-                          }}>Cancel</Button>
-                        <Button onClick={() => handleDeleteTask(taskToDelete.id)} >
-                          Delete
-                        </Button>
-                      </DialogActions>
-                    </Dialog>
-                  </div>
-                )
-              }) : <p key={210}>No tasks for today</p>}
-            </div>
-          </AccordionDetails>
-        </Accordion>
 
+          <h3>Tasks</h3>
+
+          <div className="task-header">
+            <h4>{calendarDate}</h4>
+            <DialogForm userId={localStorage.getItem('userId')} addTask={handleAddTask}/>
+          </div>
+          <Divider />
+
+          <div className="event">
+            {tasksByDate ? tasksByDate.map(task => {
+              return (
+                <div className="taskItem" key={task.id}>
+                  <Checkbox 
+                    sx={{
+                      '&.Mui-checked': {
+                        color: 'var(--secondary-dark-color)'
+                      }
+                    }} 
+                    checked={task.isComplete} 
+                    onChange={() => handleCheckboxSelection(task.id, task.isComplete)}/>
+                  <p>{task.text}</p>
+                  <IconButton 
+                    onClick={() => setTaskToDelete({ id: task.id, dialog: true })} 
+                    aria-label="delete">
+                    <DeleteIcon  />
+                  </IconButton>
+                  <Dialog
+                    open={taskToDelete.dialog}
+                    onClose={() => {
+                      setTaskToDelete({ id: '', dialog: false })
+                    }}
+                    aria-labelledby="alert-dialog-title"
+                    aria-describedby="alert-dialog-description"
+                  >
+                    <DialogTitle id="alert-dialog-title">{"Delete Task?"}</DialogTitle>
+                    <DialogContent>
+                      <DialogContentText id="alert-dialog-description"> Are you sure you want to delete this task?</DialogContentText>
+                    </DialogContent>
+                    <DialogActions>
+                      <Button onClick={() => setTaskToDelete({ id: '', dialog: false })}>Cancel</Button>
+                      <Button onClick={() => handleDeleteTask(taskToDelete.id)} > Delete </Button>
+                    </DialogActions>
+                  </Dialog>
+                </div>
+              )
+            }) : <p key={210}>No tasks for today</p>}
+          </div>
       </div>
     </div>
   )
