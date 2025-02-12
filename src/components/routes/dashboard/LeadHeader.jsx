@@ -11,7 +11,7 @@ const LeadHeader = ({ searchQuery, handleQueryChange }) => {
 
   return (
     <section className="lead-item lead-header">
-        <h2>My Current Leads</h2>
+        <h3>My Current Leads</h3>
           <TextField
             id="input-with-icon-textfield"
             className='lead-search-bar'
