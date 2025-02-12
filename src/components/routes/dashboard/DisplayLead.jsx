@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import propTypes from 'prop-types';
-import { Button } from '@mui/material';
+import Button from '@mui/material/Button';
+import Divider from '@mui/material/Divider';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
@@ -61,6 +62,7 @@ const DisplayLead = ({ lead, isOpen, handleClose }) => {
       >
         <DialogContent>
           <h2>Lead Details</h2>
+          <Divider sx={{ margin: '.5rem 0 .75rem'}} />
           {isEditing ? 
           <NewLeadForm leadData={updatedLead} handleLeadDataChange={handleLeadUpdate}/> :
           <ShowSelectedLead lead={updatedLead} handleLeadClose={handleLeadClose} />}

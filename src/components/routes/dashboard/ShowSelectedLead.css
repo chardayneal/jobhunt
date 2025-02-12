@@ -1,0 +1,28 @@
+.show-selected-lead {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.show-selected-lead .company-postingDate,
+.show-selected-lead .location-url{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.show-selected-lead .company-name {
+    font-weight: 500;
+}
+
+.show-selected-lead .location {
+    font-style: italic;
+}
+
+.show-selected-lead .description {
+    padding: 0 1rem;
+}
+
+.show-selected-lead .description ul li {
+    margin-left: 2rem;
+}

@@ -8,6 +8,7 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { deleteLead } from '../../../apiUtilities/backendAPI';
+import './ShowSelectedLead.css';
 
 const ShowSelectedLead = ({ lead, handleLeadClose }) => {
     const handleURLClick = () => {
@@ -29,18 +30,32 @@ const ShowSelectedLead = ({ lead, handleLeadClose }) => {
   }
 
   return (
-    <div>
-      <h2>{lead.title}</h2>
-      <div className="company-url">
+    <div className='show-selected-lead'>
+      <h3>{lead.title}</h3>
+      <div className="company-postingDate">
         <p className='company-name'>{lead.company}</p>
-        {lead.jobURL && <Button onClick={handleURLClick} variant="contained" endIcon={<LaunchIcon/>}>Visit Posting</Button>}
-      </div>
-      <div className="location-postingDate">
-        <p className='location'>{lead.location}</p>
         <p>{lead.jobPostingDate}</p>
+        
+      </div>
+      <div className="location-url">
+        <p className='location'>{lead.location}</p>
+        {lead.jobURL && <Button 
+          onClick={handleURLClick} 
+          variant="contained" 
+          endIcon={<LaunchIcon/>}
+          sx={{ backgroundColor: 'var(--primary-light-color)', textTransform: 'capitalize' }}
+        >
+          Visit Posting
+        </Button>}
       </div>
       <div className="description" dangerouslySetInnerHTML={{ __html: lead.description }}></div>
-      <Button variant="outlined" onClick={() => setOpen(true)}>
+      <Button 
+        variant="outlined" 
+        onClick={() => setOpen(true)}
+        sx={{ 
+          color: 'red', 
+          borderColor: 'red', 
+          '&:hover': {backgroundColor: '#A60000', color: 'white'}}}>
         Delete Lead
       </Button>
       <Dialog
