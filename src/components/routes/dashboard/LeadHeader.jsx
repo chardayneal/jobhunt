@@ -15,10 +15,10 @@ const LeadHeader = ({ searchQuery, handleQueryChange }) => {
           <TextField
             id="input-with-icon-textfield"
             className='lead-search-bar'
-            placeholder="Search Leads..."
+            placeholder="Search Leads by Title"
             slotProps={{
               input: {
-                startAdornment: (
+                endAdornment: (
                   <InputAdornment position="start">
                     <SearchIcon />
                   </InputAdornment>
@@ -26,11 +26,14 @@ const LeadHeader = ({ searchQuery, handleQueryChange }) => {
                 inputProps: {
                   'aria-label': 'search leads',
                   onInput: handleQueryChange,
-                  value: searchQuery
-                }
+                  value: searchQuery,
+                  style: { textAlign: 'center', padding: '.5rem 0 '}
+                },
+                style: { borderRadius: '100px' }
               },
             }}
-            variant="standard"
+            variant="outlined"
+          
 
           />
           <span className="tooltip">

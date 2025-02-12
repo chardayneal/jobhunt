@@ -10,6 +10,12 @@ const theme = createTheme({
       'Parkinsans',
       'sans-serif',
     ].join(','),
+  },
+  palette: {
+    button: {
+      color: 'var(--primary-light-color)',
+      accentColor: 'var(--secondary-light-color)',
+    }
   }
 })
 

@@ -8,7 +8,6 @@ const Lead = ({ leadInfo }) => {
         <h4>{leadInfo.title}</h4>
         <div className='lead-subText'>
             <p className='company'>{leadInfo.company}</p>
-            <p className='location'>{leadInfo.location}</p>
         </div>
     </div>
   )
