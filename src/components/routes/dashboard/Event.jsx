@@ -96,15 +96,17 @@ const Event = () => {
             {tasksByDate ? tasksByDate.map(task => {
               return (
                 <div className="taskItem" key={task.id}>
-                  <Checkbox 
-                    sx={{
-                      '&.Mui-checked': {
-                        color: 'var(--secondary-dark-color)'
-                      }
-                    }} 
-                    checked={task.isComplete} 
-                    onChange={() => handleCheckboxSelection(task.id, task.isComplete)}/>
-                  <p>{task.text}</p>
+                  <div className='task-left-col'>
+                    <Checkbox 
+                      sx={{
+                        '&.Mui-checked': {
+                          color: 'var(--secondary-dark-color)'
+                        }
+                      }} 
+                      checked={task.isComplete} 
+                      onChange={() => handleCheckboxSelection(task.id, task.isComplete)}/>
+                    <p>{task.text}</p>
+                  </div>
                   <IconButton 
                     onClick={() => setTaskToDelete({ id: task.id, dialog: true })} 
                     aria-label="delete">

@@ -10,6 +10,8 @@ const LeadSelect = ({lead}) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isUpdateOpen, setIsUpdateOpen] = useState(false);
 
+  const leadColor = `user-lead-item ${lead.status === 'Not Selected' ? 'NotSelected': lead.status}`;
+
   const handleClose = () => {
     setIsOpen(false);
   };
@@ -20,7 +22,7 @@ const LeadSelect = ({lead}) => {
 
   return (
     <div className="lead-select">
-      <div key={lead.id} className="user-lead-item">
+      <div key={lead.id} className={leadColor}>
           <Lead key={lead.id} leadInfo={lead} />
           <div className="hover-overlay">
               <Button 

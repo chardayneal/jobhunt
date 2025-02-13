@@ -28,6 +28,32 @@
 .user-lead-item .lead {
     margin-bottom: 0;
 }
+
+.user-lead-item.Interested .lead {
+    border: 2px solid black;
+}
+
+.user-lead-item.Applied .lead {
+    border: 2px solid var(--secondary-dark-color);
+}
+
+.user-lead-item.Interviewing .lead {
+    border: 2px solid #fb8500;
+}
+
+.user-lead-item.Offered .lead {
+    border: 2px solid var(--primary-light-color);
+}
+
+.user-lead-item.NotSelected .lead {
+    border: 2px solid #a6a6a6;
+}
+
+.user-lead-item.NotSelected .lead > * {
+    color: #a6a6a6;
+}
+
+
 .user-lead-item .lead h4,
 .user-lead-item .lead .company {
     text-overflow: ellipsis;
@@ -61,4 +87,11 @@
     position: absolute;
     bottom: 0;
     right: 0;
+}
+
+.MuiPaper-root .MuiDialogActions-root .dialog-actions{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin: 0 1rem;
 }

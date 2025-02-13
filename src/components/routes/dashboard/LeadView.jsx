@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import propTypes from 'prop-types';
 import NewLeadForm from '../../NewLeadForm';
+import Divider from '@mui/material/Divider';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
@@ -53,14 +54,15 @@ const LeadView = ({ isOpen, handleClose }) => {
             }
           }}
       >
-        <DialogContent>
+        <DialogContent sx={{ fontFamily: 'var(--header-font)' }}>
           <h2>New Lead Details</h2>
+          <Divider sx={{margin: '.5rem 0 1rem'}}/>
           <p>Enter the lead details below</p>
           <NewLeadForm leadData={leadData} handleLeadDataChange={handleLeadDataChange}/>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>Cancel</Button>
-          <Button type="submit">Create New Lead</Button>
+          <Button onClick={handleClose} sx={{textTransform: 'capitalize'}}>Cancel</Button>
+          <Button variant='outlined' type="submit" sx={{ color: 'var(--primary-light-color)', borderColor: 'var(--primary-light-color)', textTransform: 'capitalize' }}>Create New Lead</Button>
         </DialogActions>
       </Dialog>
     </div>
