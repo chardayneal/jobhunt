@@ -73,8 +73,8 @@ const ShowSelectedLead = ({ lead, handleLeadClose }) => {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={() => setOpen(false)}>Cancel</Button>
-          <Button onClick={handleLeadDelete} >
+          <Button sx={{textTransform: 'capitalize'}} onClick={() => setOpen(false)}>Cancel</Button>
+          <Button sx={{textTransform: 'capitalize', color: '#A60000'}} onClick={handleLeadDelete} >
             Delete
           </Button>
         </DialogActions>

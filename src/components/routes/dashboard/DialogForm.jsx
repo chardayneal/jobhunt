@@ -64,12 +64,18 @@ const DialogForm = ({userId, addTask}) => {
           />
         </DialogContent>
         <DialogActions>
-          <span onClick={handleClose}>Cancel</span>
-          <span onClick={(event) => {
-            event.preventDefault();
-            handleNewTask();
-            handleClose();
-          }}>Add</span>
+          <Button onClick={handleClose} sx={{textTransform: 'capitalize'}}>Cancel</Button>
+          <Button 
+            onClick={(event) => {
+              event.preventDefault();
+              handleNewTask();
+              handleClose();
+            }}
+            variant='outlined'
+            sx={{ borderColor: 'var(--primary-light-color)', color: 'var(--primary-light-color)', textTransform: 'capitalize'}}
+          >
+            Add
+          </Button>
         </DialogActions>
       </Dialog>
     </>

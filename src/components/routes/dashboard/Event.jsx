@@ -125,8 +125,8 @@ const Event = () => {
                       <DialogContentText id="alert-dialog-description"> Are you sure you want to delete this task?</DialogContentText>
                     </DialogContent>
                     <DialogActions>
-                      <Button onClick={() => setTaskToDelete({ id: '', dialog: false })}>Cancel</Button>
-                      <Button onClick={() => handleDeleteTask(taskToDelete.id)} > Delete </Button>
+                      <Button onClick={() => setTaskToDelete({ id: '', dialog: false })} sx={{textTransform: 'capitalize'}}>Cancel</Button>
+                      <Button onClick={() => handleDeleteTask(taskToDelete.id)} sx={{textTransform: 'capitalize', color: '#A60000'}} > Delete </Button>
                     </DialogActions>
                   </Dialog>
                 </div>
