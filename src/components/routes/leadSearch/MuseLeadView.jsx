@@ -25,14 +25,37 @@ const MuseLeadView = ({selectedLead}) => {
       {selectedLead ? <><h2>{selectedLead.title}</h2>
       <div className="company-url">
         <p className='company-name'>{selectedLead.company}</p>
-        {showButton && <Button onClick={handleURLClick} variant="contained" endIcon={<LaunchIcon/>}>APPLY FOR LEAD</Button>}
+        {showButton && <Button 
+          onClick={handleURLClick} 
+          variant="contained" 
+          endIcon={<LaunchIcon/>}
+          sx={{
+            backgroundColor: 'var(--primary-dark-color)', 
+            color: 'var(--secondary-color)',
+            textTransform: 'capitalize',
+            fontSize: '.9rem'}}
+        >
+          Apply For Lead
+        </Button>}
       </div>
       <div className="location-postingDate">
         <p className='location'>{selectedLead.location}</p>
         <p>{selectedLead.jobPostingDate}</p>
       </div>
       <div className="description" dangerouslySetInnerHTML={{ __html: selectedLead.description }}></div>
-      {showButton && <Button className='bottom-apply-btn' onClick={handleURLClick} variant="contained" endIcon={<LaunchIcon/>}>APPLY FOR LEAD</Button>}</> : <p className='lead-not-selected'>Select a lead</p> }
+      {showButton && <Button 
+        className='bottom-apply-btn' 
+        onClick={handleURLClick} 
+        variant="contained" 
+        endIcon={<LaunchIcon/>}
+        sx={{
+          backgroundColor: 'var(--primary-dark-color)', 
+          color: 'var(--secondary-color)',
+          textTransform: 'capitalize',
+          fontSize: '.9rem'}}
+      >
+        Apply For Lead
+        </Button>}</> : <p className='lead-not-selected'>Select a lead</p> }
     </div>
   )
 }

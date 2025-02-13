@@ -85,7 +85,14 @@ const FilterPanel = ({ onApplyFilters}) => {
             </div>
             </AccordionDetails>
           </Accordion>
-          <Button className="apply-filters" onClick={handleFilterChange} variant="outlined" sx={{color: 'var(--primary-light-color)', borderColor: 'var(--primary-light-color)' }}>APPLY FILTERS</Button>
+          <Button 
+            className="apply-filters" 
+            onClick={handleFilterChange} 
+            variant="outlined" 
+            sx={{
+              color: 'var(--primary-light-color)', 
+              borderColor: 'var(--primary-light-color)',
+              textTransform: 'capitalize'}}>Apply Filters</Button>
         </div>
       </div>
     </div>

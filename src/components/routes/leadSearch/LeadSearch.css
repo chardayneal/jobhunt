@@ -146,7 +146,6 @@
 
 .search-col .muse-lead-list,
 .search-col.muse-lead-view {
-    background-color: #fff;
 
     max-height: calc(100vh - 90px - 7rem);
 
@@ -169,19 +168,22 @@
 
 .list-container .muse-lead {
     position: relative;
-    padding: 2px;
     box-sizing: border-box;
     margin: 5px;
 }
 
 .muse-lead-container .MuiDivider-root {
-    margin: 1rem 4rem;
+    margin: 1rem;
 }
 
+.lead-body .lead {
+    margin-bottom: 0;
+    border: none;
+}
 .selected {
-    background: linear-gradient(90deg, rgba(40, 0, 255, 1), rgba(255, 160, 71, 1)) ;
-    border-radius: 5px;
-    border: 1px solid transparent;
+    /* background: linear-gradient(90deg, rgba(40, 0, 255, 1), rgba(255, 160, 71, 1)) ; */
+    border-radius: 7px;
+    border: 3px solid var(--secondary-light-color);
 }
 
 .muse-lead:hover .hover-overlay {
@@ -196,7 +198,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 1rem;
+    gap: 5rem;
 
     border-radius: 5px;
 }
