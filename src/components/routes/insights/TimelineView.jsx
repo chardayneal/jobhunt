@@ -5,13 +5,19 @@ import TimelineSeparator from '@mui/lab/TimelineSeparator';
 import TimelineConnector from '@mui/lab/TimelineConnector';
 import TimelineContent from '@mui/lab/TimelineContent';
 import TimelineDot from '@mui/lab/TimelineDot';
-import TimelineOppositeContent, {
-  timelineOppositeContentClasses,
-} from '@mui/lab/TimelineOppositeContent';
+import TimelineOppositeContent from '@mui/lab/TimelineOppositeContent';
 import Plot from './Plot';
 
 
 const TimelineView = ({ history }) => {
+  const colorMap = {
+    'Interested': 'black',
+    'Applied': 'var(--primary-dark-color)',
+    'Interviewing': '#fb8500',
+    'Offered': 'var(--primary-light-color)',
+    'Not Selected': '#a6a6a6'
+  }
+
   const timelinePlots = history.map((plot, index) => {
     return (
       <TimelineItem key={index}>
@@ -19,10 +25,10 @@ const TimelineView = ({ history }) => {
         {plot.date}
       </TimelineOppositeContent>
       <TimelineSeparator>
-        <TimelineDot />
-        <TimelineConnector />
+        <TimelineDot sx={{backgroundColor: colorMap[plot.status]}}/>
+        <TimelineConnector sx={{ backgroundColor: colorMap[plot.status] }} />
       </TimelineSeparator>
-      <TimelineContent>
+      <TimelineContent sx={ {color: colorMap[plot.status] }}>
         <Plot plot={plot} />
       </TimelineContent>
       </TimelineItem>
@@ -32,19 +38,14 @@ const TimelineView = ({ history }) => {
 
   return (
     <div className="timeline-view timeline-col">
-      <Timeline sx={{
-        [`& .${timelineOppositeContentClasses.root}`]: {
-          flex: 0.2,
-        },
-      }}
-      >
+      <Timeline>
         {timelinePlots}
         <TimelineItem key="current">
           <TimelineOppositeContent color="textSecondary">
             {new Date().toDateString()}
           </TimelineOppositeContent>
           <TimelineSeparator>
-            <TimelineDot />
+            <TimelineDot variant='outlined'/>
           </TimelineSeparator>
           <TimelineContent>
             <h3>Present</h3>

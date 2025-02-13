@@ -34,7 +34,7 @@ const TimelinePanel = () => {
     <section className="dash-card insight-grid-item timeline-panel">
        <div className="lead-scroll-list timeline-col">
         {leads.map((lead) => (
-          <div key={lead.id}>
+          <div key={lead.id} className='timeline-lead'>
             <ListItem
             key={lead.id}
             onClick={() => fetchLeadHistory(lead.id)}
@@ -47,7 +47,7 @@ const TimelinePanel = () => {
           </div>
         ))}
        </div>
-       {isLeadSelected ? <TimelineView history={history}/> : <div><p>Select Lead to View Progress</p></div>}
+       {isLeadSelected ? <TimelineView history={history}/> : <div className='no-display'><p>Select Lead to View Progress</p></div>}
     </section>
   )
 }
