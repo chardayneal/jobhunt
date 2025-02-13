@@ -39,8 +39,30 @@ const MuseList = ({userId, leadResults, handleMuseLeadClick }) => {
           <div className="lead-body">
             <Lead leadInfo={{ title: lead.title, company: lead.company, location: lead.location}} />
             <div className="hover-overlay">
-              <Button onClick={() => handleAddToLeads(lead)} variant="contained" startIcon={<StarIcon/>}>Add to Leads</Button>
-              <Button onClick={() => handleLeadSelection(lead)}  variant="outlined">View Lead</Button>
+              <Button 
+                onClick={() => handleAddToLeads(lead)} 
+                variant="contained" 
+                startIcon={<StarIcon/>}
+                sx={{
+                  backgroundColor: 'var(--primary-dark-color)', 
+                  color: 'var(--secondary-color)',
+                  textTransform: 'capitalize',
+                  fontSize: '0.8rem',}}
+              >
+                Add to Leads
+              </Button>
+              <Button 
+                onClick={() => handleLeadSelection(lead)}  
+                variant="outlined"
+                sx={{
+                  borderColor: 'var(--primary-light-color)',
+                  color: 'var(--primary-light-color)',
+                  textTransform: 'capitalize',
+                  fontSize: '0.8rem',
+                }}
+              >
+                View Lead
+              </Button>
             </div>
           </div>
         </div>

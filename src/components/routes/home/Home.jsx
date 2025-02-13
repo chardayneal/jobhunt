@@ -66,7 +66,6 @@ const Home = () => {
     updateUser(user.id, {name: profileName})
       .then((updatedUser) => {
         setUser(updatedUser);
-        console.log(updatedUser);
         setShowProfile(false);
       })
       .catch((error) => {
@@ -78,7 +77,6 @@ const Home = () => {
     <div className="home grid-container">
         <Sidebar/>
         <div className="grid-item header">
-          {/* <div className="spacer"></div> */}
           <h1>Dashboard</h1>
           <Tooltip title="Account settings">
             <IconButton
@@ -157,11 +155,17 @@ const Home = () => {
             }}
         >
           <DialogContent>
-            <Profile userName={profileName} userEmail={user.email} updateName={setProfileName}/>
+            <Profile userName={profileName} placeholderName={user.name} userEmail={user.email} updateName={setProfileName}/>
           </DialogContent>
           <DialogActions>
-            <Button variant='contained' onClick={handleUserChanges}>Save Changes</Button>
             <Button onClick={handleProfileClose}>Close</Button>
+            <Button 
+              variant='contained' 
+              onClick={handleUserChanges}
+              sx={{ bgcolor: 'var(--primary-light-color)', color: 'var(--secondary-color)' }}
+            >
+              Save Changes
+            </Button>
           </DialogActions>
         </Dialog>
       </div>

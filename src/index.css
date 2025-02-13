@@ -16,7 +16,8 @@
   --secondary-light-color: #a5be00;
 
   --small-font: 0.875rem;
-
+  --header-font: 'Parkinsans', sans-serif;
+  
   font-family: 'Inter', sans-serif;
 }
 

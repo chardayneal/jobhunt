@@ -32,8 +32,21 @@ const MuseScroll = ({ userId, leadResults, loadMoreData, viewLead }) => {
     <div className='muse-lead-list' ref={scrollContainerRef}>
       <div className='list-container'>
         <MuseList userId={userId} handleMuseLeadClick={viewLead} leadResults={leadResults}/>
-        {atBottom && <Button onClick={loadMoreData} className='load-more-btn' variant="contained" size="large">
-          LOAD MORE RESULTS
+        {atBottom && <Button 
+          onClick={loadMoreData} 
+          className='load-more-btn' 
+          variant="contained" 
+          size="medium"
+          sx={{ 
+            backgroundColor: 'var(--primary-dark-color)', 
+            color: 'var(--secondary-color)',
+            textTransform: 'capitalize',
+            '&:hover': {
+              backgroundColor: 'var(--primary-light-color)'
+            }
+          }}
+        >
+          Load More
         </Button>}
       </div>
     </div>

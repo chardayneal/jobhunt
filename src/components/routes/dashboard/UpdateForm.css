@@ -1,0 +1,32 @@
+.MuiPaper-root p.company {
+    font-style: italic;
+    margin: .5rem 0;
+
+}
+
+.status-select {
+    width: 100%;
+    margin: 2rem 0 .5rem;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+}
+
+.status-select p {
+    font-weight: 500;
+
+}
+
+.status-select select {
+    width: 50%;
+    padding: .25rem 1rem;
+    border: 1px solid var(--primary-dark-color);
+    border-radius: 100px;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--primary-dark-color);
+    text-align: center;
+    
+}

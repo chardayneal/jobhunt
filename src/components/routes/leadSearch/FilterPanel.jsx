@@ -31,15 +31,15 @@ const FilterPanel = ({ onApplyFilters}) => {
   return (
     <div className="dash-card filter-panel">
       <div className="filter-container">
-        <h3>FILTER RESULTS</h3>
+        <h4>Filter Results</h4>
         <div className="levels">
           <Accordion defaultExpanded>
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
-            aria-controls="panel1-content"
+            aria-controls="job-level-content"
             id="levels-header"
           >
-            <Typography className="levels-title" component="span">Levels</Typography>
+            <Typography className="accordion-title" component="span">Levels</Typography>
           </AccordionSummary>
           <AccordionDetails>
             <div className="levels-container">
@@ -69,7 +69,7 @@ const FilterPanel = ({ onApplyFilters}) => {
               aria-controls="panel2-content"
               id="panel2-header"
             >
-              <Typography component="span">Boards</Typography>
+              <Typography className="accordion-title" component="span">Boards</Typography>
             </AccordionSummary>
             <AccordionDetails>
             <div className="boards-container">
@@ -85,7 +85,14 @@ const FilterPanel = ({ onApplyFilters}) => {
             </div>
             </AccordionDetails>
           </Accordion>
-          <Button className="apply-filters" onClick={handleFilterChange} variant="outlined">APPLY FILTERS</Button>
+          <Button 
+            className="apply-filters" 
+            onClick={handleFilterChange} 
+            variant="outlined" 
+            sx={{
+              color: 'var(--primary-light-color)', 
+              borderColor: 'var(--primary-light-color)',
+              textTransform: 'capitalize'}}>Apply Filters</Button>
         </div>
       </div>
     </div>

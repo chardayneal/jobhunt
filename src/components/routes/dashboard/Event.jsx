@@ -96,15 +96,17 @@ const Event = () => {
             {tasksByDate ? tasksByDate.map(task => {
               return (
                 <div className="taskItem" key={task.id}>
-                  <Checkbox 
-                    sx={{
-                      '&.Mui-checked': {
-                        color: 'var(--secondary-dark-color)'
-                      }
-                    }} 
-                    checked={task.isComplete} 
-                    onChange={() => handleCheckboxSelection(task.id, task.isComplete)}/>
-                  <p>{task.text}</p>
+                  <div className='task-left-col'>
+                    <Checkbox 
+                      sx={{
+                        '&.Mui-checked': {
+                          color: 'var(--secondary-dark-color)'
+                        }
+                      }} 
+                      checked={task.isComplete} 
+                      onChange={() => handleCheckboxSelection(task.id, task.isComplete)}/>
+                    <p>{task.text}</p>
+                  </div>
                   <IconButton 
                     onClick={() => setTaskToDelete({ id: task.id, dialog: true })} 
                     aria-label="delete">
@@ -123,8 +125,8 @@ const Event = () => {
                       <DialogContentText id="alert-dialog-description"> Are you sure you want to delete this task?</DialogContentText>
                     </DialogContent>
                     <DialogActions>
-                      <Button onClick={() => setTaskToDelete({ id: '', dialog: false })}>Cancel</Button>
-                      <Button onClick={() => handleDeleteTask(taskToDelete.id)} > Delete </Button>
+                      <Button onClick={() => setTaskToDelete({ id: '', dialog: false })} sx={{textTransform: 'capitalize'}}>Cancel</Button>
+                      <Button onClick={() => handleDeleteTask(taskToDelete.id)} sx={{textTransform: 'capitalize', color: '#A60000'}} > Delete </Button>
                     </DialogActions>
                   </Dialog>
                 </div>

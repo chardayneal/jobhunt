@@ -1,10 +1,12 @@
 import propTypes from "prop-types";
 import TextField from '@mui/material/TextField';
+import './NewLeadForm.css';
 
 export const NewLeadForm = ({ leadData, handleLeadDataChange}) => {
 
   return (
-      <>
+      <div className="new-lead-form">
+        <div className="lead-row">
         <TextField
           required
           value={leadData.title}
@@ -29,30 +31,8 @@ export const NewLeadForm = ({ leadData, handleLeadDataChange}) => {
           fullWidth
           variant="standard"
         />
-
-        {leadData === null && <fieldset className="lead-input">
-          <legend>Status</legend>
-          <div className="status-radio">
-            <input onSelect={handleLeadDataChange} type="radio" id="interested" name="status" value="interested" defaultChecked required/>
-            <label htmlFor="interested">Interested</label>
-          </div>
-          <div className="status-radio">
-            <input onSelect={handleLeadDataChange} type="radio" id="applied" name="status" value="applied" />
-            <label htmlFor="applied">Applied</label>
-          </div>
-          <div className="status-radio">
-            <input onSelect={handleLeadDataChange} type="radio" id="interviewing" name="status" value="interviewing"/>
-            <label htmlFor="interviewing">Interviewing</label>
-          </div>
-          <div className="status-radio">
-            <input onSelect={handleLeadDataChange} type="radio" id="offered" name="status" value="offered" />
-            <label htmlFor="offered">Offered</label>
-          </div>
-          <div className="status-radio">
-            <input onSelect={handleLeadDataChange} type="radio" id="notSelected" name="status" value="notSelected"/>
-            <label htmlFor="notSelected">Not Selected</label>
-          </div>
-        </fieldset>}
+        </div>
+        <div className="lead-row">
       <TextField
           value={leadData.level}
           onChange={handleLeadDataChange}
@@ -75,7 +55,8 @@ export const NewLeadForm = ({ leadData, handleLeadDataChange}) => {
           fullWidth
           variant="standard"
         />
-
+        </div>
+        <div className="lead-row">
         <TextField
         
           value={leadData.jobURL}
@@ -89,7 +70,7 @@ export const NewLeadForm = ({ leadData, handleLeadDataChange}) => {
           fullWidth
           variant="standard"
         />
-
+        </div>
         <div className="lead-input">
           <label htmlFor="description">Job Description</label>
           <textarea
@@ -99,7 +80,7 @@ export const NewLeadForm = ({ leadData, handleLeadDataChange}) => {
             name="description" 
             rows="10" cols="40"></textarea>
         </div>
-    </>
+    </div>
   );
 };
 

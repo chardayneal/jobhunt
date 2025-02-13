@@ -42,16 +42,24 @@ const LeadHeader = ({ searchQuery, handleQueryChange }) => {
                 <fieldset>
                   <legend>STATUS</legend>
                   <div className="status">
+                      <div className="square interested"></div>
+                      <span className="interested-text">Interested</span>
+                  </div>
+                  <div className="status">
                       <div className="square applied"></div>
-                      <span className="applied-text">APPLIED</span>
+                      <span className="applied-text">Applied</span>
                   </div>
                   <div className="status">
                       <div className="square interviewing"></div>
-                      <span className="interviewing-text">INTERVIEWING</span>
+                      <span className="interviewing-text">Interviewing</span>
                   </div>
                   <div className="status">
                       <div className="square offered"></div>
-                      <span className="offered-text">OFFERED</span>
+                      <span className="offered-text">Offered</span>
+                  </div>
+                  <div className="status">
+                      <div className="square notSelected"></div>
+                      <span className="not-selected-text">Not Selected</span>
                   </div>
                 </fieldset>
             </div>

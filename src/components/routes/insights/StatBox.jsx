@@ -33,29 +33,68 @@ const StatBox = () => {
     <div className="insight-grid-item stats-box">
         <div className="dash-card stat-col lead-total">
           <h2>{leads.length}</h2>
-          <p>LEADS TOTAL</p>
+          <p>LEADS <br/> TOTAL</p>
         </div>
         <div className="dash-card stat-col">
           <Gauge 
             innerRadius="90%" 
             outerRadius="120%" 
-            height={100} 
+            height={75} 
             value={`${calculateStat(leads, 'interviews')}%`} 
             startAngle={-120} 
             endAngle={120} 
+            sx={{
+              fontSize: '2.75rem',
+              fontWeight: '800', 
+            }}
             />
             <p className="gauge-title">INTERVIEWED</p>
         </div>
         <div className="dash-card stat-col">
-          <Gauge innerRadius="90%" outerRadius="120%" height={100} value={`${calculateStat(leads, 'offered')}%`} startAngle={-120} endAngle={120} />
+          <Gauge 
+            innerRadius="90%" 
+            outerRadius="120%" 
+            height={75} 
+            value={`${calculateStat(leads, 'offered')}%`} 
+            startAngle={-120} 
+            endAngle={120} 
+            sx={{
+              fontSize: '2.75rem',
+              fontWeight: '800',
+            }}  
+          />
           <p className="gauge-title">OFFERED</p>
         </div>
         <div className="dash-card stat-col">
-          <Gauge innerRadius="90%" outerRadius="120%" height={100} value={`${calculateStat(leads, 'applied')}%`} startAngle={-120} endAngle={120} />
+          <Gauge 
+            innerRadius="90%" 
+            outerRadius="120%" 
+            height={75} 
+            value={`${calculateStat(leads, 'applied')}%`} 
+            startAngle={-120} 
+            endAngle={120} 
+            sx={{
+              fontSize: '2.75rem',
+              fontWeight: '800',
+              
+            }}
+          />
           <p className="gauge-title">UNDER REVIEW</p>
         </div>
         <div className="dash-card stat-col">
-          <Gauge innerRadius="90%" outerRadius="120%" height={100} value={`${calculateStat(tasks, 'tasks')}%`} startAngle={-120} endAngle={120} />
+          <Gauge 
+            innerRadius="90%" 
+            outerRadius="120%" 
+            height={75} 
+            value={`${calculateStat(tasks, 'tasks')}%`} 
+            startAngle={-120} 
+            endAngle={120} 
+            sx={{
+              fontSize: '2.75rem',
+              fontWeight: '800',
+              
+            }}
+          />
           <p className="gauge-title">TASKS COMPLETION</p>
         </div>
         

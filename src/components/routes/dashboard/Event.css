@@ -30,7 +30,7 @@
 }
 
 .events .event {
-    height: calc(100vh - 90px - 295px - 8rem);
+    height: calc(100vh - 90px - 295px - 10rem);
     overflow: scroll;
     overflow-y: auto;
     overflow-x: hidden;
@@ -39,15 +39,31 @@
 .taskItem {
     display: flex;
     align-items: center;
+    justify-content: space-between;
+    margin: .5rem 0;
 }
+
+.taskItem .task-left-col {
+    display: flex;
+    align-items: center;
+    gap: .25rem;
+}
+
+/* .taskItem .task-left-col p {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+} */
 
 .flex-area .events .calendar {
     width: calc(100% - 2rem);
+    height: 60%;
     box-sizing: border-box;
-    margin: 0 1rem ;
-    margin-top: 1rem;
-    padding: .25rem;
+    margin: .5rem 1rem 0;
+    padding: 0 .15rem .1rem;
 }
+
+
 
 .events .calendar .MuiPickersDay-today {
     border: 2px solid var(--primary-light-color);

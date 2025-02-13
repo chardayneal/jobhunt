@@ -4,7 +4,10 @@ import { Button } from '@mui/material';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
+import Divider from '@mui/material/Divider';
+import KeyboardDoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArrowRight';
 import { updateLeadStatus } from '../../../apiUtilities/backendAPI';
+import './UpdateForm.css';
 
 const UpdateForm = ({lead, isOpen, handleClose}) => {
   const [leadStatus, setLeadStatus] = useState(lead.status);
@@ -30,7 +33,7 @@ const UpdateForm = ({lead, isOpen, handleClose}) => {
   }
 
   return (
-    <div>
+    <div className='update-form'>
       <Dialog
         open={isOpen}
         onClose={handleClose}
@@ -43,17 +46,22 @@ const UpdateForm = ({lead, isOpen, handleClose}) => {
       >
         <DialogContent>
           <h2>Quick Status Update</h2>
-          <h3>{lead.title}</h3>
-          <h4>{lead.company}</h4>
-          <select onChange={updateStatus} name="status" id="status" defaultValue={lead.status}>
-            {options}
-          </select>
+          <Divider sx={{ margin: '.5rem 0 1rem'}}/>
+          <h4>{lead.title}</h4>
+          <p className='company'>{lead.company}</p>
+          <div className='status-select'>
+            <p>{lead.status}</p>
+            <KeyboardDoubleArrowRightIcon sx={{color: 'var(--primary-light-color)'}}/>
+            <select onChange={updateStatus} name="status" id="status" defaultValue={lead.status}>
+              {options}
+            </select>
+          </div>
 
         </DialogContent>
         <DialogActions>
           <div>
             <Button onClick={handleClose}>Cancel</Button>
-            <Button type='submit'>Update Status</Button>  
+            <Button type='submit' variant='outlined' sx={{color: 'var(--primary-light-color)', borderColor: 'var(--primary-light-color)'}}>Update Status</Button>  
           </div>
         </DialogActions>
       </Dialog>

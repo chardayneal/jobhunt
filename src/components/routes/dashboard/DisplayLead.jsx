@@ -69,13 +69,13 @@ const DisplayLead = ({ lead, isOpen, handleClose }) => {
         </DialogContent>
         <DialogActions>
           {isEditing ? 
-          <div> 
-            <Button onClick={handleLeadClose}>Cancel</Button>
-            <Button type="submit">Save Changes</Button>
+          <div className="dialog-actions"> 
+            <Button onClick={handleLeadClose} sx={{textTransform: 'capitalize'}}>Cancel</Button>
+            <Button variant='outlined' type="submit" sx={{ color: 'var(--primary-light-color)', borderColor: 'var(--primary-light-color)', textTransform: 'capitalize' }}>Save Changes</Button>
           </div> :
-          <div>
-            <Button onClick={() => setIsEditing(true)}>Edit</Button>
-            <Button onClick={handleLeadClose}>Close</Button>  
+          <div className="dialog-actions">
+            <Button variant='outlined' onClick={() => setIsEditing(true)} sx={{ color: 'var(--primary-light-color)', borderColor: 'var(--primary-light-color)', textTransform: 'capitalize' }}>Edit</Button>
+            <Button onClick={handleLeadClose} sx={{textTransform: 'capitalize'}}>Close</Button>  
           </div>}
         </DialogActions>
       </Dialog>

@@ -1,6 +1,6 @@
 .insight-grid {
-    margin: 1rem 1rem 0;
-    padding: 1rem 1rem 0;
+    margin: 1rem 0 0;
+    padding: 0 1rem ;
     background-color: blalck;
     display: grid;
     grid-template-columns: repeat(2, 1fr) 400px;
@@ -13,34 +13,73 @@
     background-color: #fff;
 }
 
+.insight-grid .insight-grid-item.timeline-panel.dash-card {
+ margin: 0 1rem 1rem;
+}
+
+.insight-grid .insight-grid-item.stats-box {
+    background-color: transparent;
+}
+
 .stats-box {
+    padding: 0 0 1rem;
+
     min-height: 100px;
 
     grid-column: 1 / 4;
     grid-row: 1 / 2;
 
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    gap: 5rem;
+}
+
+.stats-box {
+    margin: 1rem 0 0;
+}
+
+.stat-col.dash-card {
+    padding: .5rem 0;
+    margin-bottom: 0;
 }
 
 .stats-box .stat-col {
-    width: 125px;
+    width: 225px;
+    height: 100%;
     position: relative;
 }
 
+.stat-col p {
+    text-align: center;
+}
+
+.stat-col.lead-total {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: .5rem;
+}
+.lead-total h2 {
+    font-size: 4rem;
+}
+.lead-total p {
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+
+
 .MuiGauge-root .MuiGauge-referenceArc {
-    fill: #5ce1e6;
+    fill: #a5be008f;
+    
 }
 
 
 .stats-box .gauge-title{
     width: 100%;
     position: absolute;
-    bottom: 0;
-    /* left: 0; */
-    /* transform: translateX(50%); */
+    bottom: 15;
+    font-weight: 700;
 }
 
 
