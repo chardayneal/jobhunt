@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, Link } from 'react-router';
-import './Login.css';
 import { loginUser } from '../../../apiUtilities/backendAPI';
+import logo from '../../../assets/logoDark.svg';
+import './Login.css';
 
 const LogIn = () => {
   const [email, setEmail] = useState('');
@@ -31,7 +32,7 @@ const LogIn = () => {
 
   return (
     <div className="auth">
-      <img className="logo" src='src/assets/logoDark.svg' alt='jobHuntlogo'/>
+      <img className="logo" src={logo} alt='jobHuntlogo'/>
       <div className="auth-col auth-container">
         <div className="auth-text">
           <h1>Welcome back</h1>
@@ -63,8 +64,7 @@ const LogIn = () => {
           <span>Don&apos;t have an account? <Link to='/signup'>Sign up here</Link></span>
         </div>
       </div>
-      <div className="auth-col auth-img">
-        <img src="src/assets/loginImg.png" alt="graphic of woman at desk with laptop" />
+      <div className="auth-col auth-img container">
       </div>
     </div>
   )

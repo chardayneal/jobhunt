@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router";
 import { createUser } from "../../../apiUtilities/backendAPI";
+import logo from '../../../assets/logoDark.svg';
 import './Login.css';
 
 const SignUp = () => {
@@ -29,7 +30,7 @@ const SignUp = () => {
 
   return (
       <div className="auth">
-      <img className="logo" src='src/assets/logoDark.svg' alt='jobHuntlogo'/>
+      <img className="logo" src={logo} alt='jobHuntlogo'/>
       <div className="auth-col auth-container">
         <div className="auth-text">
           <h1>Create an account</h1>
@@ -71,8 +72,7 @@ const SignUp = () => {
           <span>Already have an account? <Link to='/login'>Sign in here</Link></span>
         </div>
       </div>
-      <div className="auth-col auth-img">
-        <img src="src/assets/loginImg.png" alt="graphic of woman at desk with laptop" />
+      <div className="auth-col auth-img container">
       </div>
     </div>
   )
