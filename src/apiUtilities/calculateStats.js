@@ -18,9 +18,7 @@ export const calculateStat = (data, type) => {
       break;
     case 'applied':
       data.forEach((lead) => {
-        lead.historyList.forEach((history) => {
-          if (history.status === 'Applied') counter++;
-        });
+        if (lead.status === 'Applied') counter++;
       });
       break;
     case 'tasks':
@@ -33,6 +31,6 @@ export const calculateStat = (data, type) => {
   }
 
   if (counter === 0) return 0;
-  let value = counter / data.length * 100;
+  let value = (counter / data.length) * 100;
   return Math.round(value);
 }
