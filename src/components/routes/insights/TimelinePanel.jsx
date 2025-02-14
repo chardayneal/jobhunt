@@ -9,6 +9,7 @@ const TimelinePanel = () => {
   const [leads, setLeads] = useState([]);
   const [history, setHistory] = useState([]);
   const [isLeadSelected, setIsLeadSelected] = useState(false);
+  const [selectedLead, setSelectedLead] = useState({ selected: false, id: 0})
 
   useEffect(() => {
     const userId = localStorage.getItem('userId');
@@ -23,6 +24,7 @@ const TimelinePanel = () => {
 
   const fetchLeadHistory = (leadId) => {
     console.log(leadId);
+    setSelectedLead({ selected: true, id: leadId });
     const leadHistory = leads.filter((lead) => lead.id === leadId)[0].historyList;
     console.log(leadHistory);
     setHistory(leadHistory.map((plot) => formatHistoryData(plot)));
@@ -38,7 +40,7 @@ const TimelinePanel = () => {
             <ListItem
             key={lead.id}
             onClick={() => fetchLeadHistory(lead.id)}
-            className="lead-btn"
+            className={`lead-btn ` + (selectedLead.selected && selectedLead.id === lead.id ? 'selected' : '')}
             variant="contained"
           >
             <Lead leadInfo={lead} />

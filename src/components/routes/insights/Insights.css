@@ -142,7 +142,7 @@
 }
 
 .lead-scroll-list .timeline-lead .lead:hover{
-    border: 3px solid var(--primary-dark-color);
+    border: 3px solid var(--primary-light-color);
 }
 
 .timeline-view {
@@ -154,6 +154,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.timeline-panel .lead-btn.selected .lead{
+    border: 3px solid var(--primary-dark-color);
 }
 
 .no-display p {
