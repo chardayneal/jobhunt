@@ -2,10 +2,19 @@
     position: relative;
 }
 
+.insight-panel.dash-card {
+    margin: 0 1rem 1rem 0;
+}
+
+.insight-panel h3 {
+    margin-bottom: .5rem;
+    font-size: 1.5rem;
+}
+
 
 .insight-panel .add-insight-btn {
     position: absolute;
-    top: 12px;
+    bottom: 12px;
     right: 10px;
 }
 
@@ -24,6 +33,7 @@
 .insight-item {
    min-height: 30px;
    display: flex;
+   align-items: center;
 }
 
 .insight-item .item-date {

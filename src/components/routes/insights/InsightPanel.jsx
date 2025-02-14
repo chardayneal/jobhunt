@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import Fab from '@mui/material/Fab';
 import AddIcon from '@mui/icons-material/Add';
 import Stack from '@mui/material/Stack';
+import Divider from '@mui/material/Divider';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
@@ -13,6 +14,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import Button from '@mui/material/Button';
 import { addInsight, deleteInsight, getInsightsByUserId } from '../../../apiUtilities/backendAPI';
 import './InsightPanel.css';
+import { Tooltip } from '@mui/material';
 
 
 const InsightPanel = () => {
@@ -35,7 +37,13 @@ const InsightPanel = () => {
   const formattedInsights = insights.map((item, index) => (
     <div className="insight-item" key={index}>
         <span className="item-date">{item.date}</span>
-        <span className="item-text">{item.text}</span>
+        <Tooltip 
+          title={item.text} 
+          arrow 
+          placement='top'
+        >
+          <span className="item-text">{item.text}</span>
+        </Tooltip>
         <IconButton 
           onClick={() => setInsightToDelete({ id: item.id, dialog: true })} 
           aria-label="delete">
@@ -58,10 +66,17 @@ const InsightPanel = () => {
             </DialogContentText>
           </DialogContent>
           <DialogActions>
-            <Button onClick={() => {
-              setInsightToDelete({ id: '', dialog: false })
-              }}>Cancel</Button>
-            <Button onClick={() => handleInsightDelete(insightToDelete.id)} >
+            <Button 
+              onClick={() => {
+                setInsightToDelete({ id: '', dialog: false })
+              }}
+              sx={{ color: 'var(--primary-light-color)', textTransform: 'capitalize' }}
+            >Cancel</Button>
+            <Button 
+              onClick={() => handleInsightDelete(insightToDelete.id)} 
+              variant='outlined'
+              sx={{ borderColor: 'var(--primary-dark-color)', color: 'var(--primary-dark-color)', textTransform: 'capitalize' }}   
+            >
               Delete
             </Button>
           </DialogActions>
@@ -104,12 +119,13 @@ const InsightPanel = () => {
 
 
   return (
-    <div className="insight-grid-item insight-panel">
+    <div className="insight-grid-item dash-card insight-panel">
       <h3>Insight Corner</h3>
+      <Divider />
       <Fab 
         className='add-insight-btn'
         size="small" 
-        color="secondary" 
+        sx={{ backgroundColor: 'var(--primary-dark-color)', color: 'var(--secondary-color)'}} 
         aria-label="add"
       >
         <AddIcon onClick={() => setOpen(true)} />
@@ -142,12 +158,19 @@ const InsightPanel = () => {
           />
         </DialogContent>
         <DialogActions>
-          <span onClick={handleClose}>Cancel</span>
-          <span onClick={(event) => {
-            event.preventDefault();
-            handleNewInsight();
-            handleClose();
-          }}>Add</span>
+          <Button 
+            onClick={handleClose}
+            sx={{ color: 'var(--primary-dark-color)', textTransform: 'capitalize' }}
+          >Cancel</Button>
+          <Button 
+            onClick={(event) => {
+              event.preventDefault();
+              handleNewInsight();
+              handleClose();
+            }}
+            variant='outlined'
+            sx={{ borderColor: 'var(--primary-light-color)', color: 'var(--primary-light-color)', textTransform: 'capitalize' }} 
+          >Add</Button>
         </DialogActions>
       </Dialog>
       <Stack className='insight-list' spacing={2}>
