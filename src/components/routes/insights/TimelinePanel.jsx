@@ -40,7 +40,7 @@ const TimelinePanel = () => {
             <ListItem
             key={lead.id}
             onClick={() => fetchLeadHistory(lead.id)}
-            className={`lead-btn ` + (selectedLead.selected && selectedLead.id === lead.id ? 'selected' : '')}
+            className={`lead-btn ` + (selectedLead.selected && selectedLead.id === lead.id ? 'timeline-selected' : '')}
             variant="contained"
           >
             <Lead leadInfo={lead} />

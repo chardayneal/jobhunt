@@ -156,7 +156,7 @@
     align-items: center;
 }
 
-.timeline-panel .lead-btn.selected .lead{
+.timeline-panel .lead-btn.timeline-selected .lead{
     border: 3px solid var(--primary-dark-color);
 }
 
